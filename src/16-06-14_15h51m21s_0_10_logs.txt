@@ -1,0 +1,1985 @@
+libdc1394 error: Failed to initialize libdc1394
+I0614 15:58:51.714360  2037 caffe.cpp:99] Use GPU with device ID 0
+I0614 15:58:51.832307  2037 caffe.cpp:107] Starting Optimization
+I0614 15:58:51.832368  2037 solver.cpp:32] Initializing solver from parameters: 
+test_iter: 5
+test_interval: 1000
+base_lr: 0.0001
+display: 10
+max_iter: 3000
+lr_policy: "fixed"
+momentum: 0.9
+weight_decay: 0.004
+snapshot: 1000
+snapshot_prefix: "snapshots/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen"
+solver_mode: GPU
+net: "prototxt/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen_net.sh"
+I0614 15:58:51.832386  2037 solver.cpp:70] Creating training net from net file: prototxt/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen_net.sh
+I0614 15:58:51.832801  2037 net.cpp:277] The NetState phase (0) differed from the phase (1) specified by a rule in layer data
+I0614 15:58:51.832818  2037 net.cpp:277] The NetState phase (0) differed from the phase (1) specified by a rule in layer accuracy_top_1
+I0614 15:58:51.832823  2037 net.cpp:277] The NetState phase (0) differed from the phase (1) specified by a rule in layer accuracy_top_5
+I0614 15:58:51.832913  2037 net.cpp:39] Initializing net from parameters: 
+layers {
+  top: "data"
+  top: "label"
+  name: "data"
+  type: DATA
+  data_param {
+    source: "/dataset/cifar100_lmdb_lab/cifar100_train_lmdb"
+    batch_size: 128
+    backend: LMDB
+  }
+  include {
+    phase: TRAIN
+  }
+  transform_param {
+    mean_file: "/dataset/cifar100_lmdb_lab/mean.binaryproto"
+  }
+}
+layers {
+  bottom: "data"
+  top: "0_0_conv"
+  name: "0_0_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "0_0_conv"
+  top: "0_0_conv"
+  name: "0_0_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "0_0_conv"
+  top: "0_1_conv"
+  name: "0_1_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "0_1_conv"
+  top: "0_1_conv"
+  name: "0_1_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "0_1_conv"
+  top: "0_pool"
+  name: "0_pool"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "0_pool"
+  top: "1_0_conv"
+  name: "1_0_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "1_0_conv"
+  top: "1_0_conv"
+  name: "1_0_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "1_0_conv"
+  top: "1_1_conv"
+  name: "1_1_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "1_1_conv"
+  top: "1_1_conv"
+  name: "1_1_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "1_1_conv"
+  top: "1_pool"
+  name: "1_pool"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "1_pool"
+  top: "2_0_conv"
+  name: "2_0_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "2_0_conv"
+  top: "2_0_conv"
+  name: "2_0_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "2_0_conv"
+  top: "2_1_conv"
+  name: "2_1_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "2_1_conv"
+  top: "2_1_conv"
+  name: "2_1_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "2_1_conv"
+  top: "2_pool"
+  name: "2_pool"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "2_pool"
+  top: "middle_conv"
+  name: "middle_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 50
+    pad: 0
+    kernel_size: 4
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "middle_conv"
+  top: "middle_conv"
+  name: "middle_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "middle_conv"
+  top: "fc1"
+  name: "fc1"
+  type: INNER_PRODUCT
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  inner_product_param {
+    num_output: 512
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc1"
+  top: "fc1"
+  name: "fc1_Dropout"
+  type: DROPOUT
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+  include {
+    phase: TRAIN
+  }
+}
+layers {
+  bottom: "fc1"
+  top: "fc1"
+  name: "fc1_Dropout_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "fc1"
+  top: "fc2"
+  name: "fc2"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  inner_product_param {
+    num_output: 100
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc2"
+  bottom: "label"
+  top: "softmax"
+  name: "softmax"
+  type: SOFTMAX_LOSS
+}
+state {
+  phase: TRAIN
+}
+I0614 15:58:51.832983  2037 layer_factory.hpp:78] Creating layer data
+I0614 15:58:51.832995  2037 data_transformer.cpp:25] Loading mean file from/dataset/cifar100_lmdb_lab/mean.binaryproto
+I0614 15:58:51.833041  2037 net.cpp:69] Creating Layer data
+I0614 15:58:51.833046  2037 net.cpp:358] data -> data
+I0614 15:58:51.833055  2037 net.cpp:358] data -> label
+I0614 15:58:51.833060  2037 net.cpp:98] Setting up data
+I0614 15:58:51.833063  2037 data_layer.cpp:32] Opening dataset /dataset/cifar100_lmdb_lab/cifar100_train_lmdb
+I0614 15:58:51.833132  2037 data_layer.cpp:71] output data size: 128,3,32,32
+I0614 15:58:51.833448  2037 net.cpp:105] Top shape: 128 3 32 32 (393216)
+I0614 15:58:51.833456  2037 net.cpp:105] Top shape: 128 1 1 1 (128)
+I0614 15:58:51.833458  2037 layer_factory.hpp:78] Creating layer 0_0_conv
+I0614 15:58:51.833463  2037 net.cpp:69] Creating Layer 0_0_conv
+I0614 15:58:51.833467  2037 net.cpp:396] 0_0_conv <- data
+I0614 15:58:51.833475  2037 net.cpp:358] 0_0_conv -> 0_0_conv
+I0614 15:58:51.833482  2037 net.cpp:98] Setting up 0_0_conv
+I0614 15:58:51.833745  2037 net.cpp:105] Top shape: 128 16 32 32 (2097152)
+I0614 15:58:51.833760  2037 layer_factory.hpp:78] Creating layer 0_0_conv_ReLU
+I0614 15:58:51.833765  2037 net.cpp:69] Creating Layer 0_0_conv_ReLU
+I0614 15:58:51.833767  2037 net.cpp:396] 0_0_conv_ReLU <- 0_0_conv
+I0614 15:58:51.833771  2037 net.cpp:347] 0_0_conv_ReLU -> 0_0_conv (in-place)
+I0614 15:58:51.833775  2037 net.cpp:98] Setting up 0_0_conv_ReLU
+I0614 15:58:51.833778  2037 net.cpp:105] Top shape: 128 16 32 32 (2097152)
+I0614 15:58:51.833781  2037 layer_factory.hpp:78] Creating layer 0_1_conv
+I0614 15:58:51.833786  2037 net.cpp:69] Creating Layer 0_1_conv
+I0614 15:58:51.833787  2037 net.cpp:396] 0_1_conv <- 0_0_conv
+I0614 15:58:51.833792  2037 net.cpp:358] 0_1_conv -> 0_1_conv
+I0614 15:58:51.833797  2037 net.cpp:98] Setting up 0_1_conv
+I0614 15:58:51.833822  2037 net.cpp:105] Top shape: 128 16 32 32 (2097152)
+I0614 15:58:51.833827  2037 layer_factory.hpp:78] Creating layer 0_1_conv_ReLU
+I0614 15:58:51.833830  2037 net.cpp:69] Creating Layer 0_1_conv_ReLU
+I0614 15:58:51.833833  2037 net.cpp:396] 0_1_conv_ReLU <- 0_1_conv
+I0614 15:58:51.833838  2037 net.cpp:347] 0_1_conv_ReLU -> 0_1_conv (in-place)
+I0614 15:58:51.833844  2037 net.cpp:98] Setting up 0_1_conv_ReLU
+I0614 15:58:51.833853  2037 net.cpp:105] Top shape: 128 16 32 32 (2097152)
+I0614 15:58:51.833855  2037 layer_factory.hpp:78] Creating layer 0_pool
+I0614 15:58:51.833858  2037 net.cpp:69] Creating Layer 0_pool
+I0614 15:58:51.833861  2037 net.cpp:396] 0_pool <- 0_1_conv
+I0614 15:58:51.833865  2037 net.cpp:358] 0_pool -> 0_pool
+I0614 15:58:51.833870  2037 net.cpp:98] Setting up 0_pool
+I0614 15:58:51.833876  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.833879  2037 layer_factory.hpp:78] Creating layer 1_0_conv
+I0614 15:58:51.833883  2037 net.cpp:69] Creating Layer 1_0_conv
+I0614 15:58:51.833885  2037 net.cpp:396] 1_0_conv <- 0_pool
+I0614 15:58:51.833889  2037 net.cpp:358] 1_0_conv -> 1_0_conv
+I0614 15:58:51.833894  2037 net.cpp:98] Setting up 1_0_conv
+I0614 15:58:51.833914  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.833920  2037 layer_factory.hpp:78] Creating layer 1_0_conv_ReLU
+I0614 15:58:51.833922  2037 net.cpp:69] Creating Layer 1_0_conv_ReLU
+I0614 15:58:51.833925  2037 net.cpp:396] 1_0_conv_ReLU <- 1_0_conv
+I0614 15:58:51.833930  2037 net.cpp:347] 1_0_conv_ReLU -> 1_0_conv (in-place)
+I0614 15:58:51.833933  2037 net.cpp:98] Setting up 1_0_conv_ReLU
+I0614 15:58:51.833935  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.833938  2037 layer_factory.hpp:78] Creating layer 1_1_conv
+I0614 15:58:51.833942  2037 net.cpp:69] Creating Layer 1_1_conv
+I0614 15:58:51.833945  2037 net.cpp:396] 1_1_conv <- 1_0_conv
+I0614 15:58:51.833950  2037 net.cpp:358] 1_1_conv -> 1_1_conv
+I0614 15:58:51.833955  2037 net.cpp:98] Setting up 1_1_conv
+I0614 15:58:51.833971  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.833976  2037 layer_factory.hpp:78] Creating layer 1_1_conv_ReLU
+I0614 15:58:51.833978  2037 net.cpp:69] Creating Layer 1_1_conv_ReLU
+I0614 15:58:51.833981  2037 net.cpp:396] 1_1_conv_ReLU <- 1_1_conv
+I0614 15:58:51.833984  2037 net.cpp:347] 1_1_conv_ReLU -> 1_1_conv (in-place)
+I0614 15:58:51.833988  2037 net.cpp:98] Setting up 1_1_conv_ReLU
+I0614 15:58:51.833991  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.833993  2037 layer_factory.hpp:78] Creating layer 1_pool
+I0614 15:58:51.833997  2037 net.cpp:69] Creating Layer 1_pool
+I0614 15:58:51.833999  2037 net.cpp:396] 1_pool <- 1_1_conv
+I0614 15:58:51.834002  2037 net.cpp:358] 1_pool -> 1_pool
+I0614 15:58:51.834007  2037 net.cpp:98] Setting up 1_pool
+I0614 15:58:51.834009  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.834012  2037 layer_factory.hpp:78] Creating layer 2_0_conv
+I0614 15:58:51.834017  2037 net.cpp:69] Creating Layer 2_0_conv
+I0614 15:58:51.834019  2037 net.cpp:396] 2_0_conv <- 1_pool
+I0614 15:58:51.834024  2037 net.cpp:358] 2_0_conv -> 2_0_conv
+I0614 15:58:51.834028  2037 net.cpp:98] Setting up 2_0_conv
+I0614 15:58:51.834046  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.834053  2037 layer_factory.hpp:78] Creating layer 2_0_conv_ReLU
+I0614 15:58:51.834055  2037 net.cpp:69] Creating Layer 2_0_conv_ReLU
+I0614 15:58:51.834059  2037 net.cpp:396] 2_0_conv_ReLU <- 2_0_conv
+I0614 15:58:51.834062  2037 net.cpp:347] 2_0_conv_ReLU -> 2_0_conv (in-place)
+I0614 15:58:51.834065  2037 net.cpp:98] Setting up 2_0_conv_ReLU
+I0614 15:58:51.834069  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.834070  2037 layer_factory.hpp:78] Creating layer 2_1_conv
+I0614 15:58:51.834074  2037 net.cpp:69] Creating Layer 2_1_conv
+I0614 15:58:51.834076  2037 net.cpp:396] 2_1_conv <- 2_0_conv
+I0614 15:58:51.834080  2037 net.cpp:358] 2_1_conv -> 2_1_conv
+I0614 15:58:51.834084  2037 net.cpp:98] Setting up 2_1_conv
+I0614 15:58:51.834102  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.834107  2037 layer_factory.hpp:78] Creating layer 2_1_conv_ReLU
+I0614 15:58:51.834110  2037 net.cpp:69] Creating Layer 2_1_conv_ReLU
+I0614 15:58:51.834112  2037 net.cpp:396] 2_1_conv_ReLU <- 2_1_conv
+I0614 15:58:51.834116  2037 net.cpp:347] 2_1_conv_ReLU -> 2_1_conv (in-place)
+I0614 15:58:51.834121  2037 net.cpp:98] Setting up 2_1_conv_ReLU
+I0614 15:58:51.834125  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.834131  2037 layer_factory.hpp:78] Creating layer 2_pool
+I0614 15:58:51.834136  2037 net.cpp:69] Creating Layer 2_pool
+I0614 15:58:51.834137  2037 net.cpp:396] 2_pool <- 2_1_conv
+I0614 15:58:51.834142  2037 net.cpp:358] 2_pool -> 2_pool
+I0614 15:58:51.834146  2037 net.cpp:98] Setting up 2_pool
+I0614 15:58:51.834149  2037 net.cpp:105] Top shape: 128 16 4 4 (32768)
+I0614 15:58:51.834152  2037 layer_factory.hpp:78] Creating layer middle_conv
+I0614 15:58:51.834156  2037 net.cpp:69] Creating Layer middle_conv
+I0614 15:58:51.834159  2037 net.cpp:396] middle_conv <- 2_pool
+I0614 15:58:51.834162  2037 net.cpp:358] middle_conv -> middle_conv
+I0614 15:58:51.834167  2037 net.cpp:98] Setting up middle_conv
+I0614 15:58:51.834234  2037 net.cpp:105] Top shape: 128 50 1 1 (6400)
+I0614 15:58:51.834239  2037 layer_factory.hpp:78] Creating layer middle_conv_ReLU
+I0614 15:58:51.834244  2037 net.cpp:69] Creating Layer middle_conv_ReLU
+I0614 15:58:51.834245  2037 net.cpp:396] middle_conv_ReLU <- middle_conv
+I0614 15:58:51.834249  2037 net.cpp:347] middle_conv_ReLU -> middle_conv (in-place)
+I0614 15:58:51.834252  2037 net.cpp:98] Setting up middle_conv_ReLU
+I0614 15:58:51.834255  2037 net.cpp:105] Top shape: 128 50 1 1 (6400)
+I0614 15:58:51.834259  2037 layer_factory.hpp:78] Creating layer fc1
+I0614 15:58:51.834261  2037 net.cpp:69] Creating Layer fc1
+I0614 15:58:51.834264  2037 net.cpp:396] fc1 <- middle_conv
+I0614 15:58:51.834270  2037 net.cpp:358] fc1 -> fc1
+I0614 15:58:51.834275  2037 net.cpp:98] Setting up fc1
+I0614 15:58:51.834406  2037 net.cpp:105] Top shape: 128 512 1 1 (65536)
+I0614 15:58:51.834411  2037 layer_factory.hpp:78] Creating layer fc1_Dropout
+I0614 15:58:51.834416  2037 net.cpp:69] Creating Layer fc1_Dropout
+I0614 15:58:51.834419  2037 net.cpp:396] fc1_Dropout <- fc1
+I0614 15:58:51.834424  2037 net.cpp:347] fc1_Dropout -> fc1 (in-place)
+I0614 15:58:51.834429  2037 net.cpp:98] Setting up fc1_Dropout
+I0614 15:58:51.834431  2037 net.cpp:105] Top shape: 128 512 1 1 (65536)
+I0614 15:58:51.834434  2037 layer_factory.hpp:78] Creating layer fc1_Dropout_ReLU
+I0614 15:58:51.834437  2037 net.cpp:69] Creating Layer fc1_Dropout_ReLU
+I0614 15:58:51.834439  2037 net.cpp:396] fc1_Dropout_ReLU <- fc1
+I0614 15:58:51.834444  2037 net.cpp:347] fc1_Dropout_ReLU -> fc1 (in-place)
+I0614 15:58:51.834446  2037 net.cpp:98] Setting up fc1_Dropout_ReLU
+I0614 15:58:51.834450  2037 net.cpp:105] Top shape: 128 512 1 1 (65536)
+I0614 15:58:51.834451  2037 layer_factory.hpp:78] Creating layer fc2
+I0614 15:58:51.834455  2037 net.cpp:69] Creating Layer fc2
+I0614 15:58:51.834457  2037 net.cpp:396] fc2 <- fc1
+I0614 15:58:51.834462  2037 net.cpp:358] fc2 -> fc2
+I0614 15:58:51.834466  2037 net.cpp:98] Setting up fc2
+I0614 15:58:51.834727  2037 net.cpp:105] Top shape: 128 100 1 1 (12800)
+I0614 15:58:51.834733  2037 layer_factory.hpp:78] Creating layer softmax
+I0614 15:58:51.834740  2037 net.cpp:69] Creating Layer softmax
+I0614 15:58:51.834743  2037 net.cpp:396] softmax <- fc2
+I0614 15:58:51.834748  2037 net.cpp:396] softmax <- label
+I0614 15:58:51.834751  2037 net.cpp:358] softmax -> softmax
+I0614 15:58:51.834755  2037 net.cpp:98] Setting up softmax
+I0614 15:58:51.834770  2037 net.cpp:105] Top shape: 1 1 1 1 (1)
+I0614 15:58:51.834774  2037 net.cpp:111]     with loss weight 1
+I0614 15:58:51.834785  2037 net.cpp:172] softmax needs backward computation.
+I0614 15:58:51.834789  2037 net.cpp:172] fc2 needs backward computation.
+I0614 15:58:51.834790  2037 net.cpp:174] fc1_Dropout_ReLU does not need backward computation.
+I0614 15:58:51.834794  2037 net.cpp:174] fc1_Dropout does not need backward computation.
+I0614 15:58:51.834795  2037 net.cpp:174] fc1 does not need backward computation.
+I0614 15:58:51.834799  2037 net.cpp:174] middle_conv_ReLU does not need backward computation.
+I0614 15:58:51.834800  2037 net.cpp:174] middle_conv does not need backward computation.
+I0614 15:58:51.834803  2037 net.cpp:174] 2_pool does not need backward computation.
+I0614 15:58:51.834810  2037 net.cpp:174] 2_1_conv_ReLU does not need backward computation.
+I0614 15:58:51.834816  2037 net.cpp:174] 2_1_conv does not need backward computation.
+I0614 15:58:51.834818  2037 net.cpp:174] 2_0_conv_ReLU does not need backward computation.
+I0614 15:58:51.834821  2037 net.cpp:174] 2_0_conv does not need backward computation.
+I0614 15:58:51.834825  2037 net.cpp:174] 1_pool does not need backward computation.
+I0614 15:58:51.834826  2037 net.cpp:174] 1_1_conv_ReLU does not need backward computation.
+I0614 15:58:51.834830  2037 net.cpp:174] 1_1_conv does not need backward computation.
+I0614 15:58:51.834831  2037 net.cpp:174] 1_0_conv_ReLU does not need backward computation.
+I0614 15:58:51.834835  2037 net.cpp:174] 1_0_conv does not need backward computation.
+I0614 15:58:51.834836  2037 net.cpp:174] 0_pool does not need backward computation.
+I0614 15:58:51.834839  2037 net.cpp:174] 0_1_conv_ReLU does not need backward computation.
+I0614 15:58:51.834841  2037 net.cpp:174] 0_1_conv does not need backward computation.
+I0614 15:58:51.834844  2037 net.cpp:174] 0_0_conv_ReLU does not need backward computation.
+I0614 15:58:51.834846  2037 net.cpp:174] 0_0_conv does not need backward computation.
+I0614 15:58:51.834849  2037 net.cpp:174] data does not need backward computation.
+I0614 15:58:51.834852  2037 net.cpp:210] This network produces output softmax
+I0614 15:58:51.834864  2037 net.cpp:469] Collecting Learning Rate and Weight Decay.
+I0614 15:58:51.834869  2037 net.cpp:221] Network initialization done.
+I0614 15:58:51.834872  2037 net.cpp:222] Memory required for data: 49254916
+I0614 15:58:51.835278  2037 solver.cpp:154] Creating test net (#0) specified by net file: prototxt/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen_net.sh
+I0614 15:58:51.835304  2037 net.cpp:277] The NetState phase (1) differed from the phase (0) specified by a rule in layer data
+I0614 15:58:51.835314  2037 net.cpp:277] The NetState phase (1) differed from the phase (0) specified by a rule in layer fc1_Dropout
+I0614 15:58:51.835402  2037 net.cpp:39] Initializing net from parameters: 
+layers {
+  top: "data"
+  top: "label"
+  name: "data"
+  type: DATA
+  data_param {
+    source: "/dataset/cifar100_lmdb_lab/cifar100_test_lmdb"
+    batch_size: 128
+    backend: LMDB
+  }
+  include {
+    phase: TEST
+  }
+  transform_param {
+    mean_file: "/dataset/cifar100_lmdb_lab/mean.binaryproto"
+  }
+}
+layers {
+  bottom: "data"
+  top: "0_0_conv"
+  name: "0_0_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "0_0_conv"
+  top: "0_0_conv"
+  name: "0_0_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "0_0_conv"
+  top: "0_1_conv"
+  name: "0_1_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "0_1_conv"
+  top: "0_1_conv"
+  name: "0_1_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "0_1_conv"
+  top: "0_pool"
+  name: "0_pool"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "0_pool"
+  top: "1_0_conv"
+  name: "1_0_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "1_0_conv"
+  top: "1_0_conv"
+  name: "1_0_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "1_0_conv"
+  top: "1_1_conv"
+  name: "1_1_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "1_1_conv"
+  top: "1_1_conv"
+  name: "1_1_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "1_1_conv"
+  top: "1_pool"
+  name: "1_pool"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "1_pool"
+  top: "2_0_conv"
+  name: "2_0_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "2_0_conv"
+  top: "2_0_conv"
+  name: "2_0_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "2_0_conv"
+  top: "2_1_conv"
+  name: "2_1_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "2_1_conv"
+  top: "2_1_conv"
+  name: "2_1_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "2_1_conv"
+  top: "2_pool"
+  name: "2_pool"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "2_pool"
+  top: "middle_conv"
+  name: "middle_conv"
+  type: CONVOLUTION
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 50
+    pad: 0
+    kernel_size: 4
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "middle_conv"
+  top: "middle_conv"
+  name: "middle_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "middle_conv"
+  top: "fc1"
+  name: "fc1"
+  type: INNER_PRODUCT
+  blobs_lr: 0
+  blobs_lr: 0
+  weight_decay: 0
+  weight_decay: 0
+  inner_product_param {
+    num_output: 512
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc1"
+  top: "fc1"
+  name: "fc1_Dropout_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "fc1"
+  top: "fc2"
+  name: "fc2"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  inner_product_param {
+    num_output: 100
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "fc2"
+  bottom: "label"
+  top: "softmax"
+  name: "softmax"
+  type: SOFTMAX_LOSS
+}
+layers {
+  bottom: "fc2"
+  bottom: "label"
+  top: "accuracy_top_1"
+  name: "accuracy_top_1"
+  type: ACCURACY
+  accuracy_param {
+    top_k: 1
+  }
+  include {
+    phase: TEST
+  }
+}
+layers {
+  bottom: "fc2"
+  bottom: "label"
+  top: "accuracy_top_5"
+  name: "accuracy_top_5"
+  type: ACCURACY
+  accuracy_param {
+    top_k: 5
+  }
+  include {
+    phase: TEST
+  }
+}
+state {
+  phase: TEST
+}
+I0614 15:58:51.835479  2037 layer_factory.hpp:78] Creating layer data
+I0614 15:58:51.835485  2037 data_transformer.cpp:25] Loading mean file from/dataset/cifar100_lmdb_lab/mean.binaryproto
+I0614 15:58:51.835515  2037 net.cpp:69] Creating Layer data
+I0614 15:58:51.835520  2037 net.cpp:358] data -> data
+I0614 15:58:51.835525  2037 net.cpp:358] data -> label
+I0614 15:58:51.835530  2037 net.cpp:98] Setting up data
+I0614 15:58:51.835533  2037 data_layer.cpp:32] Opening dataset /dataset/cifar100_lmdb_lab/cifar100_test_lmdb
+I0614 15:58:51.835575  2037 data_layer.cpp:71] output data size: 128,3,32,32
+I0614 15:58:51.835924  2037 net.cpp:105] Top shape: 128 3 32 32 (393216)
+I0614 15:58:51.835942  2037 net.cpp:105] Top shape: 128 1 1 1 (128)
+I0614 15:58:51.835947  2037 layer_factory.hpp:78] Creating layer label_data_1_split
+I0614 15:58:51.835952  2037 net.cpp:69] Creating Layer label_data_1_split
+I0614 15:58:51.835955  2037 net.cpp:396] label_data_1_split <- label
+I0614 15:58:51.835964  2037 net.cpp:358] label_data_1_split -> label_data_1_split_0
+I0614 15:58:51.835974  2037 net.cpp:358] label_data_1_split -> label_data_1_split_1
+I0614 15:58:51.835988  2037 net.cpp:358] label_data_1_split -> label_data_1_split_2
+I0614 15:58:51.835997  2037 net.cpp:98] Setting up label_data_1_split
+I0614 15:58:51.836001  2037 net.cpp:105] Top shape: 128 1 1 1 (128)
+I0614 15:58:51.836004  2037 net.cpp:105] Top shape: 128 1 1 1 (128)
+I0614 15:58:51.836007  2037 net.cpp:105] Top shape: 128 1 1 1 (128)
+I0614 15:58:51.836010  2037 layer_factory.hpp:78] Creating layer 0_0_conv
+I0614 15:58:51.836015  2037 net.cpp:69] Creating Layer 0_0_conv
+I0614 15:58:51.836019  2037 net.cpp:396] 0_0_conv <- data
+I0614 15:58:51.836024  2037 net.cpp:358] 0_0_conv -> 0_0_conv
+I0614 15:58:51.836027  2037 net.cpp:98] Setting up 0_0_conv
+I0614 15:58:51.836045  2037 net.cpp:105] Top shape: 128 16 32 32 (2097152)
+I0614 15:58:51.836051  2037 layer_factory.hpp:78] Creating layer 0_0_conv_ReLU
+I0614 15:58:51.836055  2037 net.cpp:69] Creating Layer 0_0_conv_ReLU
+I0614 15:58:51.836057  2037 net.cpp:396] 0_0_conv_ReLU <- 0_0_conv
+I0614 15:58:51.836061  2037 net.cpp:347] 0_0_conv_ReLU -> 0_0_conv (in-place)
+I0614 15:58:51.836066  2037 net.cpp:98] Setting up 0_0_conv_ReLU
+I0614 15:58:51.836068  2037 net.cpp:105] Top shape: 128 16 32 32 (2097152)
+I0614 15:58:51.836071  2037 layer_factory.hpp:78] Creating layer 0_1_conv
+I0614 15:58:51.836076  2037 net.cpp:69] Creating Layer 0_1_conv
+I0614 15:58:51.836078  2037 net.cpp:396] 0_1_conv <- 0_0_conv
+I0614 15:58:51.836082  2037 net.cpp:358] 0_1_conv -> 0_1_conv
+I0614 15:58:51.836087  2037 net.cpp:98] Setting up 0_1_conv
+I0614 15:58:51.836107  2037 net.cpp:105] Top shape: 128 16 32 32 (2097152)
+I0614 15:58:51.836112  2037 layer_factory.hpp:78] Creating layer 0_1_conv_ReLU
+I0614 15:58:51.836115  2037 net.cpp:69] Creating Layer 0_1_conv_ReLU
+I0614 15:58:51.836118  2037 net.cpp:396] 0_1_conv_ReLU <- 0_1_conv
+I0614 15:58:51.836124  2037 net.cpp:347] 0_1_conv_ReLU -> 0_1_conv (in-place)
+I0614 15:58:51.836145  2037 net.cpp:98] Setting up 0_1_conv_ReLU
+I0614 15:58:51.836149  2037 net.cpp:105] Top shape: 128 16 32 32 (2097152)
+I0614 15:58:51.836153  2037 layer_factory.hpp:78] Creating layer 0_pool
+I0614 15:58:51.836165  2037 net.cpp:69] Creating Layer 0_pool
+I0614 15:58:51.836169  2037 net.cpp:396] 0_pool <- 0_1_conv
+I0614 15:58:51.836174  2037 net.cpp:358] 0_pool -> 0_pool
+I0614 15:58:51.836187  2037 net.cpp:98] Setting up 0_pool
+I0614 15:58:51.836190  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.836194  2037 layer_factory.hpp:78] Creating layer 1_0_conv
+I0614 15:58:51.836207  2037 net.cpp:69] Creating Layer 1_0_conv
+I0614 15:58:51.836210  2037 net.cpp:396] 1_0_conv <- 0_pool
+I0614 15:58:51.836225  2037 net.cpp:358] 1_0_conv -> 1_0_conv
+I0614 15:58:51.836230  2037 net.cpp:98] Setting up 1_0_conv
+I0614 15:58:51.836256  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.836261  2037 layer_factory.hpp:78] Creating layer 1_0_conv_ReLU
+I0614 15:58:51.836266  2037 net.cpp:69] Creating Layer 1_0_conv_ReLU
+I0614 15:58:51.836269  2037 net.cpp:396] 1_0_conv_ReLU <- 1_0_conv
+I0614 15:58:51.836272  2037 net.cpp:347] 1_0_conv_ReLU -> 1_0_conv (in-place)
+I0614 15:58:51.836277  2037 net.cpp:98] Setting up 1_0_conv_ReLU
+I0614 15:58:51.836278  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.836282  2037 layer_factory.hpp:78] Creating layer 1_1_conv
+I0614 15:58:51.836285  2037 net.cpp:69] Creating Layer 1_1_conv
+I0614 15:58:51.836288  2037 net.cpp:396] 1_1_conv <- 1_0_conv
+I0614 15:58:51.836292  2037 net.cpp:358] 1_1_conv -> 1_1_conv
+I0614 15:58:51.836297  2037 net.cpp:98] Setting up 1_1_conv
+I0614 15:58:51.836313  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.836318  2037 layer_factory.hpp:78] Creating layer 1_1_conv_ReLU
+I0614 15:58:51.836321  2037 net.cpp:69] Creating Layer 1_1_conv_ReLU
+I0614 15:58:51.836324  2037 net.cpp:396] 1_1_conv_ReLU <- 1_1_conv
+I0614 15:58:51.836328  2037 net.cpp:347] 1_1_conv_ReLU -> 1_1_conv (in-place)
+I0614 15:58:51.836330  2037 net.cpp:98] Setting up 1_1_conv_ReLU
+I0614 15:58:51.836333  2037 net.cpp:105] Top shape: 128 16 16 16 (524288)
+I0614 15:58:51.836338  2037 layer_factory.hpp:78] Creating layer 1_pool
+I0614 15:58:51.836345  2037 net.cpp:69] Creating Layer 1_pool
+I0614 15:58:51.836349  2037 net.cpp:396] 1_pool <- 1_1_conv
+I0614 15:58:51.836354  2037 net.cpp:358] 1_pool -> 1_pool
+I0614 15:58:51.836357  2037 net.cpp:98] Setting up 1_pool
+I0614 15:58:51.836360  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.836364  2037 layer_factory.hpp:78] Creating layer 2_0_conv
+I0614 15:58:51.836366  2037 net.cpp:69] Creating Layer 2_0_conv
+I0614 15:58:51.836369  2037 net.cpp:396] 2_0_conv <- 1_pool
+I0614 15:58:51.836374  2037 net.cpp:358] 2_0_conv -> 2_0_conv
+I0614 15:58:51.836377  2037 net.cpp:98] Setting up 2_0_conv
+I0614 15:58:51.836395  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.836400  2037 layer_factory.hpp:78] Creating layer 2_0_conv_ReLU
+I0614 15:58:51.836403  2037 net.cpp:69] Creating Layer 2_0_conv_ReLU
+I0614 15:58:51.836405  2037 net.cpp:396] 2_0_conv_ReLU <- 2_0_conv
+I0614 15:58:51.836410  2037 net.cpp:347] 2_0_conv_ReLU -> 2_0_conv (in-place)
+I0614 15:58:51.836412  2037 net.cpp:98] Setting up 2_0_conv_ReLU
+I0614 15:58:51.836416  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.836418  2037 layer_factory.hpp:78] Creating layer 2_1_conv
+I0614 15:58:51.836421  2037 net.cpp:69] Creating Layer 2_1_conv
+I0614 15:58:51.836424  2037 net.cpp:396] 2_1_conv <- 2_0_conv
+I0614 15:58:51.836429  2037 net.cpp:358] 2_1_conv -> 2_1_conv
+I0614 15:58:51.836433  2037 net.cpp:98] Setting up 2_1_conv
+I0614 15:58:51.836449  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.836454  2037 layer_factory.hpp:78] Creating layer 2_1_conv_ReLU
+I0614 15:58:51.836457  2037 net.cpp:69] Creating Layer 2_1_conv_ReLU
+I0614 15:58:51.836459  2037 net.cpp:396] 2_1_conv_ReLU <- 2_1_conv
+I0614 15:58:51.836463  2037 net.cpp:347] 2_1_conv_ReLU -> 2_1_conv (in-place)
+I0614 15:58:51.836467  2037 net.cpp:98] Setting up 2_1_conv_ReLU
+I0614 15:58:51.836469  2037 net.cpp:105] Top shape: 128 16 8 8 (131072)
+I0614 15:58:51.836472  2037 layer_factory.hpp:78] Creating layer 2_pool
+I0614 15:58:51.836477  2037 net.cpp:69] Creating Layer 2_pool
+I0614 15:58:51.836479  2037 net.cpp:396] 2_pool <- 2_1_conv
+I0614 15:58:51.836483  2037 net.cpp:358] 2_pool -> 2_pool
+I0614 15:58:51.836486  2037 net.cpp:98] Setting up 2_pool
+I0614 15:58:51.836489  2037 net.cpp:105] Top shape: 128 16 4 4 (32768)
+I0614 15:58:51.836493  2037 layer_factory.hpp:78] Creating layer middle_conv
+I0614 15:58:51.836496  2037 net.cpp:69] Creating Layer middle_conv
+I0614 15:58:51.836498  2037 net.cpp:396] middle_conv <- 2_pool
+I0614 15:58:51.836503  2037 net.cpp:358] middle_conv -> middle_conv
+I0614 15:58:51.836506  2037 net.cpp:98] Setting up middle_conv
+I0614 15:58:51.836576  2037 net.cpp:105] Top shape: 128 50 1 1 (6400)
+I0614 15:58:51.836580  2037 layer_factory.hpp:78] Creating layer middle_conv_ReLU
+I0614 15:58:51.836585  2037 net.cpp:69] Creating Layer middle_conv_ReLU
+I0614 15:58:51.836586  2037 net.cpp:396] middle_conv_ReLU <- middle_conv
+I0614 15:58:51.836591  2037 net.cpp:347] middle_conv_ReLU -> middle_conv (in-place)
+I0614 15:58:51.836593  2037 net.cpp:98] Setting up middle_conv_ReLU
+I0614 15:58:51.836596  2037 net.cpp:105] Top shape: 128 50 1 1 (6400)
+I0614 15:58:51.836599  2037 layer_factory.hpp:78] Creating layer fc1
+I0614 15:58:51.836603  2037 net.cpp:69] Creating Layer fc1
+I0614 15:58:51.836606  2037 net.cpp:396] fc1 <- middle_conv
+I0614 15:58:51.836611  2037 net.cpp:358] fc1 -> fc1
+I0614 15:58:51.836614  2037 net.cpp:98] Setting up fc1
+I0614 15:58:51.836755  2037 net.cpp:105] Top shape: 128 512 1 1 (65536)
+I0614 15:58:51.836761  2037 layer_factory.hpp:78] Creating layer fc1_Dropout_ReLU
+I0614 15:58:51.836765  2037 net.cpp:69] Creating Layer fc1_Dropout_ReLU
+I0614 15:58:51.836767  2037 net.cpp:396] fc1_Dropout_ReLU <- fc1
+I0614 15:58:51.836772  2037 net.cpp:347] fc1_Dropout_ReLU -> fc1 (in-place)
+I0614 15:58:51.836776  2037 net.cpp:98] Setting up fc1_Dropout_ReLU
+I0614 15:58:51.836778  2037 net.cpp:105] Top shape: 128 512 1 1 (65536)
+I0614 15:58:51.836783  2037 layer_factory.hpp:78] Creating layer fc2
+I0614 15:58:51.836787  2037 net.cpp:69] Creating Layer fc2
+I0614 15:58:51.836793  2037 net.cpp:396] fc2 <- fc1
+I0614 15:58:51.836797  2037 net.cpp:358] fc2 -> fc2
+I0614 15:58:51.836802  2037 net.cpp:98] Setting up fc2
+I0614 15:58:51.837093  2037 net.cpp:105] Top shape: 128 100 1 1 (12800)
+I0614 15:58:51.837102  2037 layer_factory.hpp:78] Creating layer fc2_fc2_0_split
+I0614 15:58:51.837106  2037 net.cpp:69] Creating Layer fc2_fc2_0_split
+I0614 15:58:51.837110  2037 net.cpp:396] fc2_fc2_0_split <- fc2
+I0614 15:58:51.837113  2037 net.cpp:358] fc2_fc2_0_split -> fc2_fc2_0_split_0
+I0614 15:58:51.837118  2037 net.cpp:358] fc2_fc2_0_split -> fc2_fc2_0_split_1
+I0614 15:58:51.837122  2037 net.cpp:358] fc2_fc2_0_split -> fc2_fc2_0_split_2
+I0614 15:58:51.837131  2037 net.cpp:98] Setting up fc2_fc2_0_split
+I0614 15:58:51.837134  2037 net.cpp:105] Top shape: 128 100 1 1 (12800)
+I0614 15:58:51.837137  2037 net.cpp:105] Top shape: 128 100 1 1 (12800)
+I0614 15:58:51.837141  2037 net.cpp:105] Top shape: 128 100 1 1 (12800)
+I0614 15:58:51.837142  2037 layer_factory.hpp:78] Creating layer softmax
+I0614 15:58:51.837148  2037 net.cpp:69] Creating Layer softmax
+I0614 15:58:51.837152  2037 net.cpp:396] softmax <- fc2_fc2_0_split_0
+I0614 15:58:51.837155  2037 net.cpp:396] softmax <- label_data_1_split_0
+I0614 15:58:51.837159  2037 net.cpp:358] softmax -> softmax
+I0614 15:58:51.837167  2037 net.cpp:98] Setting up softmax
+I0614 15:58:51.837172  2037 net.cpp:105] Top shape: 1 1 1 1 (1)
+I0614 15:58:51.837175  2037 net.cpp:111]     with loss weight 1
+I0614 15:58:51.837182  2037 layer_factory.hpp:78] Creating layer accuracy_top_1
+I0614 15:58:51.837188  2037 net.cpp:69] Creating Layer accuracy_top_1
+I0614 15:58:51.837190  2037 net.cpp:396] accuracy_top_1 <- fc2_fc2_0_split_1
+I0614 15:58:51.837194  2037 net.cpp:396] accuracy_top_1 <- label_data_1_split_1
+I0614 15:58:51.837198  2037 net.cpp:358] accuracy_top_1 -> accuracy_top_1
+I0614 15:58:51.837203  2037 net.cpp:98] Setting up accuracy_top_1
+I0614 15:58:51.837206  2037 net.cpp:105] Top shape: 1 1 1 1 (1)
+I0614 15:58:51.837209  2037 layer_factory.hpp:78] Creating layer accuracy_top_5
+I0614 15:58:51.837213  2037 net.cpp:69] Creating Layer accuracy_top_5
+I0614 15:58:51.837216  2037 net.cpp:396] accuracy_top_5 <- fc2_fc2_0_split_2
+I0614 15:58:51.837220  2037 net.cpp:396] accuracy_top_5 <- label_data_1_split_2
+I0614 15:58:51.837224  2037 net.cpp:358] accuracy_top_5 -> accuracy_top_5
+I0614 15:58:51.837229  2037 net.cpp:98] Setting up accuracy_top_5
+I0614 15:58:51.837231  2037 net.cpp:105] Top shape: 1 1 1 1 (1)
+I0614 15:58:51.837234  2037 net.cpp:174] accuracy_top_5 does not need backward computation.
+I0614 15:58:51.837237  2037 net.cpp:174] accuracy_top_1 does not need backward computation.
+I0614 15:58:51.837240  2037 net.cpp:172] softmax needs backward computation.
+I0614 15:58:51.837244  2037 net.cpp:172] fc2_fc2_0_split needs backward computation.
+I0614 15:58:51.837245  2037 net.cpp:172] fc2 needs backward computation.
+I0614 15:58:51.837249  2037 net.cpp:174] fc1_Dropout_ReLU does not need backward computation.
+I0614 15:58:51.837252  2037 net.cpp:174] fc1 does not need backward computation.
+I0614 15:58:51.837255  2037 net.cpp:174] middle_conv_ReLU does not need backward computation.
+I0614 15:58:51.837258  2037 net.cpp:174] middle_conv does not need backward computation.
+I0614 15:58:51.837261  2037 net.cpp:174] 2_pool does not need backward computation.
+I0614 15:58:51.837265  2037 net.cpp:174] 2_1_conv_ReLU does not need backward computation.
+I0614 15:58:51.837266  2037 net.cpp:174] 2_1_conv does not need backward computation.
+I0614 15:58:51.837271  2037 net.cpp:174] 2_0_conv_ReLU does not need backward computation.
+I0614 15:58:51.837275  2037 net.cpp:174] 2_0_conv does not need backward computation.
+I0614 15:58:51.837277  2037 net.cpp:174] 1_pool does not need backward computation.
+I0614 15:58:51.837280  2037 net.cpp:174] 1_1_conv_ReLU does not need backward computation.
+I0614 15:58:51.837283  2037 net.cpp:174] 1_1_conv does not need backward computation.
+I0614 15:58:51.837290  2037 net.cpp:174] 1_0_conv_ReLU does not need backward computation.
+I0614 15:58:51.837297  2037 net.cpp:174] 1_0_conv does not need backward computation.
+I0614 15:58:51.837301  2037 net.cpp:174] 0_pool does not need backward computation.
+I0614 15:58:51.837304  2037 net.cpp:174] 0_1_conv_ReLU does not need backward computation.
+I0614 15:58:51.837307  2037 net.cpp:174] 0_1_conv does not need backward computation.
+I0614 15:58:51.837311  2037 net.cpp:174] 0_0_conv_ReLU does not need backward computation.
+I0614 15:58:51.837314  2037 net.cpp:174] 0_0_conv does not need backward computation.
+I0614 15:58:51.837317  2037 net.cpp:174] label_data_1_split does not need backward computation.
+I0614 15:58:51.837319  2037 net.cpp:174] data does not need backward computation.
+I0614 15:58:51.837322  2037 net.cpp:210] This network produces output accuracy_top_1
+I0614 15:58:51.837327  2037 net.cpp:210] This network produces output accuracy_top_5
+I0614 15:58:51.837330  2037 net.cpp:210] This network produces output softmax
+I0614 15:58:51.837344  2037 net.cpp:469] Collecting Learning Rate and Weight Decay.
+I0614 15:58:51.837349  2037 net.cpp:221] Network initialization done.
+I0614 15:58:51.837352  2037 net.cpp:222] Memory required for data: 49147916
+I0614 15:58:51.837399  2037 solver.cpp:42] Solver scaffolding done.
+I0614 15:58:51.837419  2037 caffe.cpp:115] Finetuning from snapshots/16-06-14_15h51m21s_0_00_pretrainingConvCifar10_iter_2000.caffemodel
+I0614 15:58:51.837764  2037 solver.cpp:247] Solving 
+I0614 15:58:51.837771  2037 solver.cpp:248] Learning Rate Policy: fixed
+I0614 15:58:51.838157  2037 solver.cpp:291] Iteration 0, Testing net (#0)
+I0614 15:58:51.946759  2037 solver.cpp:342]     Test net output #0: accuracy_top_1 = 0.01875
+I0614 15:58:51.946777  2037 solver.cpp:342]     Test net output #1: accuracy_top_5 = 0.05625
+I0614 15:58:51.946784  2037 solver.cpp:342]     Test net output #2: softmax = 4.60308 (* 1 = 4.60308 loss)
+I0614 15:58:51.972712  2037 solver.cpp:213] Iteration 0, loss = 4.60591
+I0614 15:58:51.972728  2037 solver.cpp:228]     Train net output #0: softmax = 4.60591 (* 1 = 4.60591 loss)
+I0614 15:58:51.972733  2037 solver.cpp:473] Iteration 0, lr = 0.0001
+I0614 15:58:52.198992  2037 solver.cpp:213] Iteration 10, loss = 4.61897
+I0614 15:58:52.199012  2037 solver.cpp:228]     Train net output #0: softmax = 4.61897 (* 1 = 4.61897 loss)
+I0614 15:58:52.199015  2037 solver.cpp:473] Iteration 10, lr = 0.0001
+I0614 15:58:52.432626  2037 solver.cpp:213] Iteration 20, loss = 4.58666
+I0614 15:58:52.432646  2037 solver.cpp:228]     Train net output #0: softmax = 4.58666 (* 1 = 4.58666 loss)
+I0614 15:58:52.432649  2037 solver.cpp:473] Iteration 20, lr = 0.0001
+I0614 15:58:52.658457  2037 solver.cpp:213] Iteration 30, loss = 4.59715
+I0614 15:58:52.658475  2037 solver.cpp:228]     Train net output #0: softmax = 4.59715 (* 1 = 4.59715 loss)
+I0614 15:58:52.658480  2037 solver.cpp:473] Iteration 30, lr = 0.0001
+I0614 15:58:52.884356  2037 solver.cpp:213] Iteration 40, loss = 4.59988
+I0614 15:58:52.884380  2037 solver.cpp:228]     Train net output #0: softmax = 4.59988 (* 1 = 4.59988 loss)
+I0614 15:58:52.884385  2037 solver.cpp:473] Iteration 40, lr = 0.0001
+I0614 15:58:53.110122  2037 solver.cpp:213] Iteration 50, loss = 4.58181
+I0614 15:58:53.110141  2037 solver.cpp:228]     Train net output #0: softmax = 4.58181 (* 1 = 4.58181 loss)
+I0614 15:58:53.110146  2037 solver.cpp:473] Iteration 50, lr = 0.0001
+I0614 15:58:53.336262  2037 solver.cpp:213] Iteration 60, loss = 4.59104
+I0614 15:58:53.336282  2037 solver.cpp:228]     Train net output #0: softmax = 4.59104 (* 1 = 4.59104 loss)
+I0614 15:58:53.336287  2037 solver.cpp:473] Iteration 60, lr = 0.0001
+I0614 15:58:53.562000  2037 solver.cpp:213] Iteration 70, loss = 4.57419
+I0614 15:58:53.562019  2037 solver.cpp:228]     Train net output #0: softmax = 4.57419 (* 1 = 4.57419 loss)
+I0614 15:58:53.562024  2037 solver.cpp:473] Iteration 70, lr = 0.0001
+I0614 15:58:53.787786  2037 solver.cpp:213] Iteration 80, loss = 4.59506
+I0614 15:58:53.787812  2037 solver.cpp:228]     Train net output #0: softmax = 4.59506 (* 1 = 4.59506 loss)
+I0614 15:58:53.787820  2037 solver.cpp:473] Iteration 80, lr = 0.0001
+I0614 15:58:54.046458  2037 solver.cpp:213] Iteration 90, loss = 4.57415
+I0614 15:58:54.046479  2037 solver.cpp:228]     Train net output #0: softmax = 4.57415 (* 1 = 4.57415 loss)
+I0614 15:58:54.046484  2037 solver.cpp:473] Iteration 90, lr = 0.0001
+I0614 15:58:54.272948  2037 solver.cpp:213] Iteration 100, loss = 4.57161
+I0614 15:58:54.272966  2037 solver.cpp:228]     Train net output #0: softmax = 4.57161 (* 1 = 4.57161 loss)
+I0614 15:58:54.272971  2037 solver.cpp:473] Iteration 100, lr = 0.0001
+I0614 15:58:54.499402  2037 solver.cpp:213] Iteration 110, loss = 4.57677
+I0614 15:58:54.499421  2037 solver.cpp:228]     Train net output #0: softmax = 4.57677 (* 1 = 4.57677 loss)
+I0614 15:58:54.499426  2037 solver.cpp:473] Iteration 110, lr = 0.0001
+I0614 15:58:54.725698  2037 solver.cpp:213] Iteration 120, loss = 4.57162
+I0614 15:58:54.725719  2037 solver.cpp:228]     Train net output #0: softmax = 4.57162 (* 1 = 4.57162 loss)
+I0614 15:58:54.725723  2037 solver.cpp:473] Iteration 120, lr = 0.0001
+I0614 15:58:54.951375  2037 solver.cpp:213] Iteration 130, loss = 4.57058
+I0614 15:58:54.951392  2037 solver.cpp:228]     Train net output #0: softmax = 4.57058 (* 1 = 4.57058 loss)
+I0614 15:58:54.951397  2037 solver.cpp:473] Iteration 130, lr = 0.0001
+I0614 15:58:55.177826  2037 solver.cpp:213] Iteration 140, loss = 4.56408
+I0614 15:58:55.177846  2037 solver.cpp:228]     Train net output #0: softmax = 4.56408 (* 1 = 4.56408 loss)
+I0614 15:58:55.177851  2037 solver.cpp:473] Iteration 140, lr = 0.0001
+I0614 15:58:55.404312  2037 solver.cpp:213] Iteration 150, loss = 4.54865
+I0614 15:58:55.404331  2037 solver.cpp:228]     Train net output #0: softmax = 4.54865 (* 1 = 4.54865 loss)
+I0614 15:58:55.404336  2037 solver.cpp:473] Iteration 150, lr = 0.0001
+I0614 15:58:55.630857  2037 solver.cpp:213] Iteration 160, loss = 4.56938
+I0614 15:58:55.630877  2037 solver.cpp:228]     Train net output #0: softmax = 4.56938 (* 1 = 4.56938 loss)
+I0614 15:58:55.630882  2037 solver.cpp:473] Iteration 160, lr = 0.0001
+I0614 15:58:55.856782  2037 solver.cpp:213] Iteration 170, loss = 4.56591
+I0614 15:58:55.856801  2037 solver.cpp:228]     Train net output #0: softmax = 4.56591 (* 1 = 4.56591 loss)
+I0614 15:58:55.856806  2037 solver.cpp:473] Iteration 170, lr = 0.0001
+I0614 15:58:56.083189  2037 solver.cpp:213] Iteration 180, loss = 4.55343
+I0614 15:58:56.083209  2037 solver.cpp:228]     Train net output #0: softmax = 4.55343 (* 1 = 4.55343 loss)
+I0614 15:58:56.083214  2037 solver.cpp:473] Iteration 180, lr = 0.0001
+I0614 15:58:56.309729  2037 solver.cpp:213] Iteration 190, loss = 4.5609
+I0614 15:58:56.309746  2037 solver.cpp:228]     Train net output #0: softmax = 4.5609 (* 1 = 4.5609 loss)
+I0614 15:58:56.309751  2037 solver.cpp:473] Iteration 190, lr = 0.0001
+I0614 15:58:56.535914  2037 solver.cpp:213] Iteration 200, loss = 4.54995
+I0614 15:58:56.535933  2037 solver.cpp:228]     Train net output #0: softmax = 4.54995 (* 1 = 4.54995 loss)
+I0614 15:58:56.535936  2037 solver.cpp:473] Iteration 200, lr = 0.0001
+I0614 15:58:56.761682  2037 solver.cpp:213] Iteration 210, loss = 4.51159
+I0614 15:58:56.761699  2037 solver.cpp:228]     Train net output #0: softmax = 4.51159 (* 1 = 4.51159 loss)
+I0614 15:58:56.761704  2037 solver.cpp:473] Iteration 210, lr = 0.0001
+I0614 15:58:56.987897  2037 solver.cpp:213] Iteration 220, loss = 4.53443
+I0614 15:58:56.987915  2037 solver.cpp:228]     Train net output #0: softmax = 4.53443 (* 1 = 4.53443 loss)
+I0614 15:58:56.987920  2037 solver.cpp:473] Iteration 220, lr = 0.0001
+I0614 15:58:57.213914  2037 solver.cpp:213] Iteration 230, loss = 4.52657
+I0614 15:58:57.213930  2037 solver.cpp:228]     Train net output #0: softmax = 4.52657 (* 1 = 4.52657 loss)
+I0614 15:58:57.213934  2037 solver.cpp:473] Iteration 230, lr = 0.0001
+I0614 15:58:57.439879  2037 solver.cpp:213] Iteration 240, loss = 4.53177
+I0614 15:58:57.439898  2037 solver.cpp:228]     Train net output #0: softmax = 4.53177 (* 1 = 4.53177 loss)
+I0614 15:58:57.439908  2037 solver.cpp:473] Iteration 240, lr = 0.0001
+I0614 15:58:57.665810  2037 solver.cpp:213] Iteration 250, loss = 4.52103
+I0614 15:58:57.665827  2037 solver.cpp:228]     Train net output #0: softmax = 4.52103 (* 1 = 4.52103 loss)
+I0614 15:58:57.665832  2037 solver.cpp:473] Iteration 250, lr = 0.0001
+I0614 15:58:57.891846  2037 solver.cpp:213] Iteration 260, loss = 4.54502
+I0614 15:58:57.891863  2037 solver.cpp:228]     Train net output #0: softmax = 4.54502 (* 1 = 4.54502 loss)
+I0614 15:58:57.891868  2037 solver.cpp:473] Iteration 260, lr = 0.0001
+I0614 15:58:58.118155  2037 solver.cpp:213] Iteration 270, loss = 4.53267
+I0614 15:58:58.118176  2037 solver.cpp:228]     Train net output #0: softmax = 4.53267 (* 1 = 4.53267 loss)
+I0614 15:58:58.118181  2037 solver.cpp:473] Iteration 270, lr = 0.0001
+I0614 15:58:58.344432  2037 solver.cpp:213] Iteration 280, loss = 4.53216
+I0614 15:58:58.344450  2037 solver.cpp:228]     Train net output #0: softmax = 4.53216 (* 1 = 4.53216 loss)
+I0614 15:58:58.344455  2037 solver.cpp:473] Iteration 280, lr = 0.0001
+I0614 15:58:58.571005  2037 solver.cpp:213] Iteration 290, loss = 4.52704
+I0614 15:58:58.571022  2037 solver.cpp:228]     Train net output #0: softmax = 4.52704 (* 1 = 4.52704 loss)
+I0614 15:58:58.571027  2037 solver.cpp:473] Iteration 290, lr = 0.0001
+I0614 15:58:58.797269  2037 solver.cpp:213] Iteration 300, loss = 4.5303
+I0614 15:58:58.797298  2037 solver.cpp:228]     Train net output #0: softmax = 4.5303 (* 1 = 4.5303 loss)
+I0614 15:58:58.797307  2037 solver.cpp:473] Iteration 300, lr = 0.0001
+I0614 15:58:59.054723  2037 solver.cpp:213] Iteration 310, loss = 4.53103
+I0614 15:58:59.054740  2037 solver.cpp:228]     Train net output #0: softmax = 4.53103 (* 1 = 4.53103 loss)
+I0614 15:58:59.054745  2037 solver.cpp:473] Iteration 310, lr = 0.0001
+I0614 15:58:59.281011  2037 solver.cpp:213] Iteration 320, loss = 4.50754
+I0614 15:58:59.281028  2037 solver.cpp:228]     Train net output #0: softmax = 4.50754 (* 1 = 4.50754 loss)
+I0614 15:58:59.281033  2037 solver.cpp:473] Iteration 320, lr = 0.0001
+I0614 15:58:59.506885  2037 solver.cpp:213] Iteration 330, loss = 4.49576
+I0614 15:58:59.506901  2037 solver.cpp:228]     Train net output #0: softmax = 4.49576 (* 1 = 4.49576 loss)
+I0614 15:58:59.506906  2037 solver.cpp:473] Iteration 330, lr = 0.0001
+I0614 15:58:59.733018  2037 solver.cpp:213] Iteration 340, loss = 4.53442
+I0614 15:58:59.733034  2037 solver.cpp:228]     Train net output #0: softmax = 4.53442 (* 1 = 4.53442 loss)
+I0614 15:58:59.733039  2037 solver.cpp:473] Iteration 340, lr = 0.0001
+I0614 15:58:59.959380  2037 solver.cpp:213] Iteration 350, loss = 4.48693
+I0614 15:58:59.959398  2037 solver.cpp:228]     Train net output #0: softmax = 4.48693 (* 1 = 4.48693 loss)
+I0614 15:58:59.959403  2037 solver.cpp:473] Iteration 350, lr = 0.0001
+I0614 15:59:00.185638  2037 solver.cpp:213] Iteration 360, loss = 4.50994
+I0614 15:59:00.185655  2037 solver.cpp:228]     Train net output #0: softmax = 4.50994 (* 1 = 4.50994 loss)
+I0614 15:59:00.185659  2037 solver.cpp:473] Iteration 360, lr = 0.0001
+I0614 15:59:00.412158  2037 solver.cpp:213] Iteration 370, loss = 4.54058
+I0614 15:59:00.412176  2037 solver.cpp:228]     Train net output #0: softmax = 4.54058 (* 1 = 4.54058 loss)
+I0614 15:59:00.412181  2037 solver.cpp:473] Iteration 370, lr = 0.0001
+I0614 15:59:00.638286  2037 solver.cpp:213] Iteration 380, loss = 4.51798
+I0614 15:59:00.638305  2037 solver.cpp:228]     Train net output #0: softmax = 4.51798 (* 1 = 4.51798 loss)
+I0614 15:59:00.638310  2037 solver.cpp:473] Iteration 380, lr = 0.0001
+I0614 15:59:00.864851  2037 solver.cpp:213] Iteration 390, loss = 4.52947
+I0614 15:59:00.864866  2037 solver.cpp:228]     Train net output #0: softmax = 4.52947 (* 1 = 4.52947 loss)
+I0614 15:59:00.864871  2037 solver.cpp:473] Iteration 390, lr = 0.0001
+I0614 15:59:01.091097  2037 solver.cpp:213] Iteration 400, loss = 4.51281
+I0614 15:59:01.091111  2037 solver.cpp:228]     Train net output #0: softmax = 4.51281 (* 1 = 4.51281 loss)
+I0614 15:59:01.091121  2037 solver.cpp:473] Iteration 400, lr = 0.0001
+I0614 15:59:01.316781  2037 solver.cpp:213] Iteration 410, loss = 4.51566
+I0614 15:59:01.316809  2037 solver.cpp:228]     Train net output #0: softmax = 4.51566 (* 1 = 4.51566 loss)
+I0614 15:59:01.316814  2037 solver.cpp:473] Iteration 410, lr = 0.0001
+I0614 15:59:01.542953  2037 solver.cpp:213] Iteration 420, loss = 4.48478
+I0614 15:59:01.542968  2037 solver.cpp:228]     Train net output #0: softmax = 4.48478 (* 1 = 4.48478 loss)
+I0614 15:59:01.542973  2037 solver.cpp:473] Iteration 420, lr = 0.0001
+I0614 15:59:01.769717  2037 solver.cpp:213] Iteration 430, loss = 4.52027
+I0614 15:59:01.769732  2037 solver.cpp:228]     Train net output #0: softmax = 4.52027 (* 1 = 4.52027 loss)
+I0614 15:59:01.769737  2037 solver.cpp:473] Iteration 430, lr = 0.0001
+I0614 15:59:01.996270  2037 solver.cpp:213] Iteration 440, loss = 4.49466
+I0614 15:59:01.996284  2037 solver.cpp:228]     Train net output #0: softmax = 4.49466 (* 1 = 4.49466 loss)
+I0614 15:59:01.996289  2037 solver.cpp:473] Iteration 440, lr = 0.0001
+I0614 15:59:02.222066  2037 solver.cpp:213] Iteration 450, loss = 4.5137
+I0614 15:59:02.222084  2037 solver.cpp:228]     Train net output #0: softmax = 4.5137 (* 1 = 4.5137 loss)
+I0614 15:59:02.222090  2037 solver.cpp:473] Iteration 450, lr = 0.0001
+I0614 15:59:02.447873  2037 solver.cpp:213] Iteration 460, loss = 4.50002
+I0614 15:59:02.447890  2037 solver.cpp:228]     Train net output #0: softmax = 4.50002 (* 1 = 4.50002 loss)
+I0614 15:59:02.447896  2037 solver.cpp:473] Iteration 460, lr = 0.0001
+I0614 15:59:02.673509  2037 solver.cpp:213] Iteration 470, loss = 4.52794
+I0614 15:59:02.673524  2037 solver.cpp:228]     Train net output #0: softmax = 4.52794 (* 1 = 4.52794 loss)
+I0614 15:59:02.673529  2037 solver.cpp:473] Iteration 470, lr = 0.0001
+I0614 15:59:02.899828  2037 solver.cpp:213] Iteration 480, loss = 4.43336
+I0614 15:59:02.899842  2037 solver.cpp:228]     Train net output #0: softmax = 4.43336 (* 1 = 4.43336 loss)
+I0614 15:59:02.899847  2037 solver.cpp:473] Iteration 480, lr = 0.0001
+I0614 15:59:03.125725  2037 solver.cpp:213] Iteration 490, loss = 4.5305
+I0614 15:59:03.125740  2037 solver.cpp:228]     Train net output #0: softmax = 4.5305 (* 1 = 4.5305 loss)
+I0614 15:59:03.125744  2037 solver.cpp:473] Iteration 490, lr = 0.0001
+I0614 15:59:03.352512  2037 solver.cpp:213] Iteration 500, loss = 4.50837
+I0614 15:59:03.352526  2037 solver.cpp:228]     Train net output #0: softmax = 4.50837 (* 1 = 4.50837 loss)
+I0614 15:59:03.352530  2037 solver.cpp:473] Iteration 500, lr = 0.0001
+I0614 15:59:03.578670  2037 solver.cpp:213] Iteration 510, loss = 4.49764
+I0614 15:59:03.578683  2037 solver.cpp:228]     Train net output #0: softmax = 4.49764 (* 1 = 4.49764 loss)
+I0614 15:59:03.578688  2037 solver.cpp:473] Iteration 510, lr = 0.0001
+I0614 15:59:03.804774  2037 solver.cpp:213] Iteration 520, loss = 4.48402
+I0614 15:59:03.804791  2037 solver.cpp:228]     Train net output #0: softmax = 4.48402 (* 1 = 4.48402 loss)
+I0614 15:59:03.804796  2037 solver.cpp:473] Iteration 520, lr = 0.0001
+I0614 15:59:04.030757  2037 solver.cpp:213] Iteration 530, loss = 4.518
+I0614 15:59:04.030779  2037 solver.cpp:228]     Train net output #0: softmax = 4.518 (* 1 = 4.518 loss)
+I0614 15:59:04.030783  2037 solver.cpp:473] Iteration 530, lr = 0.0001
+I0614 15:59:04.256997  2037 solver.cpp:213] Iteration 540, loss = 4.49775
+I0614 15:59:04.257012  2037 solver.cpp:228]     Train net output #0: softmax = 4.49775 (* 1 = 4.49775 loss)
+I0614 15:59:04.257017  2037 solver.cpp:473] Iteration 540, lr = 0.0001
+I0614 15:59:04.483110  2037 solver.cpp:213] Iteration 550, loss = 4.50339
+I0614 15:59:04.483125  2037 solver.cpp:228]     Train net output #0: softmax = 4.50339 (* 1 = 4.50339 loss)
+I0614 15:59:04.483129  2037 solver.cpp:473] Iteration 550, lr = 0.0001
+I0614 15:59:04.709395  2037 solver.cpp:213] Iteration 560, loss = 4.48324
+I0614 15:59:04.709410  2037 solver.cpp:228]     Train net output #0: softmax = 4.48324 (* 1 = 4.48324 loss)
+I0614 15:59:04.709415  2037 solver.cpp:473] Iteration 560, lr = 0.0001
+I0614 15:59:04.935338  2037 solver.cpp:213] Iteration 570, loss = 4.48778
+I0614 15:59:04.935351  2037 solver.cpp:228]     Train net output #0: softmax = 4.48778 (* 1 = 4.48778 loss)
+I0614 15:59:04.935370  2037 solver.cpp:473] Iteration 570, lr = 0.0001
+I0614 15:59:05.161401  2037 solver.cpp:213] Iteration 580, loss = 4.50022
+I0614 15:59:05.161414  2037 solver.cpp:228]     Train net output #0: softmax = 4.50022 (* 1 = 4.50022 loss)
+I0614 15:59:05.161419  2037 solver.cpp:473] Iteration 580, lr = 0.0001
+I0614 15:59:05.387562  2037 solver.cpp:213] Iteration 590, loss = 4.45955
+I0614 15:59:05.387576  2037 solver.cpp:228]     Train net output #0: softmax = 4.45955 (* 1 = 4.45955 loss)
+I0614 15:59:05.387580  2037 solver.cpp:473] Iteration 590, lr = 0.0001
+I0614 15:59:05.613735  2037 solver.cpp:213] Iteration 600, loss = 4.42975
+I0614 15:59:05.613750  2037 solver.cpp:228]     Train net output #0: softmax = 4.42975 (* 1 = 4.42975 loss)
+I0614 15:59:05.613755  2037 solver.cpp:473] Iteration 600, lr = 0.0001
+I0614 15:59:05.839331  2037 solver.cpp:213] Iteration 610, loss = 4.45965
+I0614 15:59:05.839345  2037 solver.cpp:228]     Train net output #0: softmax = 4.45965 (* 1 = 4.45965 loss)
+I0614 15:59:05.839349  2037 solver.cpp:473] Iteration 610, lr = 0.0001
+I0614 15:59:06.065492  2037 solver.cpp:213] Iteration 620, loss = 4.46822
+I0614 15:59:06.065505  2037 solver.cpp:228]     Train net output #0: softmax = 4.46822 (* 1 = 4.46822 loss)
+I0614 15:59:06.065510  2037 solver.cpp:473] Iteration 620, lr = 0.0001
+I0614 15:59:06.291515  2037 solver.cpp:213] Iteration 630, loss = 4.48225
+I0614 15:59:06.291532  2037 solver.cpp:228]     Train net output #0: softmax = 4.48225 (* 1 = 4.48225 loss)
+I0614 15:59:06.291535  2037 solver.cpp:473] Iteration 630, lr = 0.0001
+I0614 15:59:06.517598  2037 solver.cpp:213] Iteration 640, loss = 4.44483
+I0614 15:59:06.517612  2037 solver.cpp:228]     Train net output #0: softmax = 4.44483 (* 1 = 4.44483 loss)
+I0614 15:59:06.517616  2037 solver.cpp:473] Iteration 640, lr = 0.0001
+I0614 15:59:06.743494  2037 solver.cpp:213] Iteration 650, loss = 4.48731
+I0614 15:59:06.743507  2037 solver.cpp:228]     Train net output #0: softmax = 4.48731 (* 1 = 4.48731 loss)
+I0614 15:59:06.743512  2037 solver.cpp:473] Iteration 650, lr = 0.0001
+I0614 15:59:06.969740  2037 solver.cpp:213] Iteration 660, loss = 4.44423
+I0614 15:59:06.969754  2037 solver.cpp:228]     Train net output #0: softmax = 4.44423 (* 1 = 4.44423 loss)
+I0614 15:59:06.969758  2037 solver.cpp:473] Iteration 660, lr = 0.0001
+I0614 15:59:07.195770  2037 solver.cpp:213] Iteration 670, loss = 4.41114
+I0614 15:59:07.195783  2037 solver.cpp:228]     Train net output #0: softmax = 4.41114 (* 1 = 4.41114 loss)
+I0614 15:59:07.195788  2037 solver.cpp:473] Iteration 670, lr = 0.0001
+I0614 15:59:07.422024  2037 solver.cpp:213] Iteration 680, loss = 4.46104
+I0614 15:59:07.422039  2037 solver.cpp:228]     Train net output #0: softmax = 4.46104 (* 1 = 4.46104 loss)
+I0614 15:59:07.422044  2037 solver.cpp:473] Iteration 680, lr = 0.0001
+I0614 15:59:07.647907  2037 solver.cpp:213] Iteration 690, loss = 4.43438
+I0614 15:59:07.647923  2037 solver.cpp:228]     Train net output #0: softmax = 4.43438 (* 1 = 4.43438 loss)
+I0614 15:59:07.647928  2037 solver.cpp:473] Iteration 690, lr = 0.0001
+I0614 15:59:07.873709  2037 solver.cpp:213] Iteration 700, loss = 4.46355
+I0614 15:59:07.873725  2037 solver.cpp:228]     Train net output #0: softmax = 4.46355 (* 1 = 4.46355 loss)
+I0614 15:59:07.873730  2037 solver.cpp:473] Iteration 700, lr = 0.0001
+I0614 15:59:08.099720  2037 solver.cpp:213] Iteration 710, loss = 4.42235
+I0614 15:59:08.099736  2037 solver.cpp:228]     Train net output #0: softmax = 4.42235 (* 1 = 4.42235 loss)
+I0614 15:59:08.099741  2037 solver.cpp:473] Iteration 710, lr = 0.0001
+I0614 15:59:08.325685  2037 solver.cpp:213] Iteration 720, loss = 4.44912
+I0614 15:59:08.325701  2037 solver.cpp:228]     Train net output #0: softmax = 4.44912 (* 1 = 4.44912 loss)
+I0614 15:59:08.325706  2037 solver.cpp:473] Iteration 720, lr = 0.0001
+I0614 15:59:08.551775  2037 solver.cpp:213] Iteration 730, loss = 4.49728
+I0614 15:59:08.551797  2037 solver.cpp:228]     Train net output #0: softmax = 4.49728 (* 1 = 4.49728 loss)
+I0614 15:59:08.551813  2037 solver.cpp:473] Iteration 730, lr = 0.0001
+I0614 15:59:08.777917  2037 solver.cpp:213] Iteration 740, loss = 4.46355
+I0614 15:59:08.777932  2037 solver.cpp:228]     Train net output #0: softmax = 4.46355 (* 1 = 4.46355 loss)
+I0614 15:59:08.777936  2037 solver.cpp:473] Iteration 740, lr = 0.0001
+I0614 15:59:09.003780  2037 solver.cpp:213] Iteration 750, loss = 4.47683
+I0614 15:59:09.003795  2037 solver.cpp:228]     Train net output #0: softmax = 4.47683 (* 1 = 4.47683 loss)
+I0614 15:59:09.003799  2037 solver.cpp:473] Iteration 750, lr = 0.0001
+I0614 15:59:09.229856  2037 solver.cpp:213] Iteration 760, loss = 4.47071
+I0614 15:59:09.229882  2037 solver.cpp:228]     Train net output #0: softmax = 4.47071 (* 1 = 4.47071 loss)
+I0614 15:59:09.229890  2037 solver.cpp:473] Iteration 760, lr = 0.0001
+I0614 15:59:09.455967  2037 solver.cpp:213] Iteration 770, loss = 4.45008
+I0614 15:59:09.455982  2037 solver.cpp:228]     Train net output #0: softmax = 4.45008 (* 1 = 4.45008 loss)
+I0614 15:59:09.455986  2037 solver.cpp:473] Iteration 770, lr = 0.0001
+I0614 15:59:09.681908  2037 solver.cpp:213] Iteration 780, loss = 4.46386
+I0614 15:59:09.681923  2037 solver.cpp:228]     Train net output #0: softmax = 4.46386 (* 1 = 4.46386 loss)
+I0614 15:59:09.681928  2037 solver.cpp:473] Iteration 780, lr = 0.0001
+I0614 15:59:09.908195  2037 solver.cpp:213] Iteration 790, loss = 4.43378
+I0614 15:59:09.908208  2037 solver.cpp:228]     Train net output #0: softmax = 4.43378 (* 1 = 4.43378 loss)
+I0614 15:59:09.908213  2037 solver.cpp:473] Iteration 790, lr = 0.0001
+I0614 15:59:10.134006  2037 solver.cpp:213] Iteration 800, loss = 4.45311
+I0614 15:59:10.134019  2037 solver.cpp:228]     Train net output #0: softmax = 4.45311 (* 1 = 4.45311 loss)
+I0614 15:59:10.134024  2037 solver.cpp:473] Iteration 800, lr = 0.0001
+I0614 15:59:10.360640  2037 solver.cpp:213] Iteration 810, loss = 4.41694
+I0614 15:59:10.360654  2037 solver.cpp:228]     Train net output #0: softmax = 4.41694 (* 1 = 4.41694 loss)
+I0614 15:59:10.360658  2037 solver.cpp:473] Iteration 810, lr = 0.0001
+I0614 15:59:10.586917  2037 solver.cpp:213] Iteration 820, loss = 4.43201
+I0614 15:59:10.586931  2037 solver.cpp:228]     Train net output #0: softmax = 4.43201 (* 1 = 4.43201 loss)
+I0614 15:59:10.586936  2037 solver.cpp:473] Iteration 820, lr = 0.0001
+I0614 15:59:10.812865  2037 solver.cpp:213] Iteration 830, loss = 4.41472
+I0614 15:59:10.812880  2037 solver.cpp:228]     Train net output #0: softmax = 4.41472 (* 1 = 4.41472 loss)
+I0614 15:59:10.812885  2037 solver.cpp:473] Iteration 830, lr = 0.0001
+I0614 15:59:11.039024  2037 solver.cpp:213] Iteration 840, loss = 4.45068
+I0614 15:59:11.039037  2037 solver.cpp:228]     Train net output #0: softmax = 4.45068 (* 1 = 4.45068 loss)
+I0614 15:59:11.039042  2037 solver.cpp:473] Iteration 840, lr = 0.0001
+I0614 15:59:11.264782  2037 solver.cpp:213] Iteration 850, loss = 4.44225
+I0614 15:59:11.264798  2037 solver.cpp:228]     Train net output #0: softmax = 4.44225 (* 1 = 4.44225 loss)
+I0614 15:59:11.264802  2037 solver.cpp:473] Iteration 850, lr = 0.0001
+I0614 15:59:11.490957  2037 solver.cpp:213] Iteration 860, loss = 4.45073
+I0614 15:59:11.490972  2037 solver.cpp:228]     Train net output #0: softmax = 4.45073 (* 1 = 4.45073 loss)
+I0614 15:59:11.490977  2037 solver.cpp:473] Iteration 860, lr = 0.0001
+I0614 15:59:11.716831  2037 solver.cpp:213] Iteration 870, loss = 4.44244
+I0614 15:59:11.716848  2037 solver.cpp:228]     Train net output #0: softmax = 4.44244 (* 1 = 4.44244 loss)
+I0614 15:59:11.716852  2037 solver.cpp:473] Iteration 870, lr = 0.0001
+I0614 15:59:11.943141  2037 solver.cpp:213] Iteration 880, loss = 4.44978
+I0614 15:59:11.943156  2037 solver.cpp:228]     Train net output #0: softmax = 4.44978 (* 1 = 4.44978 loss)
+I0614 15:59:11.943161  2037 solver.cpp:473] Iteration 880, lr = 0.0001
+I0614 15:59:12.169147  2037 solver.cpp:213] Iteration 890, loss = 4.4411
+I0614 15:59:12.169162  2037 solver.cpp:228]     Train net output #0: softmax = 4.4411 (* 1 = 4.4411 loss)
+I0614 15:59:12.169172  2037 solver.cpp:473] Iteration 890, lr = 0.0001
+I0614 15:59:12.395647  2037 solver.cpp:213] Iteration 900, loss = 4.44601
+I0614 15:59:12.395661  2037 solver.cpp:228]     Train net output #0: softmax = 4.44601 (* 1 = 4.44601 loss)
+I0614 15:59:12.395666  2037 solver.cpp:473] Iteration 900, lr = 0.0001
+I0614 15:59:12.621958  2037 solver.cpp:213] Iteration 910, loss = 4.4214
+I0614 15:59:12.621973  2037 solver.cpp:228]     Train net output #0: softmax = 4.4214 (* 1 = 4.4214 loss)
+I0614 15:59:12.621978  2037 solver.cpp:473] Iteration 910, lr = 0.0001
+I0614 15:59:12.848042  2037 solver.cpp:213] Iteration 920, loss = 4.45443
+I0614 15:59:12.848058  2037 solver.cpp:228]     Train net output #0: softmax = 4.45443 (* 1 = 4.45443 loss)
+I0614 15:59:12.848063  2037 solver.cpp:473] Iteration 920, lr = 0.0001
+I0614 15:59:13.074205  2037 solver.cpp:213] Iteration 930, loss = 4.4756
+I0614 15:59:13.074223  2037 solver.cpp:228]     Train net output #0: softmax = 4.4756 (* 1 = 4.4756 loss)
+I0614 15:59:13.074229  2037 solver.cpp:473] Iteration 930, lr = 0.0001
+I0614 15:59:13.300295  2037 solver.cpp:213] Iteration 940, loss = 4.41123
+I0614 15:59:13.300320  2037 solver.cpp:228]     Train net output #0: softmax = 4.41123 (* 1 = 4.41123 loss)
+I0614 15:59:13.300325  2037 solver.cpp:473] Iteration 940, lr = 0.0001
+I0614 15:59:13.526573  2037 solver.cpp:213] Iteration 950, loss = 4.42532
+I0614 15:59:13.526588  2037 solver.cpp:228]     Train net output #0: softmax = 4.42532 (* 1 = 4.42532 loss)
+I0614 15:59:13.526592  2037 solver.cpp:473] Iteration 950, lr = 0.0001
+I0614 15:59:13.753027  2037 solver.cpp:213] Iteration 960, loss = 4.41926
+I0614 15:59:13.753041  2037 solver.cpp:228]     Train net output #0: softmax = 4.41926 (* 1 = 4.41926 loss)
+I0614 15:59:13.753046  2037 solver.cpp:473] Iteration 960, lr = 0.0001
+I0614 15:59:13.979200  2037 solver.cpp:213] Iteration 970, loss = 4.43979
+I0614 15:59:13.979215  2037 solver.cpp:228]     Train net output #0: softmax = 4.43979 (* 1 = 4.43979 loss)
+I0614 15:59:13.979219  2037 solver.cpp:473] Iteration 970, lr = 0.0001
+I0614 15:59:14.205579  2037 solver.cpp:213] Iteration 980, loss = 4.46618
+I0614 15:59:14.205592  2037 solver.cpp:228]     Train net output #0: softmax = 4.46618 (* 1 = 4.46618 loss)
+I0614 15:59:14.205596  2037 solver.cpp:473] Iteration 980, lr = 0.0001
+I0614 15:59:14.431716  2037 solver.cpp:213] Iteration 990, loss = 4.4322
+I0614 15:59:14.431731  2037 solver.cpp:228]     Train net output #0: softmax = 4.4322 (* 1 = 4.4322 loss)
+I0614 15:59:14.431736  2037 solver.cpp:473] Iteration 990, lr = 0.0001
+I0614 15:59:14.636289  2037 solver.cpp:362] Snapshotting to snapshots/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen_iter_1000.caffemodel
+I0614 15:59:14.637214  2037 solver.cpp:370] Snapshotting solver state to snapshots/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen_iter_1000.solverstate
+I0614 15:59:14.637640  2037 solver.cpp:291] Iteration 1000, Testing net (#0)
+I0614 15:59:14.750288  2037 solver.cpp:342]     Test net output #0: accuracy_top_1 = 0.040625
+I0614 15:59:14.750303  2037 solver.cpp:342]     Test net output #1: accuracy_top_5 = 0.146875
+I0614 15:59:14.750308  2037 solver.cpp:342]     Test net output #2: softmax = 4.42162 (* 1 = 4.42162 loss)
+I0614 15:59:14.772706  2037 solver.cpp:213] Iteration 1000, loss = 4.42525
+I0614 15:59:14.772718  2037 solver.cpp:228]     Train net output #0: softmax = 4.42525 (* 1 = 4.42525 loss)
+I0614 15:59:14.772723  2037 solver.cpp:473] Iteration 1000, lr = 0.0001
+I0614 15:59:14.998426  2037 solver.cpp:213] Iteration 1010, loss = 4.43411
+I0614 15:59:14.998441  2037 solver.cpp:228]     Train net output #0: softmax = 4.43411 (* 1 = 4.43411 loss)
+I0614 15:59:14.998446  2037 solver.cpp:473] Iteration 1010, lr = 0.0001
+I0614 15:59:15.224680  2037 solver.cpp:213] Iteration 1020, loss = 4.46241
+I0614 15:59:15.224696  2037 solver.cpp:228]     Train net output #0: softmax = 4.46241 (* 1 = 4.46241 loss)
+I0614 15:59:15.224701  2037 solver.cpp:473] Iteration 1020, lr = 0.0001
+I0614 15:59:15.450598  2037 solver.cpp:213] Iteration 1030, loss = 4.38449
+I0614 15:59:15.450613  2037 solver.cpp:228]     Train net output #0: softmax = 4.38449 (* 1 = 4.38449 loss)
+I0614 15:59:15.450633  2037 solver.cpp:473] Iteration 1030, lr = 0.0001
+I0614 15:59:15.677124  2037 solver.cpp:213] Iteration 1040, loss = 4.42655
+I0614 15:59:15.677139  2037 solver.cpp:228]     Train net output #0: softmax = 4.42655 (* 1 = 4.42655 loss)
+I0614 15:59:15.677144  2037 solver.cpp:473] Iteration 1040, lr = 0.0001
+I0614 15:59:15.902781  2037 solver.cpp:213] Iteration 1050, loss = 4.38365
+I0614 15:59:15.902794  2037 solver.cpp:228]     Train net output #0: softmax = 4.38365 (* 1 = 4.38365 loss)
+I0614 15:59:15.902799  2037 solver.cpp:473] Iteration 1050, lr = 0.0001
+I0614 15:59:16.128568  2037 solver.cpp:213] Iteration 1060, loss = 4.4075
+I0614 15:59:16.128583  2037 solver.cpp:228]     Train net output #0: softmax = 4.4075 (* 1 = 4.4075 loss)
+I0614 15:59:16.128588  2037 solver.cpp:473] Iteration 1060, lr = 0.0001
+I0614 15:59:16.354712  2037 solver.cpp:213] Iteration 1070, loss = 4.40543
+I0614 15:59:16.354727  2037 solver.cpp:228]     Train net output #0: softmax = 4.40543 (* 1 = 4.40543 loss)
+I0614 15:59:16.354732  2037 solver.cpp:473] Iteration 1070, lr = 0.0001
+I0614 15:59:16.580795  2037 solver.cpp:213] Iteration 1080, loss = 4.41304
+I0614 15:59:16.580808  2037 solver.cpp:228]     Train net output #0: softmax = 4.41304 (* 1 = 4.41304 loss)
+I0614 15:59:16.580813  2037 solver.cpp:473] Iteration 1080, lr = 0.0001
+I0614 15:59:16.806861  2037 solver.cpp:213] Iteration 1090, loss = 4.4143
+I0614 15:59:16.806876  2037 solver.cpp:228]     Train net output #0: softmax = 4.4143 (* 1 = 4.4143 loss)
+I0614 15:59:16.806880  2037 solver.cpp:473] Iteration 1090, lr = 0.0001
+I0614 15:59:17.032583  2037 solver.cpp:213] Iteration 1100, loss = 4.39767
+I0614 15:59:17.032598  2037 solver.cpp:228]     Train net output #0: softmax = 4.39767 (* 1 = 4.39767 loss)
+I0614 15:59:17.032603  2037 solver.cpp:473] Iteration 1100, lr = 0.0001
+I0614 15:59:17.258981  2037 solver.cpp:213] Iteration 1110, loss = 4.40377
+I0614 15:59:17.258997  2037 solver.cpp:228]     Train net output #0: softmax = 4.40377 (* 1 = 4.40377 loss)
+I0614 15:59:17.259001  2037 solver.cpp:473] Iteration 1110, lr = 0.0001
+I0614 15:59:17.485693  2037 solver.cpp:213] Iteration 1120, loss = 4.4718
+I0614 15:59:17.485710  2037 solver.cpp:228]     Train net output #0: softmax = 4.4718 (* 1 = 4.4718 loss)
+I0614 15:59:17.485714  2037 solver.cpp:473] Iteration 1120, lr = 0.0001
+I0614 15:59:17.712028  2037 solver.cpp:213] Iteration 1130, loss = 4.41612
+I0614 15:59:17.712043  2037 solver.cpp:228]     Train net output #0: softmax = 4.41612 (* 1 = 4.41612 loss)
+I0614 15:59:17.712047  2037 solver.cpp:473] Iteration 1130, lr = 0.0001
+I0614 15:59:17.937923  2037 solver.cpp:213] Iteration 1140, loss = 4.45092
+I0614 15:59:17.937938  2037 solver.cpp:228]     Train net output #0: softmax = 4.45092 (* 1 = 4.45092 loss)
+I0614 15:59:17.937943  2037 solver.cpp:473] Iteration 1140, lr = 0.0001
+I0614 15:59:18.163502  2037 solver.cpp:213] Iteration 1150, loss = 4.41785
+I0614 15:59:18.163519  2037 solver.cpp:228]     Train net output #0: softmax = 4.41785 (* 1 = 4.41785 loss)
+I0614 15:59:18.163524  2037 solver.cpp:473] Iteration 1150, lr = 0.0001
+I0614 15:59:18.389552  2037 solver.cpp:213] Iteration 1160, loss = 4.39666
+I0614 15:59:18.389569  2037 solver.cpp:228]     Train net output #0: softmax = 4.39666 (* 1 = 4.39666 loss)
+I0614 15:59:18.389574  2037 solver.cpp:473] Iteration 1160, lr = 0.0001
+I0614 15:59:18.615399  2037 solver.cpp:213] Iteration 1170, loss = 4.44102
+I0614 15:59:18.615414  2037 solver.cpp:228]     Train net output #0: softmax = 4.44102 (* 1 = 4.44102 loss)
+I0614 15:59:18.615419  2037 solver.cpp:473] Iteration 1170, lr = 0.0001
+I0614 15:59:18.841585  2037 solver.cpp:213] Iteration 1180, loss = 4.32529
+I0614 15:59:18.841599  2037 solver.cpp:228]     Train net output #0: softmax = 4.32529 (* 1 = 4.32529 loss)
+I0614 15:59:18.841604  2037 solver.cpp:473] Iteration 1180, lr = 0.0001
+I0614 15:59:19.067893  2037 solver.cpp:213] Iteration 1190, loss = 4.40738
+I0614 15:59:19.067909  2037 solver.cpp:228]     Train net output #0: softmax = 4.40738 (* 1 = 4.40738 loss)
+I0614 15:59:19.067925  2037 solver.cpp:473] Iteration 1190, lr = 0.0001
+I0614 15:59:19.294107  2037 solver.cpp:213] Iteration 1200, loss = 4.42007
+I0614 15:59:19.294123  2037 solver.cpp:228]     Train net output #0: softmax = 4.42007 (* 1 = 4.42007 loss)
+I0614 15:59:19.294127  2037 solver.cpp:473] Iteration 1200, lr = 0.0001
+I0614 15:59:19.520615  2037 solver.cpp:213] Iteration 1210, loss = 4.43098
+I0614 15:59:19.520644  2037 solver.cpp:228]     Train net output #0: softmax = 4.43098 (* 1 = 4.43098 loss)
+I0614 15:59:19.520651  2037 solver.cpp:473] Iteration 1210, lr = 0.0001
+I0614 15:59:19.746687  2037 solver.cpp:213] Iteration 1220, loss = 4.32331
+I0614 15:59:19.746702  2037 solver.cpp:228]     Train net output #0: softmax = 4.32331 (* 1 = 4.32331 loss)
+I0614 15:59:19.746707  2037 solver.cpp:473] Iteration 1220, lr = 0.0001
+I0614 15:59:19.973002  2037 solver.cpp:213] Iteration 1230, loss = 4.3946
+I0614 15:59:19.973018  2037 solver.cpp:228]     Train net output #0: softmax = 4.3946 (* 1 = 4.3946 loss)
+I0614 15:59:19.973022  2037 solver.cpp:473] Iteration 1230, lr = 0.0001
+I0614 15:59:20.198915  2037 solver.cpp:213] Iteration 1240, loss = 4.41018
+I0614 15:59:20.198930  2037 solver.cpp:228]     Train net output #0: softmax = 4.41018 (* 1 = 4.41018 loss)
+I0614 15:59:20.198935  2037 solver.cpp:473] Iteration 1240, lr = 0.0001
+I0614 15:59:20.425258  2037 solver.cpp:213] Iteration 1250, loss = 4.42351
+I0614 15:59:20.425273  2037 solver.cpp:228]     Train net output #0: softmax = 4.42351 (* 1 = 4.42351 loss)
+I0614 15:59:20.425277  2037 solver.cpp:473] Iteration 1250, lr = 0.0001
+I0614 15:59:20.651389  2037 solver.cpp:213] Iteration 1260, loss = 4.31862
+I0614 15:59:20.651404  2037 solver.cpp:228]     Train net output #0: softmax = 4.31862 (* 1 = 4.31862 loss)
+I0614 15:59:20.651409  2037 solver.cpp:473] Iteration 1260, lr = 0.0001
+I0614 15:59:20.877959  2037 solver.cpp:213] Iteration 1270, loss = 4.35305
+I0614 15:59:20.877974  2037 solver.cpp:228]     Train net output #0: softmax = 4.35305 (* 1 = 4.35305 loss)
+I0614 15:59:20.877979  2037 solver.cpp:473] Iteration 1270, lr = 0.0001
+I0614 15:59:21.104290  2037 solver.cpp:213] Iteration 1280, loss = 4.37847
+I0614 15:59:21.104303  2037 solver.cpp:228]     Train net output #0: softmax = 4.37847 (* 1 = 4.37847 loss)
+I0614 15:59:21.104308  2037 solver.cpp:473] Iteration 1280, lr = 0.0001
+I0614 15:59:21.330395  2037 solver.cpp:213] Iteration 1290, loss = 4.41319
+I0614 15:59:21.330411  2037 solver.cpp:228]     Train net output #0: softmax = 4.41319 (* 1 = 4.41319 loss)
+I0614 15:59:21.330415  2037 solver.cpp:473] Iteration 1290, lr = 0.0001
+I0614 15:59:21.556396  2037 solver.cpp:213] Iteration 1300, loss = 4.44238
+I0614 15:59:21.556411  2037 solver.cpp:228]     Train net output #0: softmax = 4.44238 (* 1 = 4.44238 loss)
+I0614 15:59:21.556416  2037 solver.cpp:473] Iteration 1300, lr = 0.0001
+I0614 15:59:21.782825  2037 solver.cpp:213] Iteration 1310, loss = 4.39083
+I0614 15:59:21.782883  2037 solver.cpp:228]     Train net output #0: softmax = 4.39083 (* 1 = 4.39083 loss)
+I0614 15:59:21.782897  2037 solver.cpp:473] Iteration 1310, lr = 0.0001
+I0614 15:59:22.009752  2037 solver.cpp:213] Iteration 1320, loss = 4.39885
+I0614 15:59:22.009766  2037 solver.cpp:228]     Train net output #0: softmax = 4.39885 (* 1 = 4.39885 loss)
+I0614 15:59:22.009771  2037 solver.cpp:473] Iteration 1320, lr = 0.0001
+I0614 15:59:22.235827  2037 solver.cpp:213] Iteration 1330, loss = 4.35421
+I0614 15:59:22.235841  2037 solver.cpp:228]     Train net output #0: softmax = 4.35421 (* 1 = 4.35421 loss)
+I0614 15:59:22.235844  2037 solver.cpp:473] Iteration 1330, lr = 0.0001
+I0614 15:59:22.462497  2037 solver.cpp:213] Iteration 1340, loss = 4.46354
+I0614 15:59:22.462512  2037 solver.cpp:228]     Train net output #0: softmax = 4.46354 (* 1 = 4.46354 loss)
+I0614 15:59:22.462517  2037 solver.cpp:473] Iteration 1340, lr = 0.0001
+I0614 15:59:22.688822  2037 solver.cpp:213] Iteration 1350, loss = 4.37035
+I0614 15:59:22.688843  2037 solver.cpp:228]     Train net output #0: softmax = 4.37035 (* 1 = 4.37035 loss)
+I0614 15:59:22.688848  2037 solver.cpp:473] Iteration 1350, lr = 0.0001
+I0614 15:59:22.915179  2037 solver.cpp:213] Iteration 1360, loss = 4.40368
+I0614 15:59:22.915194  2037 solver.cpp:228]     Train net output #0: softmax = 4.40368 (* 1 = 4.40368 loss)
+I0614 15:59:22.915199  2037 solver.cpp:473] Iteration 1360, lr = 0.0001
+I0614 15:59:23.141396  2037 solver.cpp:213] Iteration 1370, loss = 4.40753
+I0614 15:59:23.141409  2037 solver.cpp:228]     Train net output #0: softmax = 4.40753 (* 1 = 4.40753 loss)
+I0614 15:59:23.141414  2037 solver.cpp:473] Iteration 1370, lr = 0.0001
+I0614 15:59:23.367491  2037 solver.cpp:213] Iteration 1380, loss = 4.4335
+I0614 15:59:23.367506  2037 solver.cpp:228]     Train net output #0: softmax = 4.4335 (* 1 = 4.4335 loss)
+I0614 15:59:23.367509  2037 solver.cpp:473] Iteration 1380, lr = 0.0001
+I0614 15:59:23.594038  2037 solver.cpp:213] Iteration 1390, loss = 4.42194
+I0614 15:59:23.594056  2037 solver.cpp:228]     Train net output #0: softmax = 4.42194 (* 1 = 4.42194 loss)
+I0614 15:59:23.594061  2037 solver.cpp:473] Iteration 1390, lr = 0.0001
+I0614 15:59:23.820343  2037 solver.cpp:213] Iteration 1400, loss = 4.38697
+I0614 15:59:23.820360  2037 solver.cpp:228]     Train net output #0: softmax = 4.38697 (* 1 = 4.38697 loss)
+I0614 15:59:23.820365  2037 solver.cpp:473] Iteration 1400, lr = 0.0001
+I0614 15:59:24.046334  2037 solver.cpp:213] Iteration 1410, loss = 4.38561
+I0614 15:59:24.046349  2037 solver.cpp:228]     Train net output #0: softmax = 4.38561 (* 1 = 4.38561 loss)
+I0614 15:59:24.046353  2037 solver.cpp:473] Iteration 1410, lr = 0.0001
+I0614 15:59:24.272711  2037 solver.cpp:213] Iteration 1420, loss = 4.38914
+I0614 15:59:24.272725  2037 solver.cpp:228]     Train net output #0: softmax = 4.38914 (* 1 = 4.38914 loss)
+I0614 15:59:24.272729  2037 solver.cpp:473] Iteration 1420, lr = 0.0001
+I0614 15:59:24.498771  2037 solver.cpp:213] Iteration 1430, loss = 4.37922
+I0614 15:59:24.498785  2037 solver.cpp:228]     Train net output #0: softmax = 4.37922 (* 1 = 4.37922 loss)
+I0614 15:59:24.498790  2037 solver.cpp:473] Iteration 1430, lr = 0.0001
+I0614 15:59:24.724591  2037 solver.cpp:213] Iteration 1440, loss = 4.41972
+I0614 15:59:24.724607  2037 solver.cpp:228]     Train net output #0: softmax = 4.41972 (* 1 = 4.41972 loss)
+I0614 15:59:24.724612  2037 solver.cpp:473] Iteration 1440, lr = 0.0001
+I0614 15:59:24.950598  2037 solver.cpp:213] Iteration 1450, loss = 4.39347
+I0614 15:59:24.950613  2037 solver.cpp:228]     Train net output #0: softmax = 4.39347 (* 1 = 4.39347 loss)
+I0614 15:59:24.950618  2037 solver.cpp:473] Iteration 1450, lr = 0.0001
+I0614 15:59:25.177124  2037 solver.cpp:213] Iteration 1460, loss = 4.33427
+I0614 15:59:25.177139  2037 solver.cpp:228]     Train net output #0: softmax = 4.33427 (* 1 = 4.33427 loss)
+I0614 15:59:25.177144  2037 solver.cpp:473] Iteration 1460, lr = 0.0001
+I0614 15:59:25.403676  2037 solver.cpp:213] Iteration 1470, loss = 4.34472
+I0614 15:59:25.403692  2037 solver.cpp:228]     Train net output #0: softmax = 4.34472 (* 1 = 4.34472 loss)
+I0614 15:59:25.403709  2037 solver.cpp:473] Iteration 1470, lr = 0.0001
+I0614 15:59:25.629415  2037 solver.cpp:213] Iteration 1480, loss = 4.37514
+I0614 15:59:25.629431  2037 solver.cpp:228]     Train net output #0: softmax = 4.37514 (* 1 = 4.37514 loss)
+I0614 15:59:25.629434  2037 solver.cpp:473] Iteration 1480, lr = 0.0001
+I0614 15:59:25.855252  2037 solver.cpp:213] Iteration 1490, loss = 4.38511
+I0614 15:59:25.855268  2037 solver.cpp:228]     Train net output #0: softmax = 4.38511 (* 1 = 4.38511 loss)
+I0614 15:59:25.855271  2037 solver.cpp:473] Iteration 1490, lr = 0.0001
+I0614 15:59:26.081504  2037 solver.cpp:213] Iteration 1500, loss = 4.4322
+I0614 15:59:26.081519  2037 solver.cpp:228]     Train net output #0: softmax = 4.4322 (* 1 = 4.4322 loss)
+I0614 15:59:26.081524  2037 solver.cpp:473] Iteration 1500, lr = 0.0001
+I0614 15:59:26.307971  2037 solver.cpp:213] Iteration 1510, loss = 4.34931
+I0614 15:59:26.307993  2037 solver.cpp:228]     Train net output #0: softmax = 4.34931 (* 1 = 4.34931 loss)
+I0614 15:59:26.307998  2037 solver.cpp:473] Iteration 1510, lr = 0.0001
+I0614 15:59:26.533756  2037 solver.cpp:213] Iteration 1520, loss = 4.37694
+I0614 15:59:26.533771  2037 solver.cpp:228]     Train net output #0: softmax = 4.37694 (* 1 = 4.37694 loss)
+I0614 15:59:26.533776  2037 solver.cpp:473] Iteration 1520, lr = 0.0001
+I0614 15:59:26.759893  2037 solver.cpp:213] Iteration 1530, loss = 4.37762
+I0614 15:59:26.759907  2037 solver.cpp:228]     Train net output #0: softmax = 4.37762 (* 1 = 4.37762 loss)
+I0614 15:59:26.759912  2037 solver.cpp:473] Iteration 1530, lr = 0.0001
+I0614 15:59:26.986942  2037 solver.cpp:213] Iteration 1540, loss = 4.38375
+I0614 15:59:26.986955  2037 solver.cpp:228]     Train net output #0: softmax = 4.38375 (* 1 = 4.38375 loss)
+I0614 15:59:26.986959  2037 solver.cpp:473] Iteration 1540, lr = 0.0001
+I0614 15:59:27.213414  2037 solver.cpp:213] Iteration 1550, loss = 4.38721
+I0614 15:59:27.213428  2037 solver.cpp:228]     Train net output #0: softmax = 4.38721 (* 1 = 4.38721 loss)
+I0614 15:59:27.213433  2037 solver.cpp:473] Iteration 1550, lr = 0.0001
+I0614 15:59:27.439649  2037 solver.cpp:213] Iteration 1560, loss = 4.36033
+I0614 15:59:27.439664  2037 solver.cpp:228]     Train net output #0: softmax = 4.36033 (* 1 = 4.36033 loss)
+I0614 15:59:27.439668  2037 solver.cpp:473] Iteration 1560, lr = 0.0001
+I0614 15:59:27.665954  2037 solver.cpp:213] Iteration 1570, loss = 4.32899
+I0614 15:59:27.665969  2037 solver.cpp:228]     Train net output #0: softmax = 4.32899 (* 1 = 4.32899 loss)
+I0614 15:59:27.665973  2037 solver.cpp:473] Iteration 1570, lr = 0.0001
+I0614 15:59:27.892099  2037 solver.cpp:213] Iteration 1580, loss = 4.31353
+I0614 15:59:27.892114  2037 solver.cpp:228]     Train net output #0: softmax = 4.31353 (* 1 = 4.31353 loss)
+I0614 15:59:27.892119  2037 solver.cpp:473] Iteration 1580, lr = 0.0001
+I0614 15:59:28.118635  2037 solver.cpp:213] Iteration 1590, loss = 4.34118
+I0614 15:59:28.118651  2037 solver.cpp:228]     Train net output #0: softmax = 4.34118 (* 1 = 4.34118 loss)
+I0614 15:59:28.118656  2037 solver.cpp:473] Iteration 1590, lr = 0.0001
+I0614 15:59:28.344643  2037 solver.cpp:213] Iteration 1600, loss = 4.40539
+I0614 15:59:28.344660  2037 solver.cpp:228]     Train net output #0: softmax = 4.40539 (* 1 = 4.40539 loss)
+I0614 15:59:28.344663  2037 solver.cpp:473] Iteration 1600, lr = 0.0001
+I0614 15:59:28.571200  2037 solver.cpp:213] Iteration 1610, loss = 4.30947
+I0614 15:59:28.571216  2037 solver.cpp:228]     Train net output #0: softmax = 4.30947 (* 1 = 4.30947 loss)
+I0614 15:59:28.571220  2037 solver.cpp:473] Iteration 1610, lr = 0.0001
+I0614 15:59:28.797430  2037 solver.cpp:213] Iteration 1620, loss = 4.38619
+I0614 15:59:28.797446  2037 solver.cpp:228]     Train net output #0: softmax = 4.38619 (* 1 = 4.38619 loss)
+I0614 15:59:28.797449  2037 solver.cpp:473] Iteration 1620, lr = 0.0001
+I0614 15:59:29.023432  2037 solver.cpp:213] Iteration 1630, loss = 4.39827
+I0614 15:59:29.023447  2037 solver.cpp:228]     Train net output #0: softmax = 4.39827 (* 1 = 4.39827 loss)
+I0614 15:59:29.023466  2037 solver.cpp:473] Iteration 1630, lr = 0.0001
+I0614 15:59:29.249480  2037 solver.cpp:213] Iteration 1640, loss = 4.42781
+I0614 15:59:29.249496  2037 solver.cpp:228]     Train net output #0: softmax = 4.42781 (* 1 = 4.42781 loss)
+I0614 15:59:29.249500  2037 solver.cpp:473] Iteration 1640, lr = 0.0001
+I0614 15:59:29.475967  2037 solver.cpp:213] Iteration 1650, loss = 4.28128
+I0614 15:59:29.475985  2037 solver.cpp:228]     Train net output #0: softmax = 4.28128 (* 1 = 4.28128 loss)
+I0614 15:59:29.475989  2037 solver.cpp:473] Iteration 1650, lr = 0.0001
+I0614 15:59:29.702441  2037 solver.cpp:213] Iteration 1660, loss = 4.35307
+I0614 15:59:29.702458  2037 solver.cpp:228]     Train net output #0: softmax = 4.35307 (* 1 = 4.35307 loss)
+I0614 15:59:29.702463  2037 solver.cpp:473] Iteration 1660, lr = 0.0001
+I0614 15:59:29.928153  2037 solver.cpp:213] Iteration 1670, loss = 4.31111
+I0614 15:59:29.928189  2037 solver.cpp:228]     Train net output #0: softmax = 4.31111 (* 1 = 4.31111 loss)
+I0614 15:59:29.928197  2037 solver.cpp:473] Iteration 1670, lr = 0.0001
+I0614 15:59:30.154533  2037 solver.cpp:213] Iteration 1680, loss = 4.36565
+I0614 15:59:30.154549  2037 solver.cpp:228]     Train net output #0: softmax = 4.36565 (* 1 = 4.36565 loss)
+I0614 15:59:30.154554  2037 solver.cpp:473] Iteration 1680, lr = 0.0001
+I0614 15:59:30.380820  2037 solver.cpp:213] Iteration 1690, loss = 4.36463
+I0614 15:59:30.380836  2037 solver.cpp:228]     Train net output #0: softmax = 4.36463 (* 1 = 4.36463 loss)
+I0614 15:59:30.380841  2037 solver.cpp:473] Iteration 1690, lr = 0.0001
+I0614 15:59:30.606825  2037 solver.cpp:213] Iteration 1700, loss = 4.35403
+I0614 15:59:30.606842  2037 solver.cpp:228]     Train net output #0: softmax = 4.35403 (* 1 = 4.35403 loss)
+I0614 15:59:30.606847  2037 solver.cpp:473] Iteration 1700, lr = 0.0001
+I0614 15:59:30.832973  2037 solver.cpp:213] Iteration 1710, loss = 4.36393
+I0614 15:59:30.832989  2037 solver.cpp:228]     Train net output #0: softmax = 4.36393 (* 1 = 4.36393 loss)
+I0614 15:59:30.832994  2037 solver.cpp:473] Iteration 1710, lr = 0.0001
+I0614 15:59:31.059221  2037 solver.cpp:213] Iteration 1720, loss = 4.315
+I0614 15:59:31.059237  2037 solver.cpp:228]     Train net output #0: softmax = 4.315 (* 1 = 4.315 loss)
+I0614 15:59:31.059242  2037 solver.cpp:473] Iteration 1720, lr = 0.0001
+I0614 15:59:31.284695  2037 solver.cpp:213] Iteration 1730, loss = 4.38042
+I0614 15:59:31.284710  2037 solver.cpp:228]     Train net output #0: softmax = 4.38042 (* 1 = 4.38042 loss)
+I0614 15:59:31.284714  2037 solver.cpp:473] Iteration 1730, lr = 0.0001
+I0614 15:59:31.511055  2037 solver.cpp:213] Iteration 1740, loss = 4.36055
+I0614 15:59:31.511070  2037 solver.cpp:228]     Train net output #0: softmax = 4.36055 (* 1 = 4.36055 loss)
+I0614 15:59:31.511075  2037 solver.cpp:473] Iteration 1740, lr = 0.0001
+I0614 15:59:31.737422  2037 solver.cpp:213] Iteration 1750, loss = 4.33473
+I0614 15:59:31.737437  2037 solver.cpp:228]     Train net output #0: softmax = 4.33473 (* 1 = 4.33473 loss)
+I0614 15:59:31.737442  2037 solver.cpp:473] Iteration 1750, lr = 0.0001
+I0614 15:59:31.963459  2037 solver.cpp:213] Iteration 1760, loss = 4.3464
+I0614 15:59:31.963474  2037 solver.cpp:228]     Train net output #0: softmax = 4.3464 (* 1 = 4.3464 loss)
+I0614 15:59:31.963477  2037 solver.cpp:473] Iteration 1760, lr = 0.0001
+I0614 15:59:32.189688  2037 solver.cpp:213] Iteration 1770, loss = 4.39974
+I0614 15:59:32.189703  2037 solver.cpp:228]     Train net output #0: softmax = 4.39974 (* 1 = 4.39974 loss)
+I0614 15:59:32.189707  2037 solver.cpp:473] Iteration 1770, lr = 0.0001
+I0614 15:59:32.415797  2037 solver.cpp:213] Iteration 1780, loss = 4.32859
+I0614 15:59:32.415812  2037 solver.cpp:228]     Train net output #0: softmax = 4.32859 (* 1 = 4.32859 loss)
+I0614 15:59:32.415817  2037 solver.cpp:473] Iteration 1780, lr = 0.0001
+I0614 15:59:32.641705  2037 solver.cpp:213] Iteration 1790, loss = 4.35965
+I0614 15:59:32.641721  2037 solver.cpp:228]     Train net output #0: softmax = 4.35965 (* 1 = 4.35965 loss)
+I0614 15:59:32.641741  2037 solver.cpp:473] Iteration 1790, lr = 0.0001
+I0614 15:59:32.868021  2037 solver.cpp:213] Iteration 1800, loss = 4.31041
+I0614 15:59:32.868036  2037 solver.cpp:228]     Train net output #0: softmax = 4.31041 (* 1 = 4.31041 loss)
+I0614 15:59:32.868041  2037 solver.cpp:473] Iteration 1800, lr = 0.0001
+I0614 15:59:33.093993  2037 solver.cpp:213] Iteration 1810, loss = 4.28809
+I0614 15:59:33.094007  2037 solver.cpp:228]     Train net output #0: softmax = 4.28809 (* 1 = 4.28809 loss)
+I0614 15:59:33.094012  2037 solver.cpp:473] Iteration 1810, lr = 0.0001
+I0614 15:59:33.320235  2037 solver.cpp:213] Iteration 1820, loss = 4.42223
+I0614 15:59:33.320248  2037 solver.cpp:228]     Train net output #0: softmax = 4.42223 (* 1 = 4.42223 loss)
+I0614 15:59:33.320253  2037 solver.cpp:473] Iteration 1820, lr = 0.0001
+I0614 15:59:33.546444  2037 solver.cpp:213] Iteration 1830, loss = 4.35124
+I0614 15:59:33.546464  2037 solver.cpp:228]     Train net output #0: softmax = 4.35124 (* 1 = 4.35124 loss)
+I0614 15:59:33.546469  2037 solver.cpp:473] Iteration 1830, lr = 0.0001
+I0614 15:59:33.772610  2037 solver.cpp:213] Iteration 1840, loss = 4.35648
+I0614 15:59:33.772625  2037 solver.cpp:228]     Train net output #0: softmax = 4.35648 (* 1 = 4.35648 loss)
+I0614 15:59:33.772629  2037 solver.cpp:473] Iteration 1840, lr = 0.0001
+I0614 15:59:33.998510  2037 solver.cpp:213] Iteration 1850, loss = 4.28836
+I0614 15:59:33.998524  2037 solver.cpp:228]     Train net output #0: softmax = 4.28836 (* 1 = 4.28836 loss)
+I0614 15:59:33.998528  2037 solver.cpp:473] Iteration 1850, lr = 0.0001
+I0614 15:59:34.224730  2037 solver.cpp:213] Iteration 1860, loss = 4.37497
+I0614 15:59:34.224745  2037 solver.cpp:228]     Train net output #0: softmax = 4.37497 (* 1 = 4.37497 loss)
+I0614 15:59:34.224750  2037 solver.cpp:473] Iteration 1860, lr = 0.0001
+I0614 15:59:34.450829  2037 solver.cpp:213] Iteration 1870, loss = 4.36242
+I0614 15:59:34.450844  2037 solver.cpp:228]     Train net output #0: softmax = 4.36242 (* 1 = 4.36242 loss)
+I0614 15:59:34.450847  2037 solver.cpp:473] Iteration 1870, lr = 0.0001
+I0614 15:59:34.677005  2037 solver.cpp:213] Iteration 1880, loss = 4.31678
+I0614 15:59:34.677019  2037 solver.cpp:228]     Train net output #0: softmax = 4.31678 (* 1 = 4.31678 loss)
+I0614 15:59:34.677024  2037 solver.cpp:473] Iteration 1880, lr = 0.0001
+I0614 15:59:34.903059  2037 solver.cpp:213] Iteration 1890, loss = 4.36718
+I0614 15:59:34.903074  2037 solver.cpp:228]     Train net output #0: softmax = 4.36718 (* 1 = 4.36718 loss)
+I0614 15:59:34.903079  2037 solver.cpp:473] Iteration 1890, lr = 0.0001
+I0614 15:59:35.129091  2037 solver.cpp:213] Iteration 1900, loss = 4.3062
+I0614 15:59:35.129117  2037 solver.cpp:228]     Train net output #0: softmax = 4.3062 (* 1 = 4.3062 loss)
+I0614 15:59:35.129128  2037 solver.cpp:473] Iteration 1900, lr = 0.0001
+I0614 15:59:35.355588  2037 solver.cpp:213] Iteration 1910, loss = 4.38306
+I0614 15:59:35.355604  2037 solver.cpp:228]     Train net output #0: softmax = 4.38306 (* 1 = 4.38306 loss)
+I0614 15:59:35.355609  2037 solver.cpp:473] Iteration 1910, lr = 0.0001
+I0614 15:59:35.581714  2037 solver.cpp:213] Iteration 1920, loss = 4.30116
+I0614 15:59:35.581729  2037 solver.cpp:228]     Train net output #0: softmax = 4.30116 (* 1 = 4.30116 loss)
+I0614 15:59:35.581733  2037 solver.cpp:473] Iteration 1920, lr = 0.0001
+I0614 15:59:35.808092  2037 solver.cpp:213] Iteration 1930, loss = 4.3099
+I0614 15:59:35.808109  2037 solver.cpp:228]     Train net output #0: softmax = 4.3099 (* 1 = 4.3099 loss)
+I0614 15:59:35.808114  2037 solver.cpp:473] Iteration 1930, lr = 0.0001
+I0614 15:59:36.035269  2037 solver.cpp:213] Iteration 1940, loss = 4.37279
+I0614 15:59:36.035285  2037 solver.cpp:228]     Train net output #0: softmax = 4.37279 (* 1 = 4.37279 loss)
+I0614 15:59:36.035290  2037 solver.cpp:473] Iteration 1940, lr = 0.0001
+I0614 15:59:36.261708  2037 solver.cpp:213] Iteration 1950, loss = 4.29712
+I0614 15:59:36.261723  2037 solver.cpp:228]     Train net output #0: softmax = 4.29712 (* 1 = 4.29712 loss)
+I0614 15:59:36.261741  2037 solver.cpp:473] Iteration 1950, lr = 0.0001
+I0614 15:59:36.487692  2037 solver.cpp:213] Iteration 1960, loss = 4.33352
+I0614 15:59:36.487709  2037 solver.cpp:228]     Train net output #0: softmax = 4.33352 (* 1 = 4.33352 loss)
+I0614 15:59:36.487714  2037 solver.cpp:473] Iteration 1960, lr = 0.0001
+I0614 15:59:36.714226  2037 solver.cpp:213] Iteration 1970, loss = 4.28389
+I0614 15:59:36.714241  2037 solver.cpp:228]     Train net output #0: softmax = 4.28389 (* 1 = 4.28389 loss)
+I0614 15:59:36.714246  2037 solver.cpp:473] Iteration 1970, lr = 0.0001
+I0614 15:59:36.940796  2037 solver.cpp:213] Iteration 1980, loss = 4.31438
+I0614 15:59:36.940811  2037 solver.cpp:228]     Train net output #0: softmax = 4.31438 (* 1 = 4.31438 loss)
+I0614 15:59:36.940816  2037 solver.cpp:473] Iteration 1980, lr = 0.0001
+I0614 15:59:37.166590  2037 solver.cpp:213] Iteration 1990, loss = 4.38892
+I0614 15:59:37.166605  2037 solver.cpp:228]     Train net output #0: softmax = 4.38892 (* 1 = 4.38892 loss)
+I0614 15:59:37.166616  2037 solver.cpp:473] Iteration 1990, lr = 0.0001
+I0614 15:59:37.370568  2037 solver.cpp:362] Snapshotting to snapshots/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen_iter_2000.caffemodel
+I0614 15:59:37.371353  2037 solver.cpp:370] Snapshotting solver state to snapshots/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen_iter_2000.solverstate
+I0614 15:59:37.371775  2037 solver.cpp:291] Iteration 2000, Testing net (#0)
+I0614 15:59:37.484629  2037 solver.cpp:342]     Test net output #0: accuracy_top_1 = 0.028125
+I0614 15:59:37.484645  2037 solver.cpp:342]     Test net output #1: accuracy_top_5 = 0.154687
+I0614 15:59:37.484652  2037 solver.cpp:342]     Test net output #2: softmax = 4.37767 (* 1 = 4.37767 loss)
+I0614 15:59:37.506881  2037 solver.cpp:213] Iteration 2000, loss = 4.30827
+I0614 15:59:37.506894  2037 solver.cpp:228]     Train net output #0: softmax = 4.30827 (* 1 = 4.30827 loss)
+I0614 15:59:37.506899  2037 solver.cpp:473] Iteration 2000, lr = 0.0001
+I0614 15:59:37.733348  2037 solver.cpp:213] Iteration 2010, loss = 4.38222
+I0614 15:59:37.733364  2037 solver.cpp:228]     Train net output #0: softmax = 4.38222 (* 1 = 4.38222 loss)
+I0614 15:59:37.733369  2037 solver.cpp:473] Iteration 2010, lr = 0.0001
+I0614 15:59:37.959775  2037 solver.cpp:213] Iteration 2020, loss = 4.33847
+I0614 15:59:37.959791  2037 solver.cpp:228]     Train net output #0: softmax = 4.33847 (* 1 = 4.33847 loss)
+I0614 15:59:37.959795  2037 solver.cpp:473] Iteration 2020, lr = 0.0001
+I0614 15:59:38.185894  2037 solver.cpp:213] Iteration 2030, loss = 4.30899
+I0614 15:59:38.185911  2037 solver.cpp:228]     Train net output #0: softmax = 4.30899 (* 1 = 4.30899 loss)
+I0614 15:59:38.185916  2037 solver.cpp:473] Iteration 2030, lr = 0.0001
+I0614 15:59:38.411641  2037 solver.cpp:213] Iteration 2040, loss = 4.32738
+I0614 15:59:38.411655  2037 solver.cpp:228]     Train net output #0: softmax = 4.32738 (* 1 = 4.32738 loss)
+I0614 15:59:38.411659  2037 solver.cpp:473] Iteration 2040, lr = 0.0001
+I0614 15:59:38.637536  2037 solver.cpp:213] Iteration 2050, loss = 4.36543
+I0614 15:59:38.637552  2037 solver.cpp:228]     Train net output #0: softmax = 4.36543 (* 1 = 4.36543 loss)
+I0614 15:59:38.637557  2037 solver.cpp:473] Iteration 2050, lr = 0.0001
+I0614 15:59:38.863834  2037 solver.cpp:213] Iteration 2060, loss = 4.37512
+I0614 15:59:38.863850  2037 solver.cpp:228]     Train net output #0: softmax = 4.37512 (* 1 = 4.37512 loss)
+I0614 15:59:38.863854  2037 solver.cpp:473] Iteration 2060, lr = 0.0001
+I0614 15:59:39.090024  2037 solver.cpp:213] Iteration 2070, loss = 4.37209
+I0614 15:59:39.090039  2037 solver.cpp:228]     Train net output #0: softmax = 4.37209 (* 1 = 4.37209 loss)
+I0614 15:59:39.090044  2037 solver.cpp:473] Iteration 2070, lr = 0.0001
+I0614 15:59:39.316398  2037 solver.cpp:213] Iteration 2080, loss = 4.39139
+I0614 15:59:39.316414  2037 solver.cpp:228]     Train net output #0: softmax = 4.39139 (* 1 = 4.39139 loss)
+I0614 15:59:39.316418  2037 solver.cpp:473] Iteration 2080, lr = 0.0001
+I0614 15:59:39.542315  2037 solver.cpp:213] Iteration 2090, loss = 4.36746
+I0614 15:59:39.542346  2037 solver.cpp:228]     Train net output #0: softmax = 4.36746 (* 1 = 4.36746 loss)
+I0614 15:59:39.542351  2037 solver.cpp:473] Iteration 2090, lr = 0.0001
+I0614 15:59:39.768420  2037 solver.cpp:213] Iteration 2100, loss = 4.31382
+I0614 15:59:39.768435  2037 solver.cpp:228]     Train net output #0: softmax = 4.31382 (* 1 = 4.31382 loss)
+I0614 15:59:39.768440  2037 solver.cpp:473] Iteration 2100, lr = 0.0001
+I0614 15:59:39.994568  2037 solver.cpp:213] Iteration 2110, loss = 4.24422
+I0614 15:59:39.994583  2037 solver.cpp:228]     Train net output #0: softmax = 4.24422 (* 1 = 4.24422 loss)
+I0614 15:59:39.994588  2037 solver.cpp:473] Iteration 2110, lr = 0.0001
+I0614 15:59:40.220906  2037 solver.cpp:213] Iteration 2120, loss = 4.3574
+I0614 15:59:40.220932  2037 solver.cpp:228]     Train net output #0: softmax = 4.3574 (* 1 = 4.3574 loss)
+I0614 15:59:40.220942  2037 solver.cpp:473] Iteration 2120, lr = 0.0001
+I0614 15:59:40.446499  2037 solver.cpp:213] Iteration 2130, loss = 4.36995
+I0614 15:59:40.446514  2037 solver.cpp:228]     Train net output #0: softmax = 4.36995 (* 1 = 4.36995 loss)
+I0614 15:59:40.446519  2037 solver.cpp:473] Iteration 2130, lr = 0.0001
+I0614 15:59:40.672816  2037 solver.cpp:213] Iteration 2140, loss = 4.30294
+I0614 15:59:40.672832  2037 solver.cpp:228]     Train net output #0: softmax = 4.30294 (* 1 = 4.30294 loss)
+I0614 15:59:40.672837  2037 solver.cpp:473] Iteration 2140, lr = 0.0001
+I0614 15:59:40.898912  2037 solver.cpp:213] Iteration 2150, loss = 4.29434
+I0614 15:59:40.898928  2037 solver.cpp:228]     Train net output #0: softmax = 4.29434 (* 1 = 4.29434 loss)
+I0614 15:59:40.898932  2037 solver.cpp:473] Iteration 2150, lr = 0.0001
+I0614 15:59:41.125311  2037 solver.cpp:213] Iteration 2160, loss = 4.31772
+I0614 15:59:41.125327  2037 solver.cpp:228]     Train net output #0: softmax = 4.31772 (* 1 = 4.31772 loss)
+I0614 15:59:41.125331  2037 solver.cpp:473] Iteration 2160, lr = 0.0001
+I0614 15:59:41.351778  2037 solver.cpp:213] Iteration 2170, loss = 4.31761
+I0614 15:59:41.351794  2037 solver.cpp:228]     Train net output #0: softmax = 4.31761 (* 1 = 4.31761 loss)
+I0614 15:59:41.351799  2037 solver.cpp:473] Iteration 2170, lr = 0.0001
+I0614 15:59:41.577913  2037 solver.cpp:213] Iteration 2180, loss = 4.34532
+I0614 15:59:41.577932  2037 solver.cpp:228]     Train net output #0: softmax = 4.34532 (* 1 = 4.34532 loss)
+I0614 15:59:41.577937  2037 solver.cpp:473] Iteration 2180, lr = 0.0001
+I0614 15:59:41.803843  2037 solver.cpp:213] Iteration 2190, loss = 4.33433
+I0614 15:59:41.803858  2037 solver.cpp:228]     Train net output #0: softmax = 4.33433 (* 1 = 4.33433 loss)
+I0614 15:59:41.803864  2037 solver.cpp:473] Iteration 2190, lr = 0.0001
+I0614 15:59:42.030040  2037 solver.cpp:213] Iteration 2200, loss = 4.26436
+I0614 15:59:42.030055  2037 solver.cpp:228]     Train net output #0: softmax = 4.26436 (* 1 = 4.26436 loss)
+I0614 15:59:42.030060  2037 solver.cpp:473] Iteration 2200, lr = 0.0001
+I0614 15:59:42.256456  2037 solver.cpp:213] Iteration 2210, loss = 4.39306
+I0614 15:59:42.256471  2037 solver.cpp:228]     Train net output #0: softmax = 4.39306 (* 1 = 4.39306 loss)
+I0614 15:59:42.256476  2037 solver.cpp:473] Iteration 2210, lr = 0.0001
+I0614 15:59:42.483016  2037 solver.cpp:213] Iteration 2220, loss = 4.25785
+I0614 15:59:42.483031  2037 solver.cpp:228]     Train net output #0: softmax = 4.25785 (* 1 = 4.25785 loss)
+I0614 15:59:42.483036  2037 solver.cpp:473] Iteration 2220, lr = 0.0001
+I0614 15:59:42.709496  2037 solver.cpp:213] Iteration 2230, loss = 4.29889
+I0614 15:59:42.709511  2037 solver.cpp:228]     Train net output #0: softmax = 4.29889 (* 1 = 4.29889 loss)
+I0614 15:59:42.709517  2037 solver.cpp:473] Iteration 2230, lr = 0.0001
+I0614 15:59:42.936028  2037 solver.cpp:213] Iteration 2240, loss = 4.31111
+I0614 15:59:42.936043  2037 solver.cpp:228]     Train net output #0: softmax = 4.31111 (* 1 = 4.31111 loss)
+I0614 15:59:42.936048  2037 solver.cpp:473] Iteration 2240, lr = 0.0001
+I0614 15:59:43.162217  2037 solver.cpp:213] Iteration 2250, loss = 4.34318
+I0614 15:59:43.162247  2037 solver.cpp:228]     Train net output #0: softmax = 4.34318 (* 1 = 4.34318 loss)
+I0614 15:59:43.162252  2037 solver.cpp:473] Iteration 2250, lr = 0.0001
+I0614 15:59:43.388144  2037 solver.cpp:213] Iteration 2260, loss = 4.39735
+I0614 15:59:43.388159  2037 solver.cpp:228]     Train net output #0: softmax = 4.39735 (* 1 = 4.39735 loss)
+I0614 15:59:43.388164  2037 solver.cpp:473] Iteration 2260, lr = 0.0001
+I0614 15:59:43.614289  2037 solver.cpp:213] Iteration 2270, loss = 4.35923
+I0614 15:59:43.614305  2037 solver.cpp:228]     Train net output #0: softmax = 4.35923 (* 1 = 4.35923 loss)
+I0614 15:59:43.614308  2037 solver.cpp:473] Iteration 2270, lr = 0.0001
+I0614 15:59:43.840500  2037 solver.cpp:213] Iteration 2280, loss = 4.34426
+I0614 15:59:43.840517  2037 solver.cpp:228]     Train net output #0: softmax = 4.34426 (* 1 = 4.34426 loss)
+I0614 15:59:43.840522  2037 solver.cpp:473] Iteration 2280, lr = 0.0001
+I0614 15:59:44.066717  2037 solver.cpp:213] Iteration 2290, loss = 4.27843
+I0614 15:59:44.066733  2037 solver.cpp:228]     Train net output #0: softmax = 4.27843 (* 1 = 4.27843 loss)
+I0614 15:59:44.066737  2037 solver.cpp:473] Iteration 2290, lr = 0.0001
+I0614 15:59:44.293047  2037 solver.cpp:213] Iteration 2300, loss = 4.34527
+I0614 15:59:44.293062  2037 solver.cpp:228]     Train net output #0: softmax = 4.34527 (* 1 = 4.34527 loss)
+I0614 15:59:44.293067  2037 solver.cpp:473] Iteration 2300, lr = 0.0001
+I0614 15:59:44.519263  2037 solver.cpp:213] Iteration 2310, loss = 4.30671
+I0614 15:59:44.519279  2037 solver.cpp:228]     Train net output #0: softmax = 4.30671 (* 1 = 4.30671 loss)
+I0614 15:59:44.519282  2037 solver.cpp:473] Iteration 2310, lr = 0.0001
+I0614 15:59:44.745658  2037 solver.cpp:213] Iteration 2320, loss = 4.33757
+I0614 15:59:44.745672  2037 solver.cpp:228]     Train net output #0: softmax = 4.33757 (* 1 = 4.33757 loss)
+I0614 15:59:44.745677  2037 solver.cpp:473] Iteration 2320, lr = 0.0001
+I0614 15:59:44.972162  2037 solver.cpp:213] Iteration 2330, loss = 4.34278
+I0614 15:59:44.972201  2037 solver.cpp:228]     Train net output #0: softmax = 4.34278 (* 1 = 4.34278 loss)
+I0614 15:59:44.972206  2037 solver.cpp:473] Iteration 2330, lr = 0.0001
+I0614 15:59:45.198067  2037 solver.cpp:213] Iteration 2340, loss = 4.33007
+I0614 15:59:45.198082  2037 solver.cpp:228]     Train net output #0: softmax = 4.33007 (* 1 = 4.33007 loss)
+I0614 15:59:45.198087  2037 solver.cpp:473] Iteration 2340, lr = 0.0001
+I0614 15:59:45.424617  2037 solver.cpp:213] Iteration 2350, loss = 4.31633
+I0614 15:59:45.424633  2037 solver.cpp:228]     Train net output #0: softmax = 4.31633 (* 1 = 4.31633 loss)
+I0614 15:59:45.424638  2037 solver.cpp:473] Iteration 2350, lr = 0.0001
+I0614 15:59:45.650533  2037 solver.cpp:213] Iteration 2360, loss = 4.23606
+I0614 15:59:45.650548  2037 solver.cpp:228]     Train net output #0: softmax = 4.23606 (* 1 = 4.23606 loss)
+I0614 15:59:45.650552  2037 solver.cpp:473] Iteration 2360, lr = 0.0001
+I0614 15:59:45.876965  2037 solver.cpp:213] Iteration 2370, loss = 4.3277
+I0614 15:59:45.876981  2037 solver.cpp:228]     Train net output #0: softmax = 4.3277 (* 1 = 4.3277 loss)
+I0614 15:59:45.876986  2037 solver.cpp:473] Iteration 2370, lr = 0.0001
+I0614 15:59:46.103067  2037 solver.cpp:213] Iteration 2380, loss = 4.32807
+I0614 15:59:46.103082  2037 solver.cpp:228]     Train net output #0: softmax = 4.32807 (* 1 = 4.32807 loss)
+I0614 15:59:46.103087  2037 solver.cpp:473] Iteration 2380, lr = 0.0001
+I0614 15:59:46.329303  2037 solver.cpp:213] Iteration 2390, loss = 4.32151
+I0614 15:59:46.329319  2037 solver.cpp:228]     Train net output #0: softmax = 4.32151 (* 1 = 4.32151 loss)
+I0614 15:59:46.329322  2037 solver.cpp:473] Iteration 2390, lr = 0.0001
+I0614 15:59:46.555040  2037 solver.cpp:213] Iteration 2400, loss = 4.32327
+I0614 15:59:46.555068  2037 solver.cpp:228]     Train net output #0: softmax = 4.32327 (* 1 = 4.32327 loss)
+I0614 15:59:46.555073  2037 solver.cpp:473] Iteration 2400, lr = 0.0001
+I0614 15:59:46.781132  2037 solver.cpp:213] Iteration 2410, loss = 4.25983
+I0614 15:59:46.781163  2037 solver.cpp:228]     Train net output #0: softmax = 4.25983 (* 1 = 4.25983 loss)
+I0614 15:59:46.781168  2037 solver.cpp:473] Iteration 2410, lr = 0.0001
+I0614 15:59:47.007513  2037 solver.cpp:213] Iteration 2420, loss = 4.29385
+I0614 15:59:47.007527  2037 solver.cpp:228]     Train net output #0: softmax = 4.29385 (* 1 = 4.29385 loss)
+I0614 15:59:47.007531  2037 solver.cpp:473] Iteration 2420, lr = 0.0001
+I0614 15:59:47.233149  2037 solver.cpp:213] Iteration 2430, loss = 4.28629
+I0614 15:59:47.233165  2037 solver.cpp:228]     Train net output #0: softmax = 4.28629 (* 1 = 4.28629 loss)
+I0614 15:59:47.233168  2037 solver.cpp:473] Iteration 2430, lr = 0.0001
+I0614 15:59:47.459048  2037 solver.cpp:213] Iteration 2440, loss = 4.28874
+I0614 15:59:47.459062  2037 solver.cpp:228]     Train net output #0: softmax = 4.28874 (* 1 = 4.28874 loss)
+I0614 15:59:47.459066  2037 solver.cpp:473] Iteration 2440, lr = 0.0001
+I0614 15:59:47.685151  2037 solver.cpp:213] Iteration 2450, loss = 4.34097
+I0614 15:59:47.685166  2037 solver.cpp:228]     Train net output #0: softmax = 4.34097 (* 1 = 4.34097 loss)
+I0614 15:59:47.685171  2037 solver.cpp:473] Iteration 2450, lr = 0.0001
+I0614 15:59:47.911268  2037 solver.cpp:213] Iteration 2460, loss = 4.35786
+I0614 15:59:47.911284  2037 solver.cpp:228]     Train net output #0: softmax = 4.35786 (* 1 = 4.35786 loss)
+I0614 15:59:47.911289  2037 solver.cpp:473] Iteration 2460, lr = 0.0001
+I0614 15:59:48.137611  2037 solver.cpp:213] Iteration 2470, loss = 4.36969
+I0614 15:59:48.137627  2037 solver.cpp:228]     Train net output #0: softmax = 4.36969 (* 1 = 4.36969 loss)
+I0614 15:59:48.137632  2037 solver.cpp:473] Iteration 2470, lr = 0.0001
+I0614 15:59:48.364226  2037 solver.cpp:213] Iteration 2480, loss = 4.34704
+I0614 15:59:48.364243  2037 solver.cpp:228]     Train net output #0: softmax = 4.34704 (* 1 = 4.34704 loss)
+I0614 15:59:48.364248  2037 solver.cpp:473] Iteration 2480, lr = 0.0001
+I0614 15:59:48.590502  2037 solver.cpp:213] Iteration 2490, loss = 4.31951
+I0614 15:59:48.590517  2037 solver.cpp:228]     Train net output #0: softmax = 4.31951 (* 1 = 4.31951 loss)
+I0614 15:59:48.590523  2037 solver.cpp:473] Iteration 2490, lr = 0.0001
+I0614 15:59:48.816236  2037 solver.cpp:213] Iteration 2500, loss = 4.31512
+I0614 15:59:48.816251  2037 solver.cpp:228]     Train net output #0: softmax = 4.31512 (* 1 = 4.31512 loss)
+I0614 15:59:48.816256  2037 solver.cpp:473] Iteration 2500, lr = 0.0001
+I0614 15:59:49.042270  2037 solver.cpp:213] Iteration 2510, loss = 4.33936
+I0614 15:59:49.042284  2037 solver.cpp:228]     Train net output #0: softmax = 4.33936 (* 1 = 4.33936 loss)
+I0614 15:59:49.042289  2037 solver.cpp:473] Iteration 2510, lr = 0.0001
+I0614 15:59:49.268537  2037 solver.cpp:213] Iteration 2520, loss = 4.30323
+I0614 15:59:49.268553  2037 solver.cpp:228]     Train net output #0: softmax = 4.30323 (* 1 = 4.30323 loss)
+I0614 15:59:49.268558  2037 solver.cpp:473] Iteration 2520, lr = 0.0001
+I0614 15:59:49.494984  2037 solver.cpp:213] Iteration 2530, loss = 4.33704
+I0614 15:59:49.494998  2037 solver.cpp:228]     Train net output #0: softmax = 4.33704 (* 1 = 4.33704 loss)
+I0614 15:59:49.495003  2037 solver.cpp:473] Iteration 2530, lr = 0.0001
+I0614 15:59:49.721158  2037 solver.cpp:213] Iteration 2540, loss = 4.31221
+I0614 15:59:49.721173  2037 solver.cpp:228]     Train net output #0: softmax = 4.31221 (* 1 = 4.31221 loss)
+I0614 15:59:49.721177  2037 solver.cpp:473] Iteration 2540, lr = 0.0001
+I0614 15:59:49.947141  2037 solver.cpp:213] Iteration 2550, loss = 4.36542
+I0614 15:59:49.947157  2037 solver.cpp:228]     Train net output #0: softmax = 4.36542 (* 1 = 4.36542 loss)
+I0614 15:59:49.947161  2037 solver.cpp:473] Iteration 2550, lr = 0.0001
+I0614 15:59:50.173545  2037 solver.cpp:213] Iteration 2560, loss = 4.30059
+I0614 15:59:50.173564  2037 solver.cpp:228]     Train net output #0: softmax = 4.30059 (* 1 = 4.30059 loss)
+I0614 15:59:50.173568  2037 solver.cpp:473] Iteration 2560, lr = 0.0001
+I0614 15:59:50.399435  2037 solver.cpp:213] Iteration 2570, loss = 4.36972
+I0614 15:59:50.399467  2037 solver.cpp:228]     Train net output #0: softmax = 4.36972 (* 1 = 4.36972 loss)
+I0614 15:59:50.399471  2037 solver.cpp:473] Iteration 2570, lr = 0.0001
+I0614 15:59:50.625816  2037 solver.cpp:213] Iteration 2580, loss = 4.33866
+I0614 15:59:50.625845  2037 solver.cpp:228]     Train net output #0: softmax = 4.33866 (* 1 = 4.33866 loss)
+I0614 15:59:50.625854  2037 solver.cpp:473] Iteration 2580, lr = 0.0001
+I0614 15:59:50.851840  2037 solver.cpp:213] Iteration 2590, loss = 4.28043
+I0614 15:59:50.851857  2037 solver.cpp:228]     Train net output #0: softmax = 4.28043 (* 1 = 4.28043 loss)
+I0614 15:59:50.851862  2037 solver.cpp:473] Iteration 2590, lr = 0.0001
+I0614 15:59:51.077536  2037 solver.cpp:213] Iteration 2600, loss = 4.31642
+I0614 15:59:51.077554  2037 solver.cpp:228]     Train net output #0: softmax = 4.31642 (* 1 = 4.31642 loss)
+I0614 15:59:51.077558  2037 solver.cpp:473] Iteration 2600, lr = 0.0001
+I0614 15:59:51.303979  2037 solver.cpp:213] Iteration 2610, loss = 4.32974
+I0614 15:59:51.304000  2037 solver.cpp:228]     Train net output #0: softmax = 4.32974 (* 1 = 4.32974 loss)
+I0614 15:59:51.304005  2037 solver.cpp:473] Iteration 2610, lr = 0.0001
+I0614 15:59:51.529927  2037 solver.cpp:213] Iteration 2620, loss = 4.31657
+I0614 15:59:51.529945  2037 solver.cpp:228]     Train net output #0: softmax = 4.31657 (* 1 = 4.31657 loss)
+I0614 15:59:51.529950  2037 solver.cpp:473] Iteration 2620, lr = 0.0001
+I0614 15:59:51.756065  2037 solver.cpp:213] Iteration 2630, loss = 4.34503
+I0614 15:59:51.756080  2037 solver.cpp:228]     Train net output #0: softmax = 4.34503 (* 1 = 4.34503 loss)
+I0614 15:59:51.756084  2037 solver.cpp:473] Iteration 2630, lr = 0.0001
+I0614 15:59:51.982457  2037 solver.cpp:213] Iteration 2640, loss = 4.39208
+I0614 15:59:51.982512  2037 solver.cpp:228]     Train net output #0: softmax = 4.39208 (* 1 = 4.39208 loss)
+I0614 15:59:51.982517  2037 solver.cpp:473] Iteration 2640, lr = 0.0001
+I0614 15:59:52.208601  2037 solver.cpp:213] Iteration 2650, loss = 4.39283
+I0614 15:59:52.208617  2037 solver.cpp:228]     Train net output #0: softmax = 4.39283 (* 1 = 4.39283 loss)
+I0614 15:59:52.208622  2037 solver.cpp:473] Iteration 2650, lr = 0.0001
+I0614 15:59:52.434674  2037 solver.cpp:213] Iteration 2660, loss = 4.47679
+I0614 15:59:52.434689  2037 solver.cpp:228]     Train net output #0: softmax = 4.47679 (* 1 = 4.47679 loss)
+I0614 15:59:52.434692  2037 solver.cpp:473] Iteration 2660, lr = 0.0001
+I0614 15:59:52.660990  2037 solver.cpp:213] Iteration 2670, loss = 4.29142
+I0614 15:59:52.661007  2037 solver.cpp:228]     Train net output #0: softmax = 4.29142 (* 1 = 4.29142 loss)
+I0614 15:59:52.661011  2037 solver.cpp:473] Iteration 2670, lr = 0.0001
+I0614 15:59:52.886800  2037 solver.cpp:213] Iteration 2680, loss = 4.30077
+I0614 15:59:52.886816  2037 solver.cpp:228]     Train net output #0: softmax = 4.30077 (* 1 = 4.30077 loss)
+I0614 15:59:52.886819  2037 solver.cpp:473] Iteration 2680, lr = 0.0001
+I0614 15:59:53.112629  2037 solver.cpp:213] Iteration 2690, loss = 4.39754
+I0614 15:59:53.112644  2037 solver.cpp:228]     Train net output #0: softmax = 4.39754 (* 1 = 4.39754 loss)
+I0614 15:59:53.112649  2037 solver.cpp:473] Iteration 2690, lr = 0.0001
+I0614 15:59:53.338577  2037 solver.cpp:213] Iteration 2700, loss = 4.33883
+I0614 15:59:53.338590  2037 solver.cpp:228]     Train net output #0: softmax = 4.33883 (* 1 = 4.33883 loss)
+I0614 15:59:53.338595  2037 solver.cpp:473] Iteration 2700, lr = 0.0001
+I0614 15:59:53.565038  2037 solver.cpp:213] Iteration 2710, loss = 4.27163
+I0614 15:59:53.565054  2037 solver.cpp:228]     Train net output #0: softmax = 4.27163 (* 1 = 4.27163 loss)
+I0614 15:59:53.565058  2037 solver.cpp:473] Iteration 2710, lr = 0.0001
+I0614 15:59:53.791839  2037 solver.cpp:213] Iteration 2720, loss = 4.4116
+I0614 15:59:53.791856  2037 solver.cpp:228]     Train net output #0: softmax = 4.4116 (* 1 = 4.4116 loss)
+I0614 15:59:53.791859  2037 solver.cpp:473] Iteration 2720, lr = 0.0001
+I0614 15:59:54.018074  2037 solver.cpp:213] Iteration 2730, loss = 4.33073
+I0614 15:59:54.018090  2037 solver.cpp:228]     Train net output #0: softmax = 4.33073 (* 1 = 4.33073 loss)
+I0614 15:59:54.018095  2037 solver.cpp:473] Iteration 2730, lr = 0.0001
+I0614 15:59:54.244047  2037 solver.cpp:213] Iteration 2740, loss = 4.32212
+I0614 15:59:54.244060  2037 solver.cpp:228]     Train net output #0: softmax = 4.32212 (* 1 = 4.32212 loss)
+I0614 15:59:54.244065  2037 solver.cpp:473] Iteration 2740, lr = 0.0001
+I0614 15:59:54.470062  2037 solver.cpp:213] Iteration 2750, loss = 4.23678
+I0614 15:59:54.470075  2037 solver.cpp:228]     Train net output #0: softmax = 4.23678 (* 1 = 4.23678 loss)
+I0614 15:59:54.470080  2037 solver.cpp:473] Iteration 2750, lr = 0.0001
+I0614 15:59:54.696521  2037 solver.cpp:213] Iteration 2760, loss = 4.28937
+I0614 15:59:54.696534  2037 solver.cpp:228]     Train net output #0: softmax = 4.28937 (* 1 = 4.28937 loss)
+I0614 15:59:54.696539  2037 solver.cpp:473] Iteration 2760, lr = 0.0001
+I0614 15:59:54.922955  2037 solver.cpp:213] Iteration 2770, loss = 4.31884
+I0614 15:59:54.922976  2037 solver.cpp:228]     Train net output #0: softmax = 4.31884 (* 1 = 4.31884 loss)
+I0614 15:59:54.922981  2037 solver.cpp:473] Iteration 2770, lr = 0.0001
+I0614 15:59:55.149257  2037 solver.cpp:213] Iteration 2780, loss = 4.21644
+I0614 15:59:55.149273  2037 solver.cpp:228]     Train net output #0: softmax = 4.21644 (* 1 = 4.21644 loss)
+I0614 15:59:55.149278  2037 solver.cpp:473] Iteration 2780, lr = 0.0001
+I0614 15:59:55.375032  2037 solver.cpp:213] Iteration 2790, loss = 4.2889
+I0614 15:59:55.375048  2037 solver.cpp:228]     Train net output #0: softmax = 4.2889 (* 1 = 4.2889 loss)
+I0614 15:59:55.375053  2037 solver.cpp:473] Iteration 2790, lr = 0.0001
+I0614 15:59:55.601552  2037 solver.cpp:213] Iteration 2800, loss = 4.20927
+I0614 15:59:55.601567  2037 solver.cpp:228]     Train net output #0: softmax = 4.20927 (* 1 = 4.20927 loss)
+I0614 15:59:55.601584  2037 solver.cpp:473] Iteration 2800, lr = 0.0001
+I0614 15:59:55.827759  2037 solver.cpp:213] Iteration 2810, loss = 4.28523
+I0614 15:59:55.827786  2037 solver.cpp:228]     Train net output #0: softmax = 4.28523 (* 1 = 4.28523 loss)
+I0614 15:59:55.827793  2037 solver.cpp:473] Iteration 2810, lr = 0.0001
+I0614 15:59:56.053905  2037 solver.cpp:213] Iteration 2820, loss = 4.37838
+I0614 15:59:56.053920  2037 solver.cpp:228]     Train net output #0: softmax = 4.37838 (* 1 = 4.37838 loss)
+I0614 15:59:56.053925  2037 solver.cpp:473] Iteration 2820, lr = 0.0001
+I0614 15:59:56.280227  2037 solver.cpp:213] Iteration 2830, loss = 4.30321
+I0614 15:59:56.280243  2037 solver.cpp:228]     Train net output #0: softmax = 4.30321 (* 1 = 4.30321 loss)
+I0614 15:59:56.280248  2037 solver.cpp:473] Iteration 2830, lr = 0.0001
+I0614 15:59:56.506146  2037 solver.cpp:213] Iteration 2840, loss = 4.24878
+I0614 15:59:56.506161  2037 solver.cpp:228]     Train net output #0: softmax = 4.24878 (* 1 = 4.24878 loss)
+I0614 15:59:56.506165  2037 solver.cpp:473] Iteration 2840, lr = 0.0001
+I0614 15:59:56.732391  2037 solver.cpp:213] Iteration 2850, loss = 4.23887
+I0614 15:59:56.732408  2037 solver.cpp:228]     Train net output #0: softmax = 4.23887 (* 1 = 4.23887 loss)
+I0614 15:59:56.732411  2037 solver.cpp:473] Iteration 2850, lr = 0.0001
+I0614 15:59:56.958679  2037 solver.cpp:213] Iteration 2860, loss = 4.36974
+I0614 15:59:56.958694  2037 solver.cpp:228]     Train net output #0: softmax = 4.36974 (* 1 = 4.36974 loss)
+I0614 15:59:56.958699  2037 solver.cpp:473] Iteration 2860, lr = 0.0001
+I0614 15:59:57.184553  2037 solver.cpp:213] Iteration 2870, loss = 4.31571
+I0614 15:59:57.184568  2037 solver.cpp:228]     Train net output #0: softmax = 4.31571 (* 1 = 4.31571 loss)
+I0614 15:59:57.184573  2037 solver.cpp:473] Iteration 2870, lr = 0.0001
+I0614 15:59:57.410444  2037 solver.cpp:213] Iteration 2880, loss = 4.24381
+I0614 15:59:57.410459  2037 solver.cpp:228]     Train net output #0: softmax = 4.24381 (* 1 = 4.24381 loss)
+I0614 15:59:57.410464  2037 solver.cpp:473] Iteration 2880, lr = 0.0001
+I0614 15:59:57.636564  2037 solver.cpp:213] Iteration 2890, loss = 4.33553
+I0614 15:59:57.636579  2037 solver.cpp:228]     Train net output #0: softmax = 4.33553 (* 1 = 4.33553 loss)
+I0614 15:59:57.636582  2037 solver.cpp:473] Iteration 2890, lr = 0.0001
+I0614 15:59:57.862787  2037 solver.cpp:213] Iteration 2900, loss = 4.25639
+I0614 15:59:57.862800  2037 solver.cpp:228]     Train net output #0: softmax = 4.25639 (* 1 = 4.25639 loss)
+I0614 15:59:57.862805  2037 solver.cpp:473] Iteration 2900, lr = 0.0001
+I0614 15:59:58.089016  2037 solver.cpp:213] Iteration 2910, loss = 4.27547
+I0614 15:59:58.089031  2037 solver.cpp:228]     Train net output #0: softmax = 4.27547 (* 1 = 4.27547 loss)
+I0614 15:59:58.089035  2037 solver.cpp:473] Iteration 2910, lr = 0.0001
+I0614 15:59:58.315088  2037 solver.cpp:213] Iteration 2920, loss = 4.24135
+I0614 15:59:58.315106  2037 solver.cpp:228]     Train net output #0: softmax = 4.24135 (* 1 = 4.24135 loss)
+I0614 15:59:58.315111  2037 solver.cpp:473] Iteration 2920, lr = 0.0001
+I0614 15:59:58.541613  2037 solver.cpp:213] Iteration 2930, loss = 4.2752
+I0614 15:59:58.541636  2037 solver.cpp:228]     Train net output #0: softmax = 4.2752 (* 1 = 4.2752 loss)
+I0614 15:59:58.541641  2037 solver.cpp:473] Iteration 2930, lr = 0.0001
+I0614 15:59:58.767642  2037 solver.cpp:213] Iteration 2940, loss = 4.31742
+I0614 15:59:58.767657  2037 solver.cpp:228]     Train net output #0: softmax = 4.31742 (* 1 = 4.31742 loss)
+I0614 15:59:58.767663  2037 solver.cpp:473] Iteration 2940, lr = 0.0001
+I0614 15:59:58.994117  2037 solver.cpp:213] Iteration 2950, loss = 4.24513
+I0614 15:59:58.994132  2037 solver.cpp:228]     Train net output #0: softmax = 4.24513 (* 1 = 4.24513 loss)
+I0614 15:59:58.994137  2037 solver.cpp:473] Iteration 2950, lr = 0.0001
+I0614 15:59:59.220743  2037 solver.cpp:213] Iteration 2960, loss = 4.2768
+I0614 15:59:59.220758  2037 solver.cpp:228]     Train net output #0: softmax = 4.2768 (* 1 = 4.2768 loss)
+I0614 15:59:59.220778  2037 solver.cpp:473] Iteration 2960, lr = 0.0001
+I0614 15:59:59.447194  2037 solver.cpp:213] Iteration 2970, loss = 4.23032
+I0614 15:59:59.447209  2037 solver.cpp:228]     Train net output #0: softmax = 4.23032 (* 1 = 4.23032 loss)
+I0614 15:59:59.447214  2037 solver.cpp:473] Iteration 2970, lr = 0.0001
+I0614 15:59:59.673358  2037 solver.cpp:213] Iteration 2980, loss = 4.28113
+I0614 15:59:59.673373  2037 solver.cpp:228]     Train net output #0: softmax = 4.28113 (* 1 = 4.28113 loss)
+I0614 15:59:59.673377  2037 solver.cpp:473] Iteration 2980, lr = 0.0001
+I0614 15:59:59.899807  2037 solver.cpp:213] Iteration 2990, loss = 4.21897
+I0614 15:59:59.899822  2037 solver.cpp:228]     Train net output #0: softmax = 4.21897 (* 1 = 4.21897 loss)
+I0614 15:59:59.899827  2037 solver.cpp:473] Iteration 2990, lr = 0.0001
+I0614 16:00:00.104120  2037 solver.cpp:362] Snapshotting to snapshots/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen_iter_3000.caffemodel
+I0614 16:00:00.104918  2037 solver.cpp:370] Snapshotting solver state to snapshots/16-06-14_15h51m21s_0_10_pretrainClassificationFrozen_iter_3000.solverstate
+I0614 16:00:00.127502  2037 solver.cpp:273] Iteration 3000, loss = 4.31203
+I0614 16:00:00.127516  2037 solver.cpp:291] Iteration 3000, Testing net (#0)
+I0614 16:00:00.240630  2037 solver.cpp:342]     Test net output #0: accuracy_top_1 = 0.05
+I0614 16:00:00.240645  2037 solver.cpp:342]     Test net output #1: accuracy_top_5 = 0.209375
+I0614 16:00:00.240651  2037 solver.cpp:342]     Test net output #2: softmax = 4.26053 (* 1 = 4.26053 loss)
+I0614 16:00:00.240656  2037 solver.cpp:278] Optimization Done.
+I0614 16:00:00.240658  2037 caffe.cpp:121] Optimization Done.
