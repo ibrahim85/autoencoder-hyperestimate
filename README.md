@@ -37,7 +37,13 @@ You can either copy-paste this command to your terminal, are run `16-07-14_15h39
 ### Visualize Reconstruction On The Test Set
 This project relies on an old version of Caffe, so specifying the test/training set is not possible with Pycaffe. As a result, visuals are generated from the training set. There is usually no difference between reconstruction on the train and test set, due to the variety of images. But if you wish to compare with test set, you may re-run the `src/VisualizeReconstructionOfLayer.py` script after editing the path to the training set in the prototxt files (make the train set point to the test set).
 
-Otherwise, you may use the branch `visutestset` to generate both train set and test set images during the training. However this branch had not been well tested, so be warn of potential weird results.
+Otherwise, you may use the branch [visutestset](https://github.com/matthieudelaro/autoencoder-hyperestimate/tree/visutestset) to generate both train set and test set images during the training. However this branch had not been well tested, so be warn of potential weird results.
+
+### Limitation / Improvements
+- The dataset is not zero-centered. The pixel colors of the images of the dataset are encoded from 0 to 255. So it would be better to specify a transformation in the data layer to fix this. Variance should be handled as well.
+- ReLU activationn use in this project is probably too big. It leads the network to consider a local minimum, which corresponds to the average image to reconstruct. Reducing its value (and adjusting other hyperparameters accordingly) should speedup the training, and improve the results.
+- This project doesn't generate plots with learning rate and loss. It would be a nice feature, and it shoud be easy to add thanks to the extra tools of Caffe.
+
 
 ### Cite
 This project has been created to run experiments for the paper *Tunnel Effect in CNNs (2016)*. Please cite this paper if you use this project in your research. 
