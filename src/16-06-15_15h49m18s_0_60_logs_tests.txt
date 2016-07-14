@@ -1,0 +1,874 @@
+libdc1394 error: Failed to initialize libdc1394
+I0616 11:04:16.832514 21918 caffe.cpp:134] Use GPU with device ID 0
+I0616 11:04:16.951630 21918 net.cpp:277] The NetState phase (1) differed from the phase (0) specified by a rule in layer data
+I0616 11:04:16.951812 21918 net.cpp:39] Initializing net from parameters: 
+layers {
+  top: "data"
+  name: "data"
+  type: DATA
+  data_param {
+    source: "/dataset/cifar100_lmdb_lab/cifar100_test_lmdb"
+    batch_size: 750
+    backend: LMDB
+  }
+  include {
+    phase: TEST
+  }
+  transform_param {
+    mean_file: "/dataset/cifar100_lmdb_lab/mean.binaryproto"
+  }
+}
+layers {
+  bottom: "data"
+  top: "0_0_conv"
+  name: "0_0_conv"
+  type: CONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "0_0_conv"
+  top: "0_0_conv"
+  name: "0_0_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "0_0_conv"
+  top: "0_1_conv"
+  name: "0_1_conv"
+  type: CONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "0_1_conv"
+  top: "0_1_conv"
+  name: "0_1_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "0_1_conv"
+  top: "0_pool"
+  top: "0_pool_mask"
+  name: "0_pool"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "0_pool"
+  top: "1_0_conv"
+  name: "1_0_conv"
+  type: CONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "1_0_conv"
+  top: "1_0_conv"
+  name: "1_0_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "1_0_conv"
+  top: "1_1_conv"
+  name: "1_1_conv"
+  type: CONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "1_1_conv"
+  top: "1_1_conv"
+  name: "1_1_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "1_1_conv"
+  top: "1_pool"
+  top: "1_pool_mask"
+  name: "1_pool"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "1_pool"
+  top: "2_0_conv"
+  name: "2_0_conv"
+  type: CONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "2_0_conv"
+  top: "2_0_conv"
+  name: "2_0_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "2_0_conv"
+  top: "2_1_conv"
+  name: "2_1_conv"
+  type: CONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "2_1_conv"
+  top: "2_1_conv"
+  name: "2_1_conv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "2_1_conv"
+  top: "2_pool"
+  top: "2_pool_mask"
+  name: "2_pool"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "2_pool"
+  top: "middle_conv_zeros"
+  name: "middle_conv_zeros"
+  type: CONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 50
+    pad: 0
+    kernel_size: 4
+    stride: 1
+    weight_filler {
+      type: "constant"
+      value: 0
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "middle_conv_zeros"
+  top: "middle_deconv"
+  name: "middle_deconv"
+  type: DECONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 4
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "middle_deconv"
+  bottom: "2_pool_mask"
+  top: "2_unpool"
+  name: "2_unpool"
+  type: UNPOOLING
+  unpooling_param {
+    unpool: MAX
+    kernel_size: 2
+    stride: 2
+    unpool_size: 8
+  }
+}
+layers {
+  bottom: "2_unpool"
+  top: "2_1_deconv"
+  name: "2_1_deconv"
+  type: DECONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "2_1_deconv"
+  top: "2_1_deconv"
+  name: "2_1_deconv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "2_1_deconv"
+  top: "2_0_deconv"
+  name: "2_0_deconv"
+  type: DECONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "2_0_deconv"
+  top: "2_0_deconv"
+  name: "2_0_deconv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "2_0_deconv"
+  bottom: "1_pool_mask"
+  top: "1_unpool"
+  name: "1_unpool"
+  type: UNPOOLING
+  unpooling_param {
+    unpool: MAX
+    kernel_size: 2
+    stride: 2
+    unpool_size: 16
+  }
+}
+layers {
+  bottom: "1_unpool"
+  top: "1_1_deconv"
+  name: "1_1_deconv"
+  type: DECONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "1_1_deconv"
+  top: "1_1_deconv"
+  name: "1_1_deconv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "1_1_deconv"
+  top: "1_0_deconv"
+  name: "1_0_deconv"
+  type: DECONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "1_0_deconv"
+  top: "1_0_deconv"
+  name: "1_0_deconv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "1_0_deconv"
+  bottom: "0_pool_mask"
+  top: "0_unpool"
+  name: "0_unpool"
+  type: UNPOOLING
+  unpooling_param {
+    unpool: MAX
+    kernel_size: 2
+    stride: 2
+    unpool_size: 32
+  }
+}
+layers {
+  bottom: "0_unpool"
+  top: "0_1_deconv"
+  name: "0_1_deconv"
+  type: DECONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "0_1_deconv"
+  top: "0_1_deconv"
+  name: "0_1_deconv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "0_1_deconv"
+  top: "0_0_deconv"
+  name: "0_0_deconv"
+  type: DECONVOLUTION
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  convolution_param {
+    num_output: 8
+    pad: 1
+    kernel_size: 3
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "0_0_deconv"
+  top: "0_0_deconv"
+  name: "0_0_deconv_ReLU"
+  type: RELU
+}
+layers {
+  bottom: "0_0_deconv"
+  top: "reconstruct1"
+  name: "reconstruct1"
+  type: LOCAL
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  local_param {
+    num_output: 3
+    pad: 0
+    kernel_size: 1
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "reconstruct1"
+  top: "reconstruct2"
+  name: "reconstruct2"
+  type: LOCAL
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 0
+  weight_decay: 0
+  local_param {
+    num_output: 3
+    pad: 0
+    kernel_size: 1
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "data"
+  bottom: "reconstruct2"
+  top: "L2_Loss"
+  name: "L2_Loss"
+  type: EUCLIDEAN_LOSS
+}
+I0616 11:04:16.951928 21918 layer_factory.hpp:78] Creating layer data
+I0616 11:04:16.951942 21918 data_transformer.cpp:25] Loading mean file from/dataset/cifar100_lmdb_lab/mean.binaryproto
+I0616 11:04:16.951987 21918 net.cpp:69] Creating Layer data
+I0616 11:04:16.951993 21918 net.cpp:358] data -> data
+I0616 11:04:16.952002 21918 net.cpp:98] Setting up data
+I0616 11:04:16.952005 21918 data_layer.cpp:32] Opening dataset /dataset/cifar100_lmdb_lab/cifar100_test_lmdb
+I0616 11:04:16.952070 21918 data_layer.cpp:71] output data size: 750,3,32,32
+I0616 11:04:16.953178 21918 net.cpp:105] Top shape: 750 3 32 32 (2304000)
+I0616 11:04:16.953205 21918 layer_factory.hpp:78] Creating layer data_data_0_split
+I0616 11:04:16.953214 21918 net.cpp:69] Creating Layer data_data_0_split
+I0616 11:04:16.953218 21918 net.cpp:396] data_data_0_split <- data
+I0616 11:04:16.953222 21918 net.cpp:358] data_data_0_split -> data_data_0_split_0
+I0616 11:04:16.953230 21918 net.cpp:358] data_data_0_split -> data_data_0_split_1
+I0616 11:04:16.953235 21918 net.cpp:98] Setting up data_data_0_split
+I0616 11:04:16.953241 21918 net.cpp:105] Top shape: 750 3 32 32 (2304000)
+I0616 11:04:16.953244 21918 net.cpp:105] Top shape: 750 3 32 32 (2304000)
+I0616 11:04:16.953248 21918 layer_factory.hpp:78] Creating layer 0_0_conv
+I0616 11:04:16.953253 21918 net.cpp:69] Creating Layer 0_0_conv
+I0616 11:04:16.953255 21918 net.cpp:396] 0_0_conv <- data_data_0_split_0
+I0616 11:04:16.953264 21918 net.cpp:358] 0_0_conv -> 0_0_conv
+I0616 11:04:16.953270 21918 net.cpp:98] Setting up 0_0_conv
+I0616 11:04:16.953550 21918 net.cpp:105] Top shape: 750 8 32 32 (6144000)
+I0616 11:04:16.953563 21918 layer_factory.hpp:78] Creating layer 0_0_conv_ReLU
+I0616 11:04:16.953567 21918 net.cpp:69] Creating Layer 0_0_conv_ReLU
+I0616 11:04:16.953570 21918 net.cpp:396] 0_0_conv_ReLU <- 0_0_conv
+I0616 11:04:16.953574 21918 net.cpp:347] 0_0_conv_ReLU -> 0_0_conv (in-place)
+I0616 11:04:16.953578 21918 net.cpp:98] Setting up 0_0_conv_ReLU
+I0616 11:04:16.953583 21918 net.cpp:105] Top shape: 750 8 32 32 (6144000)
+I0616 11:04:16.953584 21918 layer_factory.hpp:78] Creating layer 0_1_conv
+I0616 11:04:16.953589 21918 net.cpp:69] Creating Layer 0_1_conv
+I0616 11:04:16.953593 21918 net.cpp:396] 0_1_conv <- 0_0_conv
+I0616 11:04:16.953596 21918 net.cpp:358] 0_1_conv -> 0_1_conv
+I0616 11:04:16.953601 21918 net.cpp:98] Setting up 0_1_conv
+I0616 11:04:16.953611 21918 net.cpp:105] Top shape: 750 8 32 32 (6144000)
+I0616 11:04:16.953618 21918 layer_factory.hpp:78] Creating layer 0_1_conv_ReLU
+I0616 11:04:16.953621 21918 net.cpp:69] Creating Layer 0_1_conv_ReLU
+I0616 11:04:16.953624 21918 net.cpp:396] 0_1_conv_ReLU <- 0_1_conv
+I0616 11:04:16.953629 21918 net.cpp:347] 0_1_conv_ReLU -> 0_1_conv (in-place)
+I0616 11:04:16.953631 21918 net.cpp:98] Setting up 0_1_conv_ReLU
+I0616 11:04:16.953634 21918 net.cpp:105] Top shape: 750 8 32 32 (6144000)
+I0616 11:04:16.953637 21918 layer_factory.hpp:78] Creating layer 0_pool
+I0616 11:04:16.953641 21918 net.cpp:69] Creating Layer 0_pool
+I0616 11:04:16.953644 21918 net.cpp:396] 0_pool <- 0_1_conv
+I0616 11:04:16.953649 21918 net.cpp:358] 0_pool -> 0_pool
+I0616 11:04:16.953654 21918 net.cpp:358] 0_pool -> 0_pool_mask
+I0616 11:04:16.953657 21918 net.cpp:98] Setting up 0_pool
+I0616 11:04:16.953663 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.953666 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.953668 21918 layer_factory.hpp:78] Creating layer 1_0_conv
+I0616 11:04:16.953672 21918 net.cpp:69] Creating Layer 1_0_conv
+I0616 11:04:16.953675 21918 net.cpp:396] 1_0_conv <- 0_pool
+I0616 11:04:16.953680 21918 net.cpp:358] 1_0_conv -> 1_0_conv
+I0616 11:04:16.953685 21918 net.cpp:98] Setting up 1_0_conv
+I0616 11:04:16.953699 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.953716 21918 layer_factory.hpp:78] Creating layer 1_0_conv_ReLU
+I0616 11:04:16.953722 21918 net.cpp:69] Creating Layer 1_0_conv_ReLU
+I0616 11:04:16.953724 21918 net.cpp:396] 1_0_conv_ReLU <- 1_0_conv
+I0616 11:04:16.953728 21918 net.cpp:347] 1_0_conv_ReLU -> 1_0_conv (in-place)
+I0616 11:04:16.953732 21918 net.cpp:98] Setting up 1_0_conv_ReLU
+I0616 11:04:16.953734 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.953737 21918 layer_factory.hpp:78] Creating layer 1_1_conv
+I0616 11:04:16.953742 21918 net.cpp:69] Creating Layer 1_1_conv
+I0616 11:04:16.953744 21918 net.cpp:396] 1_1_conv <- 1_0_conv
+I0616 11:04:16.953748 21918 net.cpp:358] 1_1_conv -> 1_1_conv
+I0616 11:04:16.953753 21918 net.cpp:98] Setting up 1_1_conv
+I0616 11:04:16.953763 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.953766 21918 layer_factory.hpp:78] Creating layer 1_1_conv_ReLU
+I0616 11:04:16.953771 21918 net.cpp:69] Creating Layer 1_1_conv_ReLU
+I0616 11:04:16.953774 21918 net.cpp:396] 1_1_conv_ReLU <- 1_1_conv
+I0616 11:04:16.953778 21918 net.cpp:347] 1_1_conv_ReLU -> 1_1_conv (in-place)
+I0616 11:04:16.953780 21918 net.cpp:98] Setting up 1_1_conv_ReLU
+I0616 11:04:16.953783 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.953786 21918 layer_factory.hpp:78] Creating layer 1_pool
+I0616 11:04:16.953790 21918 net.cpp:69] Creating Layer 1_pool
+I0616 11:04:16.953793 21918 net.cpp:396] 1_pool <- 1_1_conv
+I0616 11:04:16.953796 21918 net.cpp:358] 1_pool -> 1_pool
+I0616 11:04:16.953800 21918 net.cpp:358] 1_pool -> 1_pool_mask
+I0616 11:04:16.953804 21918 net.cpp:98] Setting up 1_pool
+I0616 11:04:16.953809 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.953811 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.953814 21918 layer_factory.hpp:78] Creating layer 2_0_conv
+I0616 11:04:16.953817 21918 net.cpp:69] Creating Layer 2_0_conv
+I0616 11:04:16.953820 21918 net.cpp:396] 2_0_conv <- 1_pool
+I0616 11:04:16.953824 21918 net.cpp:358] 2_0_conv -> 2_0_conv
+I0616 11:04:16.953830 21918 net.cpp:98] Setting up 2_0_conv
+I0616 11:04:16.953841 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.953847 21918 layer_factory.hpp:78] Creating layer 2_0_conv_ReLU
+I0616 11:04:16.953850 21918 net.cpp:69] Creating Layer 2_0_conv_ReLU
+I0616 11:04:16.953853 21918 net.cpp:396] 2_0_conv_ReLU <- 2_0_conv
+I0616 11:04:16.953857 21918 net.cpp:347] 2_0_conv_ReLU -> 2_0_conv (in-place)
+I0616 11:04:16.953861 21918 net.cpp:98] Setting up 2_0_conv_ReLU
+I0616 11:04:16.953865 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.953866 21918 layer_factory.hpp:78] Creating layer 2_1_conv
+I0616 11:04:16.953871 21918 net.cpp:69] Creating Layer 2_1_conv
+I0616 11:04:16.953873 21918 net.cpp:396] 2_1_conv <- 2_0_conv
+I0616 11:04:16.953877 21918 net.cpp:358] 2_1_conv -> 2_1_conv
+I0616 11:04:16.953881 21918 net.cpp:98] Setting up 2_1_conv
+I0616 11:04:16.953891 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.953894 21918 layer_factory.hpp:78] Creating layer 2_1_conv_ReLU
+I0616 11:04:16.953898 21918 net.cpp:69] Creating Layer 2_1_conv_ReLU
+I0616 11:04:16.953901 21918 net.cpp:396] 2_1_conv_ReLU <- 2_1_conv
+I0616 11:04:16.953905 21918 net.cpp:347] 2_1_conv_ReLU -> 2_1_conv (in-place)
+I0616 11:04:16.953908 21918 net.cpp:98] Setting up 2_1_conv_ReLU
+I0616 11:04:16.953912 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.953914 21918 layer_factory.hpp:78] Creating layer 2_pool
+I0616 11:04:16.953918 21918 net.cpp:69] Creating Layer 2_pool
+I0616 11:04:16.953922 21918 net.cpp:396] 2_pool <- 2_1_conv
+I0616 11:04:16.953925 21918 net.cpp:358] 2_pool -> 2_pool
+I0616 11:04:16.953929 21918 net.cpp:358] 2_pool -> 2_pool_mask
+I0616 11:04:16.953933 21918 net.cpp:98] Setting up 2_pool
+I0616 11:04:16.953936 21918 net.cpp:105] Top shape: 750 8 4 4 (96000)
+I0616 11:04:16.953939 21918 net.cpp:105] Top shape: 750 8 4 4 (96000)
+I0616 11:04:16.953943 21918 layer_factory.hpp:78] Creating layer middle_conv_zeros
+I0616 11:04:16.953948 21918 net.cpp:69] Creating Layer middle_conv_zeros
+I0616 11:04:16.953955 21918 net.cpp:396] middle_conv_zeros <- 2_pool
+I0616 11:04:16.953963 21918 net.cpp:358] middle_conv_zeros -> middle_conv_zeros
+I0616 11:04:16.953968 21918 net.cpp:98] Setting up middle_conv_zeros
+I0616 11:04:16.953976 21918 net.cpp:105] Top shape: 750 50 1 1 (37500)
+I0616 11:04:16.953980 21918 layer_factory.hpp:78] Creating layer middle_deconv
+I0616 11:04:16.953987 21918 net.cpp:69] Creating Layer middle_deconv
+I0616 11:04:16.953990 21918 net.cpp:396] middle_deconv <- middle_conv_zeros
+I0616 11:04:16.953995 21918 net.cpp:358] middle_deconv -> middle_deconv
+I0616 11:04:16.954000 21918 net.cpp:98] Setting up middle_deconv
+I0616 11:04:16.954040 21918 net.cpp:105] Top shape: 750 8 2 2 (24000)
+I0616 11:04:16.954043 21918 layer_factory.hpp:78] Creating layer 2_unpool
+I0616 11:04:16.954048 21918 net.cpp:69] Creating Layer 2_unpool
+I0616 11:04:16.954051 21918 net.cpp:396] 2_unpool <- middle_deconv
+I0616 11:04:16.954054 21918 net.cpp:396] 2_unpool <- 2_pool_mask
+I0616 11:04:16.954058 21918 net.cpp:358] 2_unpool -> 2_unpool
+I0616 11:04:16.954063 21918 net.cpp:98] Setting up 2_unpool
+I0616 11:04:16.954069 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.954072 21918 layer_factory.hpp:78] Creating layer 2_1_deconv
+I0616 11:04:16.954077 21918 net.cpp:69] Creating Layer 2_1_deconv
+I0616 11:04:16.954079 21918 net.cpp:396] 2_1_deconv <- 2_unpool
+I0616 11:04:16.954083 21918 net.cpp:358] 2_1_deconv -> 2_1_deconv
+I0616 11:04:16.954087 21918 net.cpp:98] Setting up 2_1_deconv
+I0616 11:04:16.954104 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.954111 21918 layer_factory.hpp:78] Creating layer 2_1_deconv_ReLU
+I0616 11:04:16.954115 21918 net.cpp:69] Creating Layer 2_1_deconv_ReLU
+I0616 11:04:16.954118 21918 net.cpp:396] 2_1_deconv_ReLU <- 2_1_deconv
+I0616 11:04:16.954123 21918 net.cpp:347] 2_1_deconv_ReLU -> 2_1_deconv (in-place)
+I0616 11:04:16.954126 21918 net.cpp:98] Setting up 2_1_deconv_ReLU
+I0616 11:04:16.954129 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.954131 21918 layer_factory.hpp:78] Creating layer 2_0_deconv
+I0616 11:04:16.954138 21918 net.cpp:69] Creating Layer 2_0_deconv
+I0616 11:04:16.954140 21918 net.cpp:396] 2_0_deconv <- 2_1_deconv
+I0616 11:04:16.954144 21918 net.cpp:358] 2_0_deconv -> 2_0_deconv
+I0616 11:04:16.954149 21918 net.cpp:98] Setting up 2_0_deconv
+I0616 11:04:16.954160 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.954164 21918 layer_factory.hpp:78] Creating layer 2_0_deconv_ReLU
+I0616 11:04:16.954169 21918 net.cpp:69] Creating Layer 2_0_deconv_ReLU
+I0616 11:04:16.954171 21918 net.cpp:396] 2_0_deconv_ReLU <- 2_0_deconv
+I0616 11:04:16.954175 21918 net.cpp:347] 2_0_deconv_ReLU -> 2_0_deconv (in-place)
+I0616 11:04:16.954180 21918 net.cpp:98] Setting up 2_0_deconv_ReLU
+I0616 11:04:16.954182 21918 net.cpp:105] Top shape: 750 8 8 8 (384000)
+I0616 11:04:16.954185 21918 layer_factory.hpp:78] Creating layer 1_unpool
+I0616 11:04:16.954188 21918 net.cpp:69] Creating Layer 1_unpool
+I0616 11:04:16.954191 21918 net.cpp:396] 1_unpool <- 2_0_deconv
+I0616 11:04:16.954195 21918 net.cpp:396] 1_unpool <- 1_pool_mask
+I0616 11:04:16.954198 21918 net.cpp:358] 1_unpool -> 1_unpool
+I0616 11:04:16.954202 21918 net.cpp:98] Setting up 1_unpool
+I0616 11:04:16.954205 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.954208 21918 layer_factory.hpp:78] Creating layer 1_1_deconv
+I0616 11:04:16.954212 21918 net.cpp:69] Creating Layer 1_1_deconv
+I0616 11:04:16.954216 21918 net.cpp:396] 1_1_deconv <- 1_unpool
+I0616 11:04:16.954219 21918 net.cpp:358] 1_1_deconv -> 1_1_deconv
+I0616 11:04:16.954226 21918 net.cpp:98] Setting up 1_1_deconv
+I0616 11:04:16.954234 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.954239 21918 layer_factory.hpp:78] Creating layer 1_1_deconv_ReLU
+I0616 11:04:16.954243 21918 net.cpp:69] Creating Layer 1_1_deconv_ReLU
+I0616 11:04:16.954246 21918 net.cpp:396] 1_1_deconv_ReLU <- 1_1_deconv
+I0616 11:04:16.954252 21918 net.cpp:347] 1_1_deconv_ReLU -> 1_1_deconv (in-place)
+I0616 11:04:16.954255 21918 net.cpp:98] Setting up 1_1_deconv_ReLU
+I0616 11:04:16.954262 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.954264 21918 layer_factory.hpp:78] Creating layer 1_0_deconv
+I0616 11:04:16.954269 21918 net.cpp:69] Creating Layer 1_0_deconv
+I0616 11:04:16.954272 21918 net.cpp:396] 1_0_deconv <- 1_1_deconv
+I0616 11:04:16.954277 21918 net.cpp:358] 1_0_deconv -> 1_0_deconv
+I0616 11:04:16.954280 21918 net.cpp:98] Setting up 1_0_deconv
+I0616 11:04:16.954289 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.954294 21918 layer_factory.hpp:78] Creating layer 1_0_deconv_ReLU
+I0616 11:04:16.954298 21918 net.cpp:69] Creating Layer 1_0_deconv_ReLU
+I0616 11:04:16.954300 21918 net.cpp:396] 1_0_deconv_ReLU <- 1_0_deconv
+I0616 11:04:16.954303 21918 net.cpp:347] 1_0_deconv_ReLU -> 1_0_deconv (in-place)
+I0616 11:04:16.954306 21918 net.cpp:98] Setting up 1_0_deconv_ReLU
+I0616 11:04:16.954309 21918 net.cpp:105] Top shape: 750 8 16 16 (1536000)
+I0616 11:04:16.954313 21918 layer_factory.hpp:78] Creating layer 0_unpool
+I0616 11:04:16.954316 21918 net.cpp:69] Creating Layer 0_unpool
+I0616 11:04:16.954319 21918 net.cpp:396] 0_unpool <- 1_0_deconv
+I0616 11:04:16.954322 21918 net.cpp:396] 0_unpool <- 0_pool_mask
+I0616 11:04:16.954325 21918 net.cpp:358] 0_unpool -> 0_unpool
+I0616 11:04:16.954329 21918 net.cpp:98] Setting up 0_unpool
+I0616 11:04:16.954332 21918 net.cpp:105] Top shape: 750 8 32 32 (6144000)
+I0616 11:04:16.954335 21918 layer_factory.hpp:78] Creating layer 0_1_deconv
+I0616 11:04:16.954340 21918 net.cpp:69] Creating Layer 0_1_deconv
+I0616 11:04:16.954344 21918 net.cpp:396] 0_1_deconv <- 0_unpool
+I0616 11:04:16.954347 21918 net.cpp:358] 0_1_deconv -> 0_1_deconv
+I0616 11:04:16.954351 21918 net.cpp:98] Setting up 0_1_deconv
+I0616 11:04:16.954360 21918 net.cpp:105] Top shape: 750 8 32 32 (6144000)
+I0616 11:04:16.954365 21918 layer_factory.hpp:78] Creating layer 0_1_deconv_ReLU
+I0616 11:04:16.954368 21918 net.cpp:69] Creating Layer 0_1_deconv_ReLU
+I0616 11:04:16.954371 21918 net.cpp:396] 0_1_deconv_ReLU <- 0_1_deconv
+I0616 11:04:16.954375 21918 net.cpp:347] 0_1_deconv_ReLU -> 0_1_deconv (in-place)
+I0616 11:04:16.954378 21918 net.cpp:98] Setting up 0_1_deconv_ReLU
+I0616 11:04:16.954380 21918 net.cpp:105] Top shape: 750 8 32 32 (6144000)
+I0616 11:04:16.954383 21918 layer_factory.hpp:78] Creating layer 0_0_deconv
+I0616 11:04:16.954388 21918 net.cpp:69] Creating Layer 0_0_deconv
+I0616 11:04:16.954391 21918 net.cpp:396] 0_0_deconv <- 0_1_deconv
+I0616 11:04:16.954396 21918 net.cpp:358] 0_0_deconv -> 0_0_deconv
+I0616 11:04:16.954401 21918 net.cpp:98] Setting up 0_0_deconv
+I0616 11:04:16.954409 21918 net.cpp:105] Top shape: 750 8 32 32 (6144000)
+I0616 11:04:16.954413 21918 layer_factory.hpp:78] Creating layer 0_0_deconv_ReLU
+I0616 11:04:16.954418 21918 net.cpp:69] Creating Layer 0_0_deconv_ReLU
+I0616 11:04:16.954421 21918 net.cpp:396] 0_0_deconv_ReLU <- 0_0_deconv
+I0616 11:04:16.954424 21918 net.cpp:347] 0_0_deconv_ReLU -> 0_0_deconv (in-place)
+I0616 11:04:16.954427 21918 net.cpp:98] Setting up 0_0_deconv_ReLU
+I0616 11:04:16.954430 21918 net.cpp:105] Top shape: 750 8 32 32 (6144000)
+I0616 11:04:16.954433 21918 layer_factory.hpp:78] Creating layer reconstruct1
+I0616 11:04:16.954439 21918 net.cpp:69] Creating Layer reconstruct1
+I0616 11:04:16.954442 21918 net.cpp:396] reconstruct1 <- 0_0_deconv
+I0616 11:04:16.954447 21918 net.cpp:358] reconstruct1 -> reconstruct1
+I0616 11:04:16.954452 21918 net.cpp:98] Setting up reconstruct1
+I0616 11:04:16.954583 21918 net.cpp:105] Top shape: 750 3 32 32 (2304000)
+I0616 11:04:16.954589 21918 layer_factory.hpp:78] Creating layer reconstruct2
+I0616 11:04:16.954596 21918 net.cpp:69] Creating Layer reconstruct2
+I0616 11:04:16.954598 21918 net.cpp:396] reconstruct2 <- reconstruct1
+I0616 11:04:16.954602 21918 net.cpp:358] reconstruct2 -> reconstruct2
+I0616 11:04:16.954607 21918 net.cpp:98] Setting up reconstruct2
+I0616 11:04:16.954668 21918 net.cpp:105] Top shape: 750 3 32 32 (2304000)
+I0616 11:04:16.954676 21918 layer_factory.hpp:78] Creating layer L2_Loss
+I0616 11:04:16.954681 21918 net.cpp:69] Creating Layer L2_Loss
+I0616 11:04:16.954689 21918 net.cpp:396] L2_Loss <- data_data_0_split_1
+I0616 11:04:16.954692 21918 net.cpp:396] L2_Loss <- reconstruct2
+I0616 11:04:16.954695 21918 net.cpp:358] L2_Loss -> L2_Loss
+I0616 11:04:16.954699 21918 net.cpp:98] Setting up L2_Loss
+I0616 11:04:16.954705 21918 net.cpp:105] Top shape: 1 1 1 1 (1)
+I0616 11:04:16.954708 21918 net.cpp:111]     with loss weight 1
+I0616 11:04:16.954722 21918 net.cpp:172] L2_Loss needs backward computation.
+I0616 11:04:16.954726 21918 net.cpp:172] reconstruct2 needs backward computation.
+I0616 11:04:16.954728 21918 net.cpp:172] reconstruct1 needs backward computation.
+I0616 11:04:16.954731 21918 net.cpp:172] 0_0_deconv_ReLU needs backward computation.
+I0616 11:04:16.954735 21918 net.cpp:172] 0_0_deconv needs backward computation.
+I0616 11:04:16.954737 21918 net.cpp:172] 0_1_deconv_ReLU needs backward computation.
+I0616 11:04:16.954740 21918 net.cpp:172] 0_1_deconv needs backward computation.
+I0616 11:04:16.954742 21918 net.cpp:172] 0_unpool needs backward computation.
+I0616 11:04:16.954746 21918 net.cpp:172] 1_0_deconv_ReLU needs backward computation.
+I0616 11:04:16.954748 21918 net.cpp:172] 1_0_deconv needs backward computation.
+I0616 11:04:16.954751 21918 net.cpp:172] 1_1_deconv_ReLU needs backward computation.
+I0616 11:04:16.954753 21918 net.cpp:172] 1_1_deconv needs backward computation.
+I0616 11:04:16.954756 21918 net.cpp:172] 1_unpool needs backward computation.
+I0616 11:04:16.954759 21918 net.cpp:172] 2_0_deconv_ReLU needs backward computation.
+I0616 11:04:16.954762 21918 net.cpp:172] 2_0_deconv needs backward computation.
+I0616 11:04:16.954764 21918 net.cpp:172] 2_1_deconv_ReLU needs backward computation.
+I0616 11:04:16.954767 21918 net.cpp:172] 2_1_deconv needs backward computation.
+I0616 11:04:16.954771 21918 net.cpp:172] 2_unpool needs backward computation.
+I0616 11:04:16.954773 21918 net.cpp:172] middle_deconv needs backward computation.
+I0616 11:04:16.954777 21918 net.cpp:172] middle_conv_zeros needs backward computation.
+I0616 11:04:16.954779 21918 net.cpp:172] 2_pool needs backward computation.
+I0616 11:04:16.954782 21918 net.cpp:172] 2_1_conv_ReLU needs backward computation.
+I0616 11:04:16.954784 21918 net.cpp:172] 2_1_conv needs backward computation.
+I0616 11:04:16.954787 21918 net.cpp:172] 2_0_conv_ReLU needs backward computation.
+I0616 11:04:16.954789 21918 net.cpp:172] 2_0_conv needs backward computation.
+I0616 11:04:16.954794 21918 net.cpp:172] 1_pool needs backward computation.
+I0616 11:04:16.954797 21918 net.cpp:172] 1_1_conv_ReLU needs backward computation.
+I0616 11:04:16.954799 21918 net.cpp:172] 1_1_conv needs backward computation.
+I0616 11:04:16.954802 21918 net.cpp:172] 1_0_conv_ReLU needs backward computation.
+I0616 11:04:16.954805 21918 net.cpp:172] 1_0_conv needs backward computation.
+I0616 11:04:16.954807 21918 net.cpp:172] 0_pool needs backward computation.
+I0616 11:04:16.954810 21918 net.cpp:172] 0_1_conv_ReLU needs backward computation.
+I0616 11:04:16.954813 21918 net.cpp:172] 0_1_conv needs backward computation.
+I0616 11:04:16.954815 21918 net.cpp:172] 0_0_conv_ReLU needs backward computation.
+I0616 11:04:16.954818 21918 net.cpp:172] 0_0_conv needs backward computation.
+I0616 11:04:16.954820 21918 net.cpp:174] data_data_0_split does not need backward computation.
+I0616 11:04:16.954823 21918 net.cpp:174] data does not need backward computation.
+I0616 11:04:16.954826 21918 net.cpp:210] This network produces output L2_Loss
+I0616 11:04:16.954843 21918 net.cpp:469] Collecting Learning Rate and Weight Decay.
+I0616 11:04:16.954849 21918 net.cpp:221] Network initialization done.
+I0616 11:04:16.954851 21918 net.cpp:222] Memory required for data: 352758004
+I0616 11:04:16.955314 21918 caffe.cpp:145] Running for 50 iterations.
+I0616 11:04:17.265491 21918 caffe.cpp:169] Batch 0, L2_Loss = 1.11758e+06
+I0616 11:04:17.573045 21918 caffe.cpp:169] Batch 1, L2_Loss = 1.07812e+06
+I0616 11:04:17.880287 21918 caffe.cpp:169] Batch 2, L2_Loss = 1.10196e+06
+I0616 11:04:18.187716 21918 caffe.cpp:169] Batch 3, L2_Loss = 1.08924e+06
+I0616 11:04:18.495249 21918 caffe.cpp:169] Batch 4, L2_Loss = 1.14767e+06
+I0616 11:04:18.802737 21918 caffe.cpp:169] Batch 5, L2_Loss = 1.08385e+06
+I0616 11:04:19.110211 21918 caffe.cpp:169] Batch 6, L2_Loss = 1.06447e+06
+I0616 11:04:19.417732 21918 caffe.cpp:169] Batch 7, L2_Loss = 1.1134e+06
+I0616 11:04:19.725014 21918 caffe.cpp:169] Batch 8, L2_Loss = 1.0943e+06
+I0616 11:04:20.032179 21918 caffe.cpp:169] Batch 9, L2_Loss = 1.1092e+06
+I0616 11:04:20.339663 21918 caffe.cpp:169] Batch 10, L2_Loss = 1.11268e+06
+I0616 11:04:20.647174 21918 caffe.cpp:169] Batch 11, L2_Loss = 1.13421e+06
+I0616 11:04:20.954550 21918 caffe.cpp:169] Batch 12, L2_Loss = 1.08858e+06
+I0616 11:04:21.261883 21918 caffe.cpp:169] Batch 13, L2_Loss = 1.07946e+06
+I0616 11:04:21.569267 21918 caffe.cpp:169] Batch 14, L2_Loss = 1.13303e+06
+I0616 11:04:21.876605 21918 caffe.cpp:169] Batch 15, L2_Loss = 1.08907e+06
+I0616 11:04:22.183738 21918 caffe.cpp:169] Batch 16, L2_Loss = 1.09342e+06
+I0616 11:04:22.491308 21918 caffe.cpp:169] Batch 17, L2_Loss = 1.13175e+06
+I0616 11:04:22.798724 21918 caffe.cpp:169] Batch 18, L2_Loss = 1.09908e+06
+I0616 11:04:23.106287 21918 caffe.cpp:169] Batch 19, L2_Loss = 1.09769e+06
+I0616 11:04:23.413760 21918 caffe.cpp:169] Batch 20, L2_Loss = 1.06474e+06
+I0616 11:04:23.721359 21918 caffe.cpp:169] Batch 21, L2_Loss = 1.11107e+06
+I0616 11:04:24.028625 21918 caffe.cpp:169] Batch 22, L2_Loss = 1.11298e+06
+I0616 11:04:24.335829 21918 caffe.cpp:169] Batch 23, L2_Loss = 1.10949e+06
+I0616 11:04:24.643291 21918 caffe.cpp:169] Batch 24, L2_Loss = 1.12481e+06
+I0616 11:04:24.950758 21918 caffe.cpp:169] Batch 25, L2_Loss = 1.09662e+06
+I0616 11:04:25.258400 21918 caffe.cpp:169] Batch 26, L2_Loss = 1.09242e+06
+I0616 11:04:25.565793 21918 caffe.cpp:169] Batch 27, L2_Loss = 1.12241e+06
+I0616 11:04:25.873109 21918 caffe.cpp:169] Batch 28, L2_Loss = 1.07926e+06
+I0616 11:04:26.180958 21918 caffe.cpp:169] Batch 29, L2_Loss = 1.10821e+06
+I0616 11:04:26.488661 21918 caffe.cpp:169] Batch 30, L2_Loss = 1.09468e+06
+I0616 11:04:26.796453 21918 caffe.cpp:169] Batch 31, L2_Loss = 1.12913e+06
+I0616 11:04:27.104199 21918 caffe.cpp:169] Batch 32, L2_Loss = 1.08371e+06
+I0616 11:04:27.412024 21918 caffe.cpp:169] Batch 33, L2_Loss = 1.07668e+06
+I0616 11:04:27.719693 21918 caffe.cpp:169] Batch 34, L2_Loss = 1.11049e+06
+I0616 11:04:28.026988 21918 caffe.cpp:169] Batch 35, L2_Loss = 1.11094e+06
+I0616 11:04:28.334072 21918 caffe.cpp:169] Batch 36, L2_Loss = 1.11217e+06
+I0616 11:04:28.641324 21918 caffe.cpp:169] Batch 37, L2_Loss = 1.11523e+06
+I0616 11:04:28.948565 21918 caffe.cpp:169] Batch 38, L2_Loss = 1.10219e+06
+I0616 11:04:29.255795 21918 caffe.cpp:169] Batch 39, L2_Loss = 1.09621e+06
+I0616 11:04:29.563205 21918 caffe.cpp:169] Batch 40, L2_Loss = 1.11758e+06
+I0616 11:04:29.870442 21918 caffe.cpp:169] Batch 41, L2_Loss = 1.07812e+06
+I0616 11:04:30.177760 21918 caffe.cpp:169] Batch 42, L2_Loss = 1.10196e+06
+I0616 11:04:30.485574 21918 caffe.cpp:169] Batch 43, L2_Loss = 1.08924e+06
+I0616 11:04:30.793467 21918 caffe.cpp:169] Batch 44, L2_Loss = 1.14767e+06
+I0616 11:04:31.100739 21918 caffe.cpp:169] Batch 45, L2_Loss = 1.08385e+06
+I0616 11:04:31.408067 21918 caffe.cpp:169] Batch 46, L2_Loss = 1.06447e+06
+I0616 11:04:31.715687 21918 caffe.cpp:169] Batch 47, L2_Loss = 1.1134e+06
+I0616 11:04:32.022948 21918 caffe.cpp:169] Batch 48, L2_Loss = 1.0943e+06
+I0616 11:04:32.330307 21918 caffe.cpp:169] Batch 49, L2_Loss = 1.1092e+06
+I0616 11:04:32.330335 21918 caffe.cpp:174] Loss: 1.10224e+06
+I0616 11:04:32.330345 21918 caffe.cpp:186] L2_Loss = 1.10224e+06 (* 1 = 1.10224e+06 loss)

@@ -1,0 +1,12 @@
+test_iter: 5
+test_interval: 1000
+base_lr: 0.0001
+display: 10
+max_iter: 20000
+lr_policy: "fixed"
+momentum: 0.9
+weight_decay: 0.004
+snapshot: 1000
+snapshot_prefix: "snapshots/16-06-15_15h49m18s_0_11_pretrainClassification"
+solver_mode: GPU
+net: "prototxt/16-06-15_15h49m18s_0_11_pretrainClassification_net.sh"
