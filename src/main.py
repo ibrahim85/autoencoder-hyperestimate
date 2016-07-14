@@ -41,8 +41,9 @@ def main():
         }
     archDef = ArchDef(objectives, params)
 
-    # default settings
+    # # default settings
     # settings = {
+    #     "name": "defaultArch",
     #     "featuresPerLayer": 64,
     #     "convLayersPerBlock": 2,
     #     "blocks": 3,
@@ -54,16 +55,17 @@ def main():
     # }
 
     # fewer params settings: only 16
-    # settings = {
-    #     "featuresPerLayer": 16,
-    #     "convLayersPerBlock": 2,
-    #     "blocks": 3,
-    #     "kernelSize": 3,
-    #     "kernelSizeLocal": 1,
-    #     "strideConv": 1,
-    #     "stridePool": 2,
-    #     "inputSize": 32
-    #     }
+    settings = {
+        "name": "16fv2",
+        "featuresPerLayer": 16,
+        "convLayersPerBlock": 2,
+        "blocks": 3,
+        "kernelSize": 3,
+        "kernelSizeLocal": 1,
+        "strideConv": 1,
+        "stridePool": 2,
+        "inputSize": 32
+        }
 
     # # fewer params settings: only 8
     # settings = {
@@ -150,23 +152,24 @@ def main():
     # }
 
     # less blocks
-    settings = {
-        "featuresPerLayer": 32,
-        "convLayersPerBlock": 2,
-        "blocks": 2,
-        "kernelSize": 3,
-        "kernelSizeLocal": 1,
-        "strideConv": 1,
-        "stridePool": 2,
-        "inputSize": 32
-    }
+    # settings = {
+    #     "featuresPerLayer": 32,
+    #     "convLayersPerBlock": 2,
+    #     "blocks": 2,
+    #     "kernelSize": 3,
+    #     "kernelSizeLocal": 1,
+    #     "strideConv": 1,
+    #     "stridePool": 2,
+    #     "inputSize": 32
+    # }
 
     d = datetime.datetime.now()
-    trainArchitecture(d.strftime("%y-%m-%d_%Hh%Mm%Ss_") + "0", archDef, settings)
+    trainArchitecture(d.strftime("%y-%m-%d_%Hh%Mm%Ss_") + settings["name"] + "_0", archDef, settings)
 
 
 def trainArchitecture(ID, archDef, settings):
     steps = []
+    visualizationSteps = []
 
     stepID = ID + "_00"
     solverFileName, netFileName, weightsFilePath = pretrainingConvCifar10(stepID, archDef, settings, False)
@@ -209,36 +212,56 @@ def trainArchitecture(ID, archDef, settings):
     stepID = ID + "_40"
     previousWeightsFilePath = weightsFilePath
     solverFileName, netFileName, weightsFilePath = reconstructFull(stepID, archDef, settings, False)
+    _, netFileNameMockTest, _ = reconstructFull(stepID, archDef, settings, False, mockOnlyTestSet=True)
     print("pretraining done: ", solverFileName, netFileName, weightsFilePath)
     print("pretraining done: caffe train --solver=" + solverFileName, "--weights=" + previousWeightsFilePath, " > " + stepID + "_logs.txt 2>&1")
     steps.append("time caffe train --solver=" + solverFileName + " --weights=" + previousWeightsFilePath + " > " + stepID + "_logs.txt 2>&1")
     steps.append("time caffe test --weights=" + weightsFilePath + " --model=" + netFileName + " --gpu=0" + " > " + stepID + "_logs_tests.txt 2>&1")
     steps.append("time python2 VisualizeReconstructionOfLayer.py " + weightsFilePath + " " + netFileName)
+    visualizationSteps.append(steps[-1])
+    steps.append("time python2 VisualizeReconstructionOfLayer.py " + weightsFilePath + " " + netFileNameMockTest)
+    visualizationSteps.append(steps[-1])
 
     stepID = ID + "_50"
     previousWeightsFilePath = weightsFilePath
     solverFileName, netFileName, weightsFilePath = reconstructFullFC0(stepID, archDef, settings, False)
+    _, netFileNameMockTest, _ = reconstructFullFC0(stepID, archDef, settings, False, mockOnlyTestSet=True)
     print("pretraining done: ", solverFileName, netFileName, weightsFilePath)
     print("pretraining done: caffe train --solver=" + solverFileName, "--weights=" + previousWeightsFilePath, " > " + stepID + "_logs.txt 2>&1")
     steps.append("time caffe train --solver=" + solverFileName + " --weights=" + previousWeightsFilePath + " > " + stepID + "_logs.txt 2>&1")
     steps.append("time caffe test --weights=" + weightsFilePath + " --model=" + netFileName + " --gpu=0" + " > " + stepID + "_logs_tests.txt 2>&1")
     steps.append("time python2 VisualizeReconstructionOfLayer.py " + weightsFilePath + " " + netFileName)
+    visualizationSteps.append(steps[-1])
+    steps.append("time python2 VisualizeReconstructionOfLayer.py " + weightsFilePath + " " + netFileNameMockTest)
+    visualizationSteps.append(steps[-1])
     # weightsFilePath = "snapshots/16-06-07_15h12m56s_0_50_reconstructFullFC0_iter_30000.caffemodel"
 
     stepID = ID + "_60"
     previousWeightsFilePath = weightsFilePath
     solverFileName, netFileName, weightsFilePath = reconstructFullFC0unfrozen(stepID, archDef, settings, False)
+    _, netFileNameMockTest, _ = reconstructFullFC0unfrozen(stepID, archDef, settings, False, mockOnlyTestSet=True)
     print("pretraining done: ", solverFileName, netFileName, weightsFilePath)
     print("pretraining done: caffe train --solver=" + solverFileName, "--weights=" + previousWeightsFilePath, " > " + stepID + "_logs.txt 2>&1")
     steps.append("time caffe train --solver=" + solverFileName + " --weights=" + previousWeightsFilePath + " > " + stepID + "_logs.txt 2>&1")
     steps.append("time caffe test --weights=" + weightsFilePath + " --model=" + netFileName + " --gpu=0" + " > " + stepID + "_logs_tests.txt 2>&1")
-    steps.append("python2 VisualizeReconstructionOfLayer.py " + weightsFilePath + " " + netFileName)
+    steps.append("time python2 VisualizeReconstructionOfLayer.py " + weightsFilePath + " " + netFileName)
+    visualizationSteps.append(steps[-1])
+    steps.append("time python2 VisualizeReconstructionOfLayer.py " + weightsFilePath + " " + netFileNameMockTest)
+    visualizationSteps.append(steps[-1])
 
     print("")
     print("Full command:")
+    runFile = ""
     fullCommand = "nut --exec='cd /src; " + "; ".join(steps) + "'"
+    individualCommands = "nut --exec='cd /src; " + ";'\nnut --exec='cd /src; ".join(steps)  + "'"
+    visualizeCommands = "nut --exec='cd /src; " + "; ".join(visualizationSteps) + "'"
+    individualVisuCommands = "nut --exec='cd /src; " + ";'\nnut --exec='cd /src; ".join(visualizationSteps)  + "'"
     print(fullCommand)
-    open(ID + "_run.sh", "w+").write(fullCommand)
+    open(ID + "_run.sh", "w+").write(
+        "# Full training, one line:\n" + fullCommand +
+        "\n\n# Full training, several lines:\n" + individualCommands +
+        "\n\n# Visualization, one line:\n" + visualizeCommands +
+        "\n\n# Visualization, several lines:\n" + individualVisuCommands)
 
 
 def get_function_name():
@@ -258,7 +281,7 @@ def pretrainingConvCifar10(ID, archDef, settings, performTraining=True):
     solver_param.lr_policy = "fixed"
     solver_param.momentum = 0.9
     solver_param.weight_decay = 0.004
-    solver_param.snapshot = 500
+    solver_param.snapshot = 2000
     solver_param.snapshot_prefix = "snapshots/" + ID + "_" + phaseName
     if USE_GPU:
         solver_param.solver_mode = solver_param.GPU
@@ -325,7 +348,7 @@ def pretrainClassificationFrozen(ID, archDef, settings, performTraining=True):
     solver_param.lr_policy = "fixed"
     solver_param.momentum = 0.9
     solver_param.weight_decay = 0.004
-    solver_param.snapshot = 1000
+    solver_param.snapshot = 3000
     solver_param.snapshot_prefix = "snapshots/" + ID + "_" + phaseName
     if USE_GPU:
         solver_param.solver_mode = solver_param.GPU
@@ -392,7 +415,7 @@ def pretrainClassification(ID, archDef, settings, performTraining=True):
     solver_param.lr_policy = "fixed"
     solver_param.momentum = 0.9
     solver_param.weight_decay = 0.004
-    solver_param.snapshot = 1000
+    solver_param.snapshot = 5000
     solver_param.snapshot_prefix = "snapshots/" + ID + "_" + phaseName
     if USE_GPU:
         solver_param.solver_mode = solver_param.GPU
@@ -520,7 +543,7 @@ def reconstructIncremental1(ID, archDef, settings, performTraining=True):
     solver_param.lr_policy = "fixed"
     solver_param.momentum = 0.7
     solver_param.weight_decay = 0.004
-    solver_param.snapshot = 1000
+    solver_param.snapshot = 2000
     solver_param.snapshot_prefix = "snapshots/" + ID + "_" + phaseName
     if USE_GPU:
         solver_param.solver_mode = solver_param.GPU
@@ -591,7 +614,7 @@ def reconstructIncremental2(ID, archDef, settings, performTraining=True):
     solver_param.lr_policy = "fixed"
     solver_param.momentum = 0.7
     solver_param.weight_decay = 0.004
-    solver_param.snapshot = 1000
+    solver_param.snapshot = 2000
     solver_param.snapshot_prefix = "snapshots/" + ID + "_" + phaseName
     if USE_GPU:
         solver_param.solver_mode = solver_param.GPU
@@ -646,8 +669,10 @@ def reconstructIncremental2(ID, archDef, settings, performTraining=True):
     return solverFileName, netFileName, weightsFilePath
 
 
-def reconstructFull(ID, archDef, settings, performTraining=True):
+def reconstructFull(ID, archDef, settings, performTraining=True, mockOnlyTestSet=False):
     phaseName = get_function_name()
+    if mockOnlyTestSet:
+        phaseName = phaseName + "_test"
 
     # create solver
     solver_param = v2.SolverParameter()
@@ -659,7 +684,7 @@ def reconstructFull(ID, archDef, settings, performTraining=True):
     solver_param.lr_policy = "fixed"
     solver_param.momentum = 0.7
     solver_param.weight_decay = 0.004
-    solver_param.snapshot = 1000
+    solver_param.snapshot = 5000
     solver_param.snapshot_prefix = "snapshots/" + ID + "_" + phaseName
     if USE_GPU:
         solver_param.solver_mode = solver_param.GPU
@@ -669,7 +694,7 @@ def reconstructFull(ID, archDef, settings, performTraining=True):
     # create network
     net_param = caffe.proto.caffe_pb2.NetParameter()
 
-    (dataTrain, dataTest) = dataLayers(net_param, 750, labels=False)
+    (dataTrain, dataTest) = dataLayers(net_param, 750, labels=False, mockOnlyTestSet=mockOnlyTestSet)
 
     # create the conv pool blocks
     blocks = []
@@ -727,8 +752,10 @@ def reconstructFull(ID, archDef, settings, performTraining=True):
     return solverFileName, netFileName, weightsFilePath
 
 
-def reconstructFullFC0(ID, archDef, settings, performTraining=True):
+def reconstructFullFC0(ID, archDef, settings, performTraining=True, mockOnlyTestSet=False):
     phaseName = get_function_name()
+    if mockOnlyTestSet:
+        phaseName = phaseName + "_test"
 
     # create solver
     solver_param = v2.SolverParameter()
@@ -740,7 +767,7 @@ def reconstructFullFC0(ID, archDef, settings, performTraining=True):
     solver_param.lr_policy = "fixed"
     solver_param.momentum = 0.7
     solver_param.weight_decay = 0.004
-    solver_param.snapshot = 1000
+    solver_param.snapshot = 5000
     solver_param.snapshot_prefix = "snapshots/" + ID + "_" + phaseName
     if USE_GPU:
         solver_param.solver_mode = solver_param.GPU
@@ -750,7 +777,7 @@ def reconstructFullFC0(ID, archDef, settings, performTraining=True):
     # create network
     net_param = caffe.proto.caffe_pb2.NetParameter()
 
-    (dataTrain, dataTest) = dataLayers(net_param, 750, labels=False)
+    (dataTrain, dataTest) = dataLayers(net_param, 750, labels=False, mockOnlyTestSet=mockOnlyTestSet)
 
     # create the conv pool blocks
     blocks = []
@@ -814,8 +841,10 @@ def reconstructFullFC0(ID, archDef, settings, performTraining=True):
     return solverFileName, netFileName, weightsFilePath
 
 
-def reconstructFullFC0unfrozen(ID, archDef, settings, performTraining=True):
+def reconstructFullFC0unfrozen(ID, archDef, settings, performTraining=True, mockOnlyTestSet=False):
     phaseName = get_function_name()
+    if mockOnlyTestSet:
+        phaseName = phaseName + "_test"
 
     # create solver
     solver_param = v2.SolverParameter()
@@ -827,7 +856,7 @@ def reconstructFullFC0unfrozen(ID, archDef, settings, performTraining=True):
     solver_param.lr_policy = "fixed"
     solver_param.momentum = 0.7
     solver_param.weight_decay = 0.004
-    solver_param.snapshot = 1000
+    solver_param.snapshot = 5000
     solver_param.snapshot_prefix = "snapshots/" + ID + "_" + phaseName
     if USE_GPU:
         solver_param.solver_mode = solver_param.GPU
@@ -838,7 +867,7 @@ def reconstructFullFC0unfrozen(ID, archDef, settings, performTraining=True):
     # create network
     net_param = caffe.proto.caffe_pb2.NetParameter()
 
-    (dataTrain, dataTest) = dataLayers(net_param, 750, labels=False)
+    (dataTrain, dataTest) = dataLayers(net_param, 750, labels=False, mockOnlyTestSet=mockOnlyTestSet)
 
     # create the conv pool blocks
     blocks = []
@@ -988,7 +1017,7 @@ def reconstructFullFC0unfrozen(ID, archDef, settings, performTraining=True):
 #     return solverFileName, netFileName, weightsFilePath
 
 
-def dataLayers(net_param, batch_size, dataset="cifar100", labels=True):
+def dataLayers(net_param, batch_size, dataset="cifar100", labels=True, mockOnlyTestSet=False):
     if labels:
         tops = ["data", "label"]
     else:
@@ -999,23 +1028,36 @@ def dataLayers(net_param, batch_size, dataset="cifar100", labels=True):
                     sourcePath="/dataset/cifar100_lmdb_lab/cifar100_test_lmdb",
                     meanFilePath="/dataset/cifar100_lmdb_lab/mean.binaryproto",
                     batch_size=batch_size))
-        dataTrain = trainPhase(dataLayer(net_param.layers.add(), tops=tops,
-                    sourcePath="/dataset/cifar100_lmdb_lab/cifar100_train_lmdb",
-                    meanFilePath="/dataset/cifar100_lmdb_lab/mean.binaryproto",
-                    batch_size=batch_size))
-        return (dataTest, dataTrain)
+        if mockOnlyTestSet:
+            dataTrain = trainPhase(dataLayer(net_param.layers.add(), tops=tops,
+                        sourcePath="/dataset/cifar100_lmdb_lab/cifar100_test_lmdb",
+                        meanFilePath="/dataset/cifar100_lmdb_lab/mean.binaryproto",
+                        batch_size=batch_size))
+            return (dataTest, dataTrain)
+        else:
+            dataTrain = trainPhase(dataLayer(net_param.layers.add(), tops=tops,
+                        sourcePath="/dataset/cifar100_lmdb_lab/cifar100_train_lmdb",
+                        meanFilePath="/dataset/cifar100_lmdb_lab/mean.binaryproto",
+                        batch_size=batch_size))
+            return (dataTest, dataTrain)
     elif dataset == "cifar10":
         dataTest = testPhase(dataLayer(net_param.layers.add(), tops=tops,
                     sourcePath="/dataset/cifar10/cifar10_test_lmdb",
                     meanFilePath="/dataset/cifar10/mean.binaryproto",
                     batch_size=batch_size))
-        dataTrain = trainPhase(dataLayer(net_param.layers.add(), tops=tops,
-                    sourcePath="/dataset/cifar10/cifar10_train_lmdb",
-                    meanFilePath="/dataset/cifar10/mean.binaryproto",
-                    batch_size=batch_size))
-        return (dataTest, dataTrain)
+        if mockOnlyTestSet:
+            dataTrain = trainPhase(dataLayer(net_param.layers.add(), tops=tops,
+                        sourcePath="/dataset/cifar10/cifar10_test_lmdb",
+                        meanFilePath="/dataset/cifar10/mean.binaryproto",
+                        batch_size=batch_size))
+            return (dataTest, dataTrain)
+        else:
+            dataTrain = trainPhase(dataLayer(net_param.layers.add(), tops=tops,
+                        sourcePath="/dataset/cifar10/cifar10_train_lmdb",
+                        meanFilePath="/dataset/cifar10/mean.binaryproto",
+                        batch_size=batch_size))
+            return (dataTest, dataTrain)
 
 
 if __name__ == '__main__':
     main()
-
