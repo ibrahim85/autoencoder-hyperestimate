@@ -2,7 +2,7 @@
 
 Generate deep neural auto-encoder based on convolution and max-pool layers to reconstruct images. Modify hyper-parameters easily, such as number of layers, amount of filters, ...
 
-This project is based on Caffe, and runs thanks to Nut.
+This project is based on a [fork of Caffe](https://github.com/matthieudelaro/caffe), and runs thanks to [Nut](https://github.com/matthieudelaro/nut) and [nvidia-docker](https://github.com/NVIDIA/nvidia-docker).
 
 ### How To
 First define the parameters of your architecture in `main()` of `src/main.py`, such as:
@@ -34,6 +34,12 @@ nut --exec='cd /src; time caffe train --solver=prototxt/16-07-14_15h39m04s_0_00_
 
 You can either copy-paste this command to your terminal, are run `16-07-14_15h39m04s_0_run.sh`, which contains the same command. Generated prototxt files are in `src/prototxt`. Snapshots will be saved in `src/snapshots`, and all the logs of Caffe will be saved to files in `logs/`.
 
+### Results
+Results for 8, 16, and 32 filters architectures (as described in the paper) are available in branch [results](https://github.com/matthieudelaro/autoencoder-hyperestimate/tree/results). Here are the corresponding prefix:
+-  8 filters: 16-06-15_15h49m18s
+- 16 filters: 16-06-14_15h51m21s
+- 32 filters: 16-06-21_16h05m31s
+
 ### Visualize Reconstruction On The Test Set
 This project relies on an old version of Caffe, so specifying the test/training set is not possible with Pycaffe. As a result, visuals are generated from the training set. There is usually no difference between reconstruction on the train and test set, due to the variety of images. But if you wish to compare with test set, you may re-run the `src/VisualizeReconstructionOfLayer.py` script after editing the path to the training set in the prototxt files (make the train set point to the test set).
 
@@ -43,6 +49,9 @@ Otherwise, you may use the branch [visutestset](https://github.com/matthieudelar
 - The dataset is not zero-centered. The pixel colors of the images of the dataset are encoded from 0 to 255. So it would be better to specify a transformation in the data layer to fix this. Variance should be handled as well.
 - ReLU activationn use in this project is probably too big. It leads the network to consider a local minimum, which corresponds to the average image to reconstruct. Reducing its value (and adjusting other hyperparameters accordingly) should speedup the training, and improve the results.
 - This project doesn't generate plots with learning rate and loss. It would be a nice feature, and it shoud be easy to add thanks to the extra tools of Caffe.
+- Prototxt files, logs, snapshots, and visuals have a prefix corresponding to the date when they have been generated. However, they are all logs are in the same folder, and files from a same architecture are split between the folder of the snapshot, the folder of the logs, etc. It would be much better to have those files grouped into a folder per architecture. 
+
+=> Contributions are welcome
 
 
 ### Cite
